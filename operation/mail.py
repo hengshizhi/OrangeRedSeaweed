@@ -1,13 +1,10 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
-try:
+# try:
     # import config #导入配置
-    from config import main_config as main_config
-    config = main_config()
-except:
-    from .config import main_config as main_config
-    config = main_config()
+from operationconfig import main_config as main_config
+config = main_config()
 class mail():
     def __init__(self):
         self.connection()

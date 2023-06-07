@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.getcwd()+'/operation/')
+sys.path.append(os.getcwd()+'/sdk/')
 try:
     from sanic import Sanic #导入sanic web的本体
     from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类
@@ -54,7 +58,6 @@ async def front_end(request,path):
         return await file('./front_end/'+path)
     except:
         return await file('./front_end/index.html')
-
 app.add_route(front_end,f'/<path:path>',methods=['GET','POST']) #front_end
 app.add_route(api,f'/api/<name:path>',methods=['GET','POST']) #HTTPAPI
 app.add_route(favicon, "/favicon.ico",methods=["GET"]) # favicon.ico

@@ -7,10 +7,10 @@ import random
 import json
 from sanic.response import text
 # try:
-from . import config as configs
-from . import md5 as md5
-from .db import mysql as db
-from .mail import mail as mails
+import operationconfig as configs
+import md5 as md5
+import db.mysql as db
+from mail import mail as mails
 # except:
 #     # import md5 as md5
 #     import db.mysql as db
