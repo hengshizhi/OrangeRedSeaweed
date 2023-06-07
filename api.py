@@ -16,6 +16,13 @@ apiDict:
 {'name':API_function}
 '''
 
+def restart_program(get_or_post,EnableSession,rep,**para):
+    '''重启程序'''
+    def RP():
+        import sys,os
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
 def get_session_key(get_or_post,EnableSession,rep,**para):
     s = EnableSession()
     return rep(s.key,s)
@@ -42,15 +49,7 @@ apiDict = {'helloWorld' : helloWorld,'Get_session_key':get_session_key,'Mod':Mod
 apiDict.update(user.apiDict()) # 添加lui-user
 
 def main(request,name):
-    '''
-    ->
-        {'async': False, 
-        'data': <HTTPResponse: 200 text/plain; charset=utf-8>,
-        'cookie' : {}
-        }
-    '''
-    # print(type(apiDict[name]))
-    try:
+    try: # api是否存在
         if (type(apiDict[name]) == None):
             return {'data':empty(status=404)}
     except:
@@ -117,6 +116,3 @@ def main(request,name):
         except:
             pass
     return ret
-    # except:
-    #     return empty(status=404)
-

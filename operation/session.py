@@ -3,19 +3,21 @@ import time
 import uuid
 import json
 try:
+    from .md5 import get_md5
     from .db import mysql as db
 except:
     import db.mysql as db
+    from md5 import get_md5
 
-get_session = db.get_session #数据库会话
-session_db = db.table.session #关联会话数据表
+get_session = db.get_session #Database Session
+session_db = db.table.session #Associate Session Data Table
 
 class session():
     data = {}
-    def __init__(self,session_key):
-        self.key = session_key #保存key
-        # self.get()
-    def create(self): #创建sessionkey
+    def __init__(self,session_key = None):
+        if (session_key != None):
+            self.key = session_key
+    def create(self):
         '''
         Create session
         Create a session key is available
@@ -23,36 +25,43 @@ class session():
         '''
         with get_session() as s:
             session = db.table.session()
-            # print(str(uuid.uuid4()))
-            session.id = str(uuid.uuid4()) #生成唯一id
+            uuidsuiji = str(uuid.uuid4())
+            session.id = get_md5(uuidsuiji)
             session.created_at = time.time()
             session.updated_at = time.time()
             s.add(session)
             s.commit()
-            self.key = session.id
+            self.key = uuidsuiji
             return session.id
-    def getDB(self): #得到数据库里面的session
+    def getDB(self):
+        '''Obtain the session in the database'''
         with get_session() as s:
-            self.data = s.query(session_db).filter(session_db.id == self.key,
-            session_db.deleted_at==None).first().dobule_to_dict()['data'] # 查询数据库
-            print('DATA:',s.query(session_db).filter(session_db.id == self.key,
-            session_db.deleted_at==None).first().dobule_to_dict())
+            self.data = s.query(session_db).filter(session_db.id == self.GetMd5SessionId(),
+            session_db.deleted_at==None).first().dobule_to_dict()['data'] # query data base
             if(self.data != None):
-                self.data = json.loads(self.data) #编码成json
+                self.data = json.loads(self.data)
             else:
                 self.data = {}
+    def Pulling(self):
+        '''Pull the content of the database'''
+        self.getDB()
+    def GetMd5SessionId(self):
+        '''Get Md5's Session id'''
+        return get_md5(self.key)
     def refresh(self): 
-        '''刷新session,将内存里面的session提交到数据库'''
+        '''Refresh the session and submit the session in memory to the database'''
         with get_session() as s:
-            s.query(session_db).filter(session_db.id == self.key).update({'data': json.dumps(self.data),
-                                                                             'updated_at':time.time()})
+            s.query(session_db).filter(session_db.id == self.GetMd5SessionId()).update({'data': json.dumps(self.data),'updated_at':time.time()})
+    def SubmitTo(self):
+        '''Submit session data from memory to the database'''
+        self.refresh()
     def Set(self,key,value):
         try:self.data[key] = value
         except:
             self.data['Verification'] = None
             self.data[key] = value
     def delete(self,key):
-        '''删除session值:
+        '''Delete session value:
         session = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
         > key=['a', 'c']
         > session
@@ -61,7 +70,7 @@ class session():
         > session
         {'d': 4} 
         '''
-        if(str(type(key)) == "<class 'list'>"):
+        if(type(key) == list):
             for i in key:
                 del self.data[i]
         else:
