@@ -49,11 +49,12 @@ def main(request,name):
         'cookie' : {}
         }
     '''
+    # print(type(apiDict[name]))
     try:
-        if (type(apiDict[name]) != object):
-            return empty(status=404)
+        if (type(apiDict[name]) == None):
+            return {'data':empty(status=404)}
     except:
-        return empty(status=404)
+        return {'data':empty(status=404)}
     def RepisOldVersion(session_odj,data,cookie={}):
         return {'async':False,
             'data':text(data),

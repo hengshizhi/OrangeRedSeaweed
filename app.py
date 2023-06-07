@@ -36,13 +36,16 @@ async def favicon(request):
 
 async def api(request,name): #API执行函数
     data = api_main.main(request,name)
+    print(data)
     ret = data['data']
-    for k,v in data['cookie'].items(): #设置cookie
-        ret.cookies[k] = v
-    # print(ret)
-    if(data['async']):
-        return await ret
-    else:
+    try:
+        for k,v in data['cookie'].items(): #设置cookie
+            ret.cookies[k] = v
+    except:pass
+    try:
+        if(data['async']):return await ret
+        else:return ret
+    except:
         return ret
 
 async def front_end(request,path):
