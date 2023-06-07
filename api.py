@@ -3,7 +3,7 @@
 from operation.user import api as user
 from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类
 from operation.session import session
-
+from mod.mod import main as ModMain
 user = user()
 '''
 API开发文档:
@@ -38,7 +38,7 @@ def helloWorld(get_or_post,EnableSession,rep,**para):
     'cookie':{'Session_key':''},'session_odj':s
     }
 
-apiDict = {'helloWorld' : helloWorld,'Get_session_key':get_session_key}
+apiDict = {'helloWorld' : helloWorld,'Get_session_key':get_session_key,'Mod':ModMain}
 apiDict.update(user.apiDict()) # 添加lui-user
 
 def main(request,name):
@@ -105,15 +105,16 @@ def main(request,name):
         return session_odj
 
     ret = apiDict[name](get_or_post,EnableSession,rep,request=request,RepisOldVersion=RepisOldVersion)
-    try:
-        session_odj = ret['session_odj'] # 覆写session_odj为更改过的session_odj
-        session_odj.refresh() # 提交内存的session
-    except:
-        print('提交失败')
-    try:
-        ret['cookie']['Session_key'] = session_odj.key # 更新cookie的session_key
-    except:
-        pass
+    if (ret['session_odj'] != None):
+        try:
+            session_odj = ret['session_odj'] # 覆写session_odj为更改过的session_odj
+            session_odj.refresh() # 提交内存的session
+        except:
+            print('提交失败')
+        try:
+            ret['cookie']['Session_key'] = session_odj.key # 更新cookie的session_key
+        except:
+            pass
     return ret
     # except:
     #     return empty(status=404)

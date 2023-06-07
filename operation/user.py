@@ -25,7 +25,7 @@ def registered_record(id=time.time(),#设置主键
     Key=md5.get_md5(''.join(random.sample(string.ascii_letters + string.digits, 20))),#密码
     Registration_time=time.time(),#注册时间
     postbox=False,#邮箱
-    nickname='I',#昵称
+    nickname='空的',#昵称
     HeadPortrait=True#头像(url)
 ):
     '''
@@ -114,7 +114,9 @@ def Change_user_data(id=False,name=False,postbox=False,data:dict = {}):
                     return False
     return True
 def GET_other_user_data_interior(user_id=False,name=False,postbox=False,id:str=''):
-    '''获得用户其他数据(DATA字段)'''
+    '''获得用户其他数据(DATA字段)
+    id :平台id
+    '''
     # data = json.loads(get_user_data(id=user_id,name=name,postbox=postbox)['DATA'])
     # return data[id]
     try:
@@ -125,13 +127,15 @@ def GET_other_user_data_interior(user_id=False,name=False,postbox=False,id:str='
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
         return str(data[id])
     try:return str(data[id])
-    except: #假如没有创建键值
+    except: #假如没有创建键
         data[id] = None
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
     return str(data[id])
 def Change_other_user_data_interior(user_id=False,name=False,postbox=False,id:str='',v:str=''):
     '''
     更改用户其他数据(DATA字段)
+    parameter :
+        v: 要更新的数据(json)
     '''
     try:
         data = json.loads(get_user_data(id=user_id,name=name,postbox=postbox)['DATA'])
@@ -235,32 +239,13 @@ class api():
             else:
                 return para['RepisOldVersion'](s,'Strange reasons lead to failure')
     def registered(self,get_or_post,s,rep,**para):
-        '''注册
-        只可以是QQ邮箱,而且必须存在
-        '''
+        '''注册'''
         # 接收参数:
         s = s()
         name = get_or_post('name',time.time()) #用户名
         Key = get_or_post('Key'.format(),True) #密码
         postbox = get_or_post('postbox',False) #邮箱
         nickname = get_or_post('nickname',True) #昵称
-
-        '''
-        {邮箱格式验证
-        需要QQ邮箱,且当时QQ邮箱号主要在线
-        '''
-        postboxs = postbox.split('@')
-        if (postboxs[1] != 'qq.com'):
-            return para['RepisOldVersion'](s,'QQ mailbox required') # 不是QQ邮箱
-        else:
-            QOSD = QQ_online_status(postboxs[0]) #验证QQ号是否存在
-            if(QOSD == None):
-                return para['RepisOldVersion'](s,'QQ mailbox does not exist') #QQ邮箱不存在
-            if(QOSD == False):
-                return para['RepisOldVersion'](s,'QQ number is not online') #QQ号不在线
-        '''
-        邮箱格式验证}
-        '''
 
         if(get_user_data(postbox=postbox) != None): #获得用户数据,如果不是None证明已经存在用户
             return {'async':False,
@@ -274,7 +259,6 @@ class api():
                           postbox=postbox,
                           nickname=nickname
                           ) #注册,提交到数据库,返回注册之后的id
-        # print('aaaaaaaaaaaaaaaaID:',id)
 
         if(id):
             return para['RepisOldVersion'](s,'OK,ID->'+str(id))
