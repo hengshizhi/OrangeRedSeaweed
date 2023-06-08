@@ -41,7 +41,7 @@ class Main():
         Parameters:
             Session: Objects returned using the 'EnableSession' function
         '''
-        try:user_id = s.Session['login_status_id'] # Obtain login status
+        try:user_id = Session.data['login_status_id'] # Obtain login status
         except:return None # Not Logged In
         self.Pulling()
         try:
