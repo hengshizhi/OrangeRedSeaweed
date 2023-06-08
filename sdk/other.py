@@ -41,8 +41,7 @@ class Main():
         Parameters:
             Session: Objects returned using the 'EnableSession' function
         '''
-        try:user_id = Session.data['login_status_id'] # Obtain login status
-        except:return None # Not Logged In
+        if (not self.UserLoginAuthentication(Session)):return None
         self.Pulling()
         try:
             if(self.data['administrators']):
@@ -51,3 +50,11 @@ class Main():
                 return False
         except:
             return False
+    
+    def UserLoginAuthentication(self,Session:object) -> bool:
+        '''User login verification, 
+        if login returns id, 
+        if not logged in returns none
+        Parameter: Session: Objects returned using the 'Enabling Session' function  '''
+        try:return Session.data['login_status_id'] # Obtain login status
+        except:return None # Not Logged In
