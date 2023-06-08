@@ -13,11 +13,16 @@ import time
 import sdk.other as other
 import operation.session as session
 
+# OTHERDATA = other.Main('CoreConfiguration',True,1686191036)
+# OTHERDATA.data['administrators'] = 1
+# OTHERDATA.SubmitToDatabase()
+
 while 1:
     a = input('输入：安装【一】，登录【二】')
     if (a == '一'):
         print(user.registered_record(id=2,nickname='User Data User',postbox='UserDataUser@email.com'))
         id = time.time()
+        id = int(id+0.5) # 四舍五入
         user.registered_record(id=id,postbox=input('你的邮箱(必填,否则可能导致系统错乱):'),nickname=input('你的昵称:'))
         OTHERDATA = other.Main('CoreConfiguration',True,id)
         OTHERDATA.data['administrators'] = True

@@ -98,7 +98,8 @@ def Change_user_data(id=False,name=False,postbox=False,data:dict = {}):
     '''
     with get_session() as s:
         for k,v in data.items():
-            if (not (k == 'id' or k == 'postbox' or k == 'Registration_time' or k == 'name' or k == 'DATA')):
+            if (not (k == 'id' or k == 'postbox' or k == 'Registration_time' or k == 'name')):
+                print('1')
                 if(id):
                     s.query(User).filter(User.id == id).update({k:v})
                 elif(name):
@@ -120,12 +121,12 @@ def GET_other_user_data_interior(user_id=False,name=False,postbox=False,id:str='
         data = {}
         data[id] = None
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
-        return str(data[id])
-    try:return str(data[id])
+        return data[id]
+    try:return data[id]
     except: #假如没有创建键
         data[id] = None
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
-    return str(data[id])
+    return data[id]
 def Change_other_user_data_interior(user_id=False,name=False,postbox=False,id:str='',v:str=''):
     '''
     更改用户其他数据(DATA字段)
@@ -138,6 +139,7 @@ def Change_other_user_data_interior(user_id=False,name=False,postbox=False,id:st
         data = {}
         data[id] = None
         data[id] = v # 保存键
+        print(json.dumps(data))
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
         return str(data[id])
     try:

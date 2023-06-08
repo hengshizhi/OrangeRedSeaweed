@@ -1,10 +1,9 @@
 # Other Data SDKs
 
-
 from user import GET_other_user_data_interior as GET_other_user_data_interior
 from user import Change_other_user_data_interior as CHANGE_other_user_data_interior
 import json as json
-
+from user import Change_user_data
 
 class Main():
     def __init__(self,KEY,UseJson:bool = True,ID=2,) -> None:
@@ -22,8 +21,9 @@ class Main():
         # return ID
     def Pulling(self) -> bool:
         '''Pull data from the database to self.data'''
+        # print(GET_other_user_data_interior(user_id=self.id,id=self.key))
         if (self.UseJson):
-            self.data = json.loads(GET_other_user_data_interior(user_id=self.id,id=self.key))
+            self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
         else:
             self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
         return True
@@ -32,3 +32,4 @@ class Main():
         if (self.UseJson):json.dumps(CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data))
         else:CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data)
         return True
+    
