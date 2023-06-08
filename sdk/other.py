@@ -33,3 +33,21 @@ class Main():
         else:CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data)
         return True
     
+    def AdministratorVerification(self,Session:object) -> bool:
+        '''Administrator verification function, 
+            returning 'None' indicates not logged in, 
+            returning 'true' indicates administrator, 
+            returning 'false' indicates not logged in
+        Parameters:
+            Session: Objects returned using the 'EnableSession' function
+        '''
+        try:user_id = s.Session['login_status_id'] # Obtain login status
+        except:return None # Not Logged In
+        self.Pulling()
+        try:
+            if(self.data['administrators']):
+                return True
+            else:
+                return False
+        except:
+            return False
