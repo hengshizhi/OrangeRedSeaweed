@@ -16,13 +16,13 @@ import operation.session as session
 while 1:
     a = input('输入：安装【一】，登录【二】')
     if (a == '一'):
-        user.registered_record(id=0,nickname='User Data User',postbox='UserDataUser@email.com')
+        print(user.registered_record(id=2,nickname='User Data User',postbox='UserDataUser@email.com'))
         id = time.time()
         user.registered_record(id=id,postbox=input('你的邮箱(必填,否则可能导致系统错乱):'),nickname=input('你的昵称:'))
-        print(f'注册完成，id:{id}')
         OTHERDATA = other.Main('CoreConfiguration',True,id)
         OTHERDATA.data['administrators'] = True
         OTHERDATA.SubmitToDatabase()
+        print(f'注册完成，id:{id}')
         print('成功设置管理员')
         
     elif(a == '二'):

@@ -26,19 +26,14 @@ def registered_record(id=time.time(),#设置主键
     Registration_time=time.time(),#注册时间
     postbox=False,#邮箱
     nickname='空的',#昵称
-    HeadPortrait=True#头像(url)
+    HeadPortrait=''#头像(url)
 ):
     '''
     添加注册用户记录
     ->
     '''
     if(bool(id) and 
-       bool(name) and 
-       bool(Key) and 
-       bool(Registration_time) and 
-       bool(postbox) and
-       bool(nickname) and
-       bool(HeadPortrait)
+       bool(postbox)
     ):    
         with get_session() as s:
             user = User()

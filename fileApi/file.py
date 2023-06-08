@@ -1,7 +1,7 @@
 #文件操作类
 import os
 import shutil
-from .route import mkdir as mkdir
+from route import mkdir as mkdir
 class Main:
     def delete(self,path):
         '''Delete删除文件、目录

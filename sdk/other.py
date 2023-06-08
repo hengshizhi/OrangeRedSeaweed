@@ -15,7 +15,11 @@ class Main():
         self.key = KEY
         self.id = ID
         self.UseJson = UseJson
-        return ID
+        if (UseJson):
+            self.data = {}
+        else:
+            self.data = ''
+        # return ID
     def Pulling(self) -> bool:
         '''Pull data from the database to self.data'''
         if (self.UseJson):
