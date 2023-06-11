@@ -3,9 +3,13 @@ import json
 import sdk.other as other
 from .ModInformation import modlist
 from .ModJs import modjs as modjsObj
+from .ModInformation import information
+from sanic.response import HTTPResponse
 def main(api):
     return {'Modlist':apiModlist,
-            'modjs':apiModjs
+            'modjs':apiModjs,
+            'logo':logo,
+            'GetInformation':GetInformation
             }
 def apiModlist(get_or_post,EnableSession,rep,**para):
     s = EnableSession()
@@ -27,8 +31,17 @@ def apiDisableMod(get_or_post,EnableSession,rep,**para):
     pass
 def BackgroundManagement(get_or_post,EnableSession,rep,**para):
     '''后台管理'''
-
-
+def logo(get_or_post,EnableSession,rep,**para):
+    '''mod logo'''
+    modName = get_or_post('LogoModName')
+    inf = information(modName)
+    return rep(HTTPResponse(inf['logo'],content_type='image/jpeg'))
+def GetInformation(get_or_post,EnableSession,rep,**para):
+    modName = get_or_post('LogoModName')
+    inf = information(modName)
+    try:del inf['logo']
+    except:pass
+    return rep(json.dumps(inf))
 def modjs() -> str:
     ret = ''
     modlsit = modlist()
