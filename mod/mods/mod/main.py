@@ -1,14 +1,14 @@
 # mod插件
-import PathInfo as PathInfo
 import json
 import sdk.other as other
+from .ModInformation import modlist
 def main(api):
     return {'Modlist':apiModlist}
 def apiModlist(get_or_post,EnableSession,rep,**para):
     s = EnableSession()
     OT = other.Main('CoreConfiguration',True,s.data['login_status_id'])
     if (OT.AdministratorVerification(s)): # Administrator verification
-        return rep(json.dumps(PathInfo.Dict('./mod/mods','./')))
+        return modlist()
     else:
         return rep('You not is administrators')
 def apiModjs(get_or_post,EnableSession,rep,**para):
@@ -22,9 +22,8 @@ def apiDisableMod(get_or_post,EnableSession,rep,**para):
 def BackgroundManagement(get_or_post,EnableSession,rep,**para):
     '''后台管理'''
 
-def modlist():
-    pass
-def modjs():
+
+def modjs() -> str:
     pass
 def delmod():
     pass
