@@ -1,2 +1,2 @@
 # OrangeRedSeaweed
- 轻量级博客
+ 自制的一个小博客
