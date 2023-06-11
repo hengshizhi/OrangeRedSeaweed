@@ -18,10 +18,13 @@ class modjs():
         '''
         # Load frontendModjs
         self.ModName = ModName
-        self.b = importlib.import_module('..{ModName}.frontendModjs'.format(ModName=ModName), __package__)
+        try:
+            self.b = importlib.import_module('..{ModName}.frontendModjs'.format(ModName=ModName), __package__)
+        except:
+            pass
     def output(self) -> str:
         '''Output the front-end JavaScript code corresponding to mod'''
         try:
             return f'{self.b.modjs()}\n'
         except:
-            return f'var {self.ModName}=null\n'
+            return f'var {self.ModName}=null;\n'

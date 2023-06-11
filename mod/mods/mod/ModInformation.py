@@ -1,6 +1,6 @@
 # mod information
 import json
 import PathInfo as PathInfo
-def modlist():
+def modlist() -> dict:
     '''mod information list'''
-    return json.dumps(PathInfo.Dict('./mod/mods','./'))
+    return PathInfo.Dict('./mod/mods','./')

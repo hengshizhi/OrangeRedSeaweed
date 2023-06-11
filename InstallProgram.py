@@ -31,9 +31,14 @@ while 1:
         print('成功设置管理员')
         
     elif(a == '二'):
-        id = user.get_user_data(postbox=input('你的邮箱'.replace(' ','')))['id']
-        s = session.session()
-        s.create()
+        sessionid = input('sessionid(new?):')
+        id = user.get_user_data(postbox=input('你的邮箱').replace(' ',''))['id']
+        if (sessionid == 'new'):
+            s = session.session()
+            s.create()
+        else:
+            s = session.session(session_key=sessionid)
+            s.getDB()
         s.data['login_status_id'] = id
         s.refresh()
         print(f'登录成功，SessionId：{s.key}')

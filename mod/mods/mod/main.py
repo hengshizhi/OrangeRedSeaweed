@@ -2,17 +2,23 @@
 import json
 import sdk.other as other
 from .ModInformation import modlist
+from .ModJs import modjs as modjsObj
 def main(api):
-    return {'Modlist':apiModlist}
+    return {'Modlist':apiModlist,
+            'modjs':apiModjs
+            }
 def apiModlist(get_or_post,EnableSession,rep,**para):
     s = EnableSession()
-    OT = other.Main('CoreConfiguration',True,s.data['login_status_id'])
+    try:
+        OT = other.Main('CoreConfiguration',True,s.data['login_status_id'])
+    except:
+        return rep('You are not logged in')
     if (OT.AdministratorVerification(s)): # Administrator verification
-        return modlist()
+        return rep(json.dumps(modlist()))
     else:
         return rep('You not is administrators')
 def apiModjs(get_or_post,EnableSession,rep,**para):
-    pass
+    return rep(modjs())
 def apiDelmod(get_or_post,EnableSession,rep,**para):
     pass
 def apiAddmod(get_or_post,EnableSession,rep,**para):
@@ -24,7 +30,12 @@ def BackgroundManagement(get_or_post,EnableSession,rep,**para):
 
 
 def modjs() -> str:
-    pass
+    ret = ''
+    modlsit = modlist()
+    for k,v in modlsit.items():
+        Modjs = modjsObj(k)
+        ret += Modjs.output()
+    return ret
 def delmod():
     pass
 def addmod():
