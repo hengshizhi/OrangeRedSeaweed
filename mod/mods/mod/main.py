@@ -1,10 +1,16 @@
 # mod插件
 import json
 import sdk.other as other
+import PathInfo as PathInfo
 from .ModInformation import modlist
 from .ModJs import modjs as modjsObj
 from .ModInformation import information
+from .ModInformation import logo as Ilogo
 from sanic.response import HTTPResponse
+
+def AtRuntimeForTheFirstTime():
+    ''' Functions that will be executed every time the program runs mod '''
+    pass
 def main(api):
     return {'Modlist':apiModlist,
             'modjs':apiModjs,
@@ -34,13 +40,11 @@ def BackgroundManagement(get_or_post,EnableSession,rep,**para):
 def logo(get_or_post,EnableSession,rep,**para):
     '''mod logo'''
     modName = get_or_post('LogoModName')
-    inf = information(modName)
-    return rep(HTTPResponse(inf['logo'],content_type='image/jpeg'))
+    logos = Ilogo(modName)
+    return rep(HTTPResponse(logos,content_type='image/jpeg'))
 def GetInformation(get_or_post,EnableSession,rep,**para):
     modName = get_or_post('LogoModName')
     inf = information(modName)
-    try:del inf['logo']
-    except:pass
     return rep(json.dumps(inf))
 def modjs() -> str:
     ret = ''

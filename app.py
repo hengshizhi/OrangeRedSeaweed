@@ -5,40 +5,32 @@ sys.path.append(os.getcwd()+'/sdk/')
 sys.path.append(os.getcwd()+'/fileApi/')
 import mod.mods.mod.main # 暂时使用
 try:
-    from sanic import Sanic #导入sanic web的本体
+    from sanic import Sanic
     from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类
     import api as api_main
     # from operation.session import Session
 except:
     pass
     # import autoinstall
-    from sanic import Sanic #导入sanic web的本体
+    from sanic import Sanic
     from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类
     import api as api_main
     # from operation.session import Session #导入会话
-config = {
-    'host':'127.0.0.1',
-    'api_key':'sxaejijiihihihiwezaeqx',
-    'api_id':'xwezqwxaqden',
-    'port':11429,
-    'debug':True,
-    'dev':True,
-    'admin_path':'admin'
-}
+from MainConfig import HttpServerConfig as config #定位配置文件
 
-def get_or_post(request,key): #如果没有GET参数就用post
+def get_or_post(request,key): # If there is no GET parameter, use post
     if(request.args.get(key) != None):
         return request.args.get(key)
     elif(request.form.get(key) != None):
         return request.form.get(key)
     return None
 
-app = Sanic("Lstblog_centralized-chat-group-system") #实例化Sanic
-# Session(app)
+app = Sanic("OrangeRedSeaweed") # Instantiating Sanic
 
 async def favicon(request):
-    '''favicon.ico图标'''
-    return text('OK!')
+    '''Favicon.ico icon'''
+    import MainConfig
+    return await file(MainConfig.favicon)
 
 async def api(request,name): #API执行函数
     data = api_main.main(request,name)
