@@ -45,7 +45,7 @@ def helloWorld(get_or_post,EnableSession,rep,**para):
     'cookie':{'Session_key':''},'session_odj':s
     }
 
-apiDict = {'helloWorld' : helloWorld,'Get_session_key':get_session_key,'Mod':ModMain}
+apiDict = {'helloWorld' : helloWorld,'Get_session_key':get_session_key,'mod':ModMain}
 apiDict.update(user.apiDict()) # 添加lui-user
 
 def main(request,name):

@@ -1,4 +1,5 @@
 # Mod mechanism entry
+# /api/mod?ModName=ModName&ApiName=ApiName
 import importlib
 from sanic.response import text
 import PathInfo as PathInfo

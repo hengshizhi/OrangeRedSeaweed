@@ -21,7 +21,7 @@ class session():
         '''
         Create session
         Create a session key is available
-        -> session key
+        -> session id
         '''
         with get_session() as s:
             session = db.table.session()
@@ -53,7 +53,7 @@ class session():
         with get_session() as s:
             s.query(session_db).filter(session_db.id == self.GetMd5SessionId()).update({'data': json.dumps(self.data),'updated_at':time.time()})
     def SubmitTo(self):
-        '''Submit session data from memory to the database'''
+        '''Submit session data from self.data to the database'''
         self.refresh()
     def Set(self,key,value):
         try:self.data[key] = value
