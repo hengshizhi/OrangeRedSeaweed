@@ -1,0 +1,21 @@
+{
+    "H": {
+        "main": "<h{H} {attribute} >{title}</h{H}>",
+        "format": {
+            "H": {
+                "introduce": "标题级别",
+                "Default": 1
+            },
+            "title": {
+                "introduce": "标题内容",
+                "Default": null
+            }
+        }
+    },
+    "GlobalFormat": {
+        "attribute": {
+            "introduce": "标签属性",
+            "Default": null
+        }
+    }
+}

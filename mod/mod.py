@@ -21,7 +21,11 @@ def main(get_or_post,EnableSession,rep,**para):
         return rep(text('Missing "ModName" or "ApiName" parameters',status=400))
     else:
         b = ImportMod(ModName)
-        return b.main(api = {})[ApiName](get_or_post,EnableSession,rep,**para)
+        try:
+            return b.main(api = {})[ApiName](get_or_post,EnableSession,rep,**para)
+        except TypeError as e:
+            if (str(e) == ''''NoneType' object is not subscriptable'''):
+                return rep(text('mod api 为空',500) )
 
 def AtRuntimeForTheFirstTime():
     '''
@@ -31,7 +35,9 @@ def AtRuntimeForTheFirstTime():
     for k,v in modlists().items():
         try:
             ImportMod(k).AtRuntimeForTheFirstTime() # Functions that will be executed every time the program runs mod
-        except:
+        except AttributeError as e:
             pass # No self starting function
-
+            print( f'mod "{k}" 加载成功,但是不存在初始加载函数,报错:'+str(e) )
+        else:
+            print(f'mod "{k}" 加载成功')
 AtRuntimeForTheFirstTime()
