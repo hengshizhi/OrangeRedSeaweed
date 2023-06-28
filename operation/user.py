@@ -1,6 +1,6 @@
 #用户相关
 import time as time
-from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类
+from sanic.response import text,json,redirect
 import random
 import string
 import random

@@ -4,6 +4,7 @@ from operation.user import GET_other_user_data_interior as GET_other_user_data_i
 from operation.user import Change_other_user_data_interior as CHANGE_other_user_data_interior
 import json as json
 from operation.user import Change_user_data
+from operation.user import Traverse_other_data_with_the_same_key_value as TODWTSKV
 
 class Main():
     def __init__(self,KEY,UseJson:bool = True,ID=2,) -> None:
@@ -33,6 +34,10 @@ class Main():
         else:CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data)
         return True
     
+    def GetKeyData(self,key) -> int|None|str|dict :
+        '''Obtain data for the key value specified in self.data'''
+        try:return self.data[key]
+        except KeyError:return None
     def AdministratorVerification(self,Session:object) -> bool:
         '''Administrator verification function, 
             returning 'None' indicates not logged in, 
@@ -58,4 +63,22 @@ class Main():
         Parameter: Session: Objects returned using the 'Enabling Session' function  '''
         try:return Session.data['login_status_id'] # Obtain login status
         except:return None # Not Logged In
-    
+
+class CoreConfiguration:
+    administrators = None # 管理员
+    ContentEditingRights = None # 内容编辑权
+    PermissionList = [administrators,ContentEditingRights] # 权限列表
+    def __init__(self,user_id,Pulling = True) -> None:
+        ''''(class) CoreConfiguration' is used for editing, modifying, and viewing core configurations'''
+        if (user_id == None or user_id == 2):raise Exception('请传入正确的 user_id 参数')
+        self.OT = Main(KEY='CoreConfiguration',ID=user_id) # 加载用户数据
+        if (Pulling): self.Pulling()
+    def Pulling(self):
+        '''Pull permission information'''
+        self.OT.Pulling()
+        self.administrators = self.OT.GetKeyData('administrators')
+        self.ContentEditingRights = self.OT.GetKeyData('ContentEditingRights')
+    def submitTo(self):
+        '''Submit to database'''
+        self.OT.data = {'administrators':self.administrators,'ContentEditingRights':self.ContentEditingRights}
+        return self.OT.SubmitToDatabase()
