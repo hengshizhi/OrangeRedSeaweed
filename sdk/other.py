@@ -1,9 +1,9 @@
 # Other Data SDKs
 
-from user import GET_other_user_data_interior as GET_other_user_data_interior
-from user import Change_other_user_data_interior as CHANGE_other_user_data_interior
+from operation.user import GET_other_user_data_interior as GET_other_user_data_interior
+from operation.user import Change_other_user_data_interior as CHANGE_other_user_data_interior
 import json as json
-from user import Change_user_data
+from operation.user import Change_user_data
 
 class Main():
     def __init__(self,KEY,UseJson:bool = True,ID=2,) -> None:
@@ -58,3 +58,4 @@ class Main():
         Parameter: Session: Objects returned using the 'Enabling Session' function  '''
         try:return Session.data['login_status_id'] # Obtain login status
         except:return None # Not Logged In
+    

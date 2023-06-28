@@ -111,7 +111,7 @@ def Change_user_data(id=False,name=False,postbox=False,data:dict = {}):
     return True
 def GET_other_user_data_interior(user_id=False,name=False,postbox=False,id:str=''):
     '''获得用户其他数据(DATA字段)
-    id :平台id
+    id :其他数据中的键值
     '''
     # data = json.loads(get_user_data(id=user_id,name=name,postbox=postbox)['DATA'])
     # return data[id]
@@ -150,6 +150,22 @@ def Change_other_user_data_interior(user_id=False,name=False,postbox=False,id:st
         data[id] = v # 保存键
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
     return str(data[id])
+def Traverse_other_data_with_the_same_key_value(id:str=''):
+    '''
+    遍历其他数据的同一键值
+    return :dict({<user-id>:<其他数据>,...})
+    示例：当id='CoreConfiguration'时返回{'1686193681': {'administrators': True}}
+    '''
+    rep = {}
+    with get_session() as s:
+        for i in s.query(User).all():
+            i = i.dobule_to_dict()
+            if (i == None): continue
+            else:
+                try: data_is_idis = json.loads(i['DATA'])[id]
+                except: continue
+                rep[i['id']] = data_is_idis
+    return rep
 def QQ_online_status(QQID):
     import requests
     req = requests.get('http://www.webxml.com.cn/webservices/qqOnlineWebService.asmx/qqCheckOnline?qqCode={QQID}'.format(QQID=QQID))
