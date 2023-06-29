@@ -1,5 +1,6 @@
 import sdk.other as other
 import time
+import json
 def new(Title, alias, content :list([dict({'name':'模板名称','...':'...'}),'...']),user_id):
     '''新建内容
     parameter :
@@ -8,4 +9,5 @@ def new(Title, alias, content :list([dict({'name':'模板名称','...':'...'}),'
         user_id :用户id
     '''
     O = other.Main(KEY='ContentList',ID=user_id)
+    contents = 
     

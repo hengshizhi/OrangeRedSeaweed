@@ -69,11 +69,20 @@ class CoreConfiguration:
     ContentEditingRights = None # 内容编辑权
     PermissionList = [administrators,ContentEditingRights] # 权限列表
     def __init__(self,user_id,Pulling = True) -> None:
-        ''''(class) CoreConfiguration' is used for editing, modifying, and viewing core configurations'''
+        '''
+        '(class) CoreConfiguration' is used for editing, modifying, and viewing core configurations
+        parameter :
+            user_id: User ID
+            Pulling: Whether to automatically pull the database configuration when instantiating a class
+        class variable :
+            administrators : administered limits of authority
+            ContentEditingRights : content editin rights's limits of authority
+            PermissionList : use limits of authority's list
+        '''
         if (user_id == None or user_id == 2):raise Exception('请传入正确的 user_id 参数')
         self.OT = Main(KEY='CoreConfiguration',ID=user_id) # 加载用户数据
-        if (Pulling): self.Pulling()
-    def Pulling(self):
+        if (Pulling): self.PullingDatabase()
+    def PullingDatabase(self):
         '''Pull permission information'''
         self.OT.Pulling()
         self.administrators = self.OT.GetKeyData('administrators')
