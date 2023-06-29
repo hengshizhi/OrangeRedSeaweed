@@ -14,7 +14,10 @@ class Main():
             session: Session can be used to obtain logged in users_id ()
         '''
         if (bool(session)):
-            self.id = session.data['login_status_id']
+            try:
+                self.id = session.data['login_status_id']
+            except:
+                self.id = None
         else:
             self.id = USERID
         self.key = KEY
