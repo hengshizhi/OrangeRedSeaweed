@@ -7,13 +7,17 @@ from operation.user import Change_user_data
 from operation.user import Traverse_other_data_with_the_same_key_value as TODWTSKV
 
 class Main():
-    def __init__(self,KEY,UseJson:bool = True,ID=2,) -> None:
+    def __init__(self,KEY,UseJson:bool = True,USERID=2,session=False) -> None:
         '''parameter:
             KEY :The JSON key name in the data field
             ID: User ID (2id is the super administrator ID, and non user data should be placed here)
+            session: Session can be used to obtain logged in users_id ()
         '''
+        if (bool(session)):
+            self.id = session.data['login_status_id']
+        else:
+            self.id = USERID
         self.key = KEY
-        self.id = ID
         self.UseJson = UseJson
         if (UseJson):
             self.data = {}
@@ -68,19 +72,26 @@ class CoreConfiguration:
     administrators = None # 管理员
     ContentEditingRights = None # 内容编辑权
     PermissionList = [administrators,ContentEditingRights] # 权限列表
-    def __init__(self,user_id,Pulling = True) -> None:
+    def __init__(self,user_id,session = False,Pulling = True,OT = False) -> None:
         '''
         '(class) CoreConfiguration' is used for editing, modifying, and viewing core configurations
         parameter :
             user_id: User ID
-            Pulling: Whether to automatically pull the database configuration when instantiating a class
+            session: Session can be used to obtain logged in users_id (User_ ID acquisition priority: OT>Session>Inheritance)
+            Pulling: Whether to automatically pull the database configuration when instantiating a class (optional)
+            OT :other.Main object (optional) ,can use the already created other.Main object
         class variable :
             administrators : administered limits of authority
             ContentEditingRights : content editin rights's limits of authority
             PermissionList : use limits of authority's list
         '''
-        if (user_id == None or user_id == 2):raise Exception('请传入正确的 user_id 参数')
-        self.OT = Main(KEY='CoreConfiguration',ID=user_id) # 加载用户数据
+        if (bool(OT)):
+            if (user_id == None or user_id == 2):raise Exception('请传入正确的 user_id 参数')
+            self.OT = Main(KEY='CoreConfiguration',ID=user_id) # 加载用户数据
+        elif(bool(session)):
+            self.OT = Main(KEY='CoreConfiguration',session=session) # 加载用户数据
+        else:
+            self.OT = OT
         if (Pulling): self.PullingDatabase()
     def PullingDatabase(self):
         '''Pull permission information'''
@@ -91,3 +102,12 @@ class CoreConfiguration:
         '''Submit to database'''
         self.OT.data = {'administrators':self.administrators,'ContentEditingRights':self.ContentEditingRights}
         return self.OT.SubmitToDatabase()
+    
+def ValidateLogon(s):
+    '''登录验证使用，传入Session object'''
+    try:
+        a = s.data['login_status_id']
+        del a
+        return [True,s.data['login_status_id']]
+    except:
+        return [False,None]
