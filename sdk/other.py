@@ -29,11 +29,11 @@ class Main():
         # return ID
     def Pulling(self) -> bool:
         '''Pull data from the database to self.data'''
-        # print(GET_other_user_data_interior(user_id=self.id,id=self.key))
         if (self.UseJson):
             self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
         else:
             self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
+        if (self.data == None):self.data = {}
         return True
     def SubmitToDatabase(self) -> bool:
         '''Submit the content of self.data to the database'''
@@ -75,7 +75,7 @@ class CoreConfiguration:
     administrators = None # 管理员
     ContentEditingRights = None # 内容编辑权
     PermissionList = [administrators,ContentEditingRights] # 权限列表
-    def __init__(self,user_id,session = False,Pulling = True,OT = False) -> None:
+    def __init__(self,user_id = 2,session = False,Pulling = True,OT = False) -> None:
         '''
         '(class) CoreConfiguration' is used for editing, modifying, and viewing core configurations
         parameter :

@@ -13,9 +13,16 @@ def GetAllContentTemplatesAPI(get_or_post,EnableSession,rep,**para):
     return rep(json.dumps(ContentTemplates))
 
 def NewContentApi(get_or_post,EnableSession,rep,**para):
-    import sdk.other as other
     s = EnableSession()
-    if (not other.ValidateLogon(s)[0]):return rep('No Logon')
-    OT = other.Main('CoreConfiguration',session=s)
-    OT.Pulling()
-    return rep(str(OT.data))
+    import sdk.other as other
+    LimitsOfAuthority = other.CoreConfiguration(session=s)
+    if (LimitsOfAuthority.administrators or LimitsOfAuthority.ContentEditingRights):
+        del LimitsOfAuthority
+        from mod.mods.content.content import content as content_obj
+        Title,alias,content = get_or_post('alias'),get_or_post('Title'),get_or_post('content')
+        con = content_obj(session=s,Title=Title,alias=alias,content=content)
+        con.SubmitToDatabase()
+        return rep('OK')
+    else:
+        del LimitsOfAuthority
+        return rep('No use authority')
