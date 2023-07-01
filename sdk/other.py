@@ -37,7 +37,7 @@ class Main():
         return True
     def SubmitToDatabase(self) -> bool:
         '''Submit the content of self.data to the database'''
-        if (self.UseJson):json.dumps(CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data))
+        if (self.UseJson):CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=json.dumps(self.data))
         else:CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data)
         return True
     

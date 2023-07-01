@@ -3,7 +3,7 @@ import os
 sys.path.append(os.getcwd()+'/operation/')
 sys.path.append(os.getcwd()+'/sdk/')
 sys.path.append(os.getcwd()+'/fileApi/')
-import mod.mods.mod.main # 暂时使用
+# import mod.mods.mod.main # 暂时使用
 try:
     from sanic import Sanic
     from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类

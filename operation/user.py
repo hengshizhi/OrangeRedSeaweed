@@ -139,10 +139,12 @@ def Change_other_user_data_interior(user_id=False,name=False,postbox=False,id:st
         data = {}
         data[id] = None
         data[id] = v # 保存键
-        print(json.dumps(data))
+        # print(json.dumps(data))
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
         return str(data[id])
     try:
+        
+
         data[id] = v # 保存键
         Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
     except: #假如没有键值则创造键值

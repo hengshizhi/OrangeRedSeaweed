@@ -2,7 +2,7 @@
 # /api/mod?ModName=ModName&ApiName=ApiName
 import importlib
 from sanic.response import text
-import PathInfo as PathInfo
+import fileApi.PathInfo as PathInfo
 
 def modlists() -> dict:
     '''mod information list'''
@@ -21,12 +21,13 @@ def main(get_or_post,EnableSession,rep,**para):
         return rep(text('Missing "ModName" or "ApiName" parameters',status=400))
     else:
         b = ImportMod(ModName)
-        try:
-            return b.main(api = {})[ApiName](get_or_post,EnableSession,rep,**para)
-        except TypeError as e:
-            if (str(e) == ''''NoneType' object is not subscriptable'''):
-                return rep(text('mod api 为空',500) )
-
+        # try:
+        return b.main(api = {})[ApiName](get_or_post,EnableSession,rep,**para)
+        # except TypeError as e:
+        #     if (str(e) == ''''NoneType' object is not subscriptable'''):
+        #         return rep(text('mod api 为空',500) )
+        # except KeyError as e:
+        #     return rep(text('API 不存在',500) )
 def AtRuntimeForTheFirstTime():
     '''
     This function is called every time the program runs

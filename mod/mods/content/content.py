@@ -1,6 +1,7 @@
 import sdk.other as other
 import time
-import json
+# import json
+import uuid
 class content():
     GenerateStorage = lambda self,Title,alias,content:{"title": Title, "alias": alias,"Release": time.time(),"change": [time.time(),],"ORSCFS": content}
     def __init__(self,session,Title,alias,content:list([dict({'name':'模板名称','...':'...'}),'...'])) -> None:
@@ -10,14 +11,25 @@ class content():
             content :ORSCFS 格式的内容
         '''
         self.OT = other.Main('ContentList',session=session)
-        self.Title = Title
-        self.alias = alias
-        self.content = content
+        if (Title == None or alias == None):
+            if (Title == None):
+                self.Title = 'None'
+            if (alias == None):
+                self.alias = str(uuid.uuid4())
+            self.content = content
+        else:
+            self.Title = Title
+            self.alias = alias
+            self.content = content
     def new(self):
         '''新建内容'''
+        # print('aaaaaaaaaaaaaa'+str(self.GenerateStorage(self.Title,self. alias,self. content)))
+        
         try:
             self.OT.data['main'].append({self.GenerateStorage(self.Title, self.alias, self.content)})
         except:
+            self.OT.data = {'main':None}
+            # self.OT.data = {'main':self.GenerateStorage(self.Title,self. alias,self. content)}
             self.OT.data['main'] = [self.GenerateStorage(self.Title,self. alias,self. content),]
     def AliasLookup(self):
         '''根据别名查找内容在内容列表的位置'''

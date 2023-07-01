@@ -89,6 +89,8 @@ def main(request,name):
         return :session_odj
         '''
         session_key = get_or_post('SessionKey')
+        if (session_key == None):
+            session_key = get_or_post('SessionID')
         if(session_key == None):session_key=request.cookies.get("Session_key")
         session_odj = session(session_key) #实例化session
         if(session_key == None or session_key == ''):session_odj.create() #没有Session时创建Session_key
