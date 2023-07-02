@@ -21,6 +21,7 @@ class content():
             self.Title = Title
             self.alias = alias
             self.content = content
+        self.Pulling()
     def new(self):
         '''新建内容'''
         # print('aaaaaaaaaaaaaa'+str(self.GenerateStorage(self.Title,self. alias,self. content)))
@@ -33,6 +34,9 @@ class content():
             self.OT.data['main'] = [self.GenerateStorage(self.Title,self. alias,self. content),]
     def AliasLookup(self):
         '''根据别名查找内容在内容列表的位置'''
+        # print('aaaaaaaaaaaaaaa')
+        # import json
+        # print(json.loads(self.OT.data))
         for i in range (len(self.OT.data['main'])):
             if (self.OT.data['main'][i]['alias'] == self.alias):
                 return i
@@ -45,5 +49,6 @@ class content():
         self.OT.data['main'][AliasLookup]['change'].append(time.time())
     def SubmitToDatabase(self):
         self.OT.SubmitToDatabase() # 提交
-    
+    def Pulling(self):
+        self.OT.Pulling()
     

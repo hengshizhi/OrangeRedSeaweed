@@ -5,7 +5,6 @@ from operation.user import Change_other_user_data_interior as CHANGE_other_user_
 import json as json
 from operation.user import Change_user_data
 from operation.user import Traverse_other_data_with_the_same_key_value as TODWTSKV
-
 class Main():
     def __init__(self,KEY,UseJson:bool = True,USERID=2,session=False) -> None:
         '''parameter:
@@ -29,16 +28,12 @@ class Main():
         # return ID
     def Pulling(self) -> bool:
         '''Pull data from the database to self.data'''
-        if (self.UseJson):
-            self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
-        else:
-            self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
+        self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
         if (self.data == None):self.data = {}
         return True
     def SubmitToDatabase(self) -> bool:
         '''Submit the content of self.data to the database'''
-        if (self.UseJson):CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=json.dumps(self.data))
-        else:CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data)
+        CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data)
         return True
     
     def GetKeyData(self,key) -> int|None|str|dict :

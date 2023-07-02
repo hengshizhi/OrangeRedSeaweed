@@ -68,7 +68,6 @@ def login_Password_authentication(id=False,name=False,postbox=False,Key=False):
             return True
         else:
             return False
-# print(login_Password_authentication(id=True,postbox='3192145045@qq.com',Key='hehheh'))
 def get_user_data(id=False,name=False,postbox=False):
     '''
     获得用户数据：
@@ -87,8 +86,6 @@ def get_user_data(id=False,name=False,postbox=False):
         elif(postbox and postbox_data != None):data = postbox_data
         else:return None
         ret = data.single_to_dict()
-        # ret['created_at'] = ret['created_at'].strftime("%Y-%m-%d %H:%M:%S")
-        # ret['updated_at'] = ret['updated_at'].strftime("%Y-%m-%d %H:%M:%S")
         return ret #将结果转换成dict
 
 def Change_user_data(id=False,name=False,postbox=False,data:dict = {}):
@@ -99,7 +96,6 @@ def Change_user_data(id=False,name=False,postbox=False,data:dict = {}):
     with get_session() as s:
         for k,v in data.items():
             if (not (k == 'id' or k == 'postbox' or k == 'Registration_time' or k == 'name')):
-                print('1')
                 if(id):
                     s.query(User).filter(User.id == id).update({k:v})
                 elif(name):
@@ -116,16 +112,17 @@ def GET_other_user_data_interior(user_id=False,name=False,postbox=False,id:str='
     # data = json.loads(get_user_data(id=user_id,name=name,postbox=postbox)['DATA'])
     # return data[id]
     try:
-        data = json.loads(get_user_data(id=user_id,name=name,postbox=postbox)['DATA'])
+        data = get_user_data(id=user_id,name=name,postbox=postbox)['DATA']
+        data =  eval(data)
     except:
         data = {}
         data[id] = None
-        Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
+        Change_user_data(id =user_id,data={'DATA':str(data)}) #更新用户数据
         return data[id]
     try:return data[id]
     except: #假如没有创建键
         data[id] = None
-        Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
+        Change_user_data(id =user_id,data={'DATA':str(data)}) #更新用户数据
     return data[id]
 def Change_other_user_data_interior(user_id=False,name=False,postbox=False,id:str='',v:str=''):
     '''
@@ -134,23 +131,20 @@ def Change_other_user_data_interior(user_id=False,name=False,postbox=False,id:st
         v: 要更新的数据(json)
     '''
     try:
-        data = json.loads(get_user_data(id=user_id,name=name,postbox=postbox)['DATA'])
+        data = eval(get_user_data(id=user_id,name=name,postbox=postbox)['DATA'])
     except: # 没有使用过其他用户数据的情况
         data = {}
         data[id] = None
         data[id] = v # 保存键
-        # print(json.dumps(data))
-        Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
+        Change_user_data(id =user_id,data={'DATA':str(data)}) #更新用户数据
         return str(data[id])
     try:
-        
-
         data[id] = v # 保存键
-        Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
+        Change_user_data(id =user_id,data={'DATA':str(data)}) #更新用户数据
     except: #假如没有键值则创造键值
         data[id] = None
         data[id] = v # 保存键
-        Change_user_data(id =user_id,data={'DATA':json.dumps(data)}) #更新用户数据
+        Change_user_data(id =user_id,data={'DATA':str(data)}) #更新用户数据
     return str(data[id])
 def Traverse_other_data_with_the_same_key_value(id:str=''):
     '''
@@ -164,7 +158,7 @@ def Traverse_other_data_with_the_same_key_value(id:str=''):
             i = i.dobule_to_dict()
             if (i == None): continue
             else:
-                try: data_is_idis = json.loads(i['DATA'])[id]
+                try: data_is_idis = eval(i['DATA'])[id]
                 except: continue
                 rep[i['id']] = data_is_idis
     return rep
