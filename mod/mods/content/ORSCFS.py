@@ -24,7 +24,7 @@ class content:
                     if ((k == k2 or k3if)  and k != 'name'):
                         if (v == None):
                             if (k3if):
-                                ret = self.format(k3,k3['Default'],ret)
+                                ret = self.format(k3,v3['Default'],ret)
                             else:
                                 ret = self.format(k2,v2['Default'],ret)
                             break
