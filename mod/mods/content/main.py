@@ -10,6 +10,7 @@ def main(api):
     api['GetAllContentTemplates'] = GetAllContentTemplatesAPI
     api['NewContent'] = NewContent
     api['change'] = change
+    api['ZUOzhEreadApi'] = ZUOzhEreadApi
     return api
 
 def GetAllContentTemplatesAPI(get_or_post,EnableSession,rep,**para):
@@ -21,14 +22,22 @@ def NewContent(get_or_post,EnableSession,rep,**para):
     s = EnableSession()
     import sdk.other as other
     LimitsOfAuthority = other.CoreConfiguration(session=s)
-    if (LimitsOfAuthority.administrators or LimitsOfAuthority.ContentEditingRights):
-        del LimitsOfAuthority
-        Title,alias,content = get_or_post('alias'),get_or_post('Title'),get_or_post('content')
+    def a():
+        Title,alias,content = get_or_post('Title'),get_or_post('alias'),get_or_post('content')
         if (content == None): return rep('参数不完整')
         con = content_obj(session=s,Title=Title,alias=alias,content=content)
-        con.new()
+        try:
+            con.change()
+        except:
+            return rep('内容不存在')
         con.SubmitToDatabase() # 提交
         return rep('OK')
+    if (LimitsOfAuthority.administrators):
+        del LimitsOfAuthority
+        return a()
+    elif(LimitsOfAuthority.ContentEditingRights):
+        del LimitsOfAuthority
+        return a()
     else:
         del LimitsOfAuthority
         return rep('No use authority')
@@ -36,14 +45,29 @@ def change(get_or_post,EnableSession,rep,**para):
     s = EnableSession()
     import sdk.other as other
     LimitsOfAuthority = other.CoreConfiguration(session=s)
-    if (LimitsOfAuthority.administrators or LimitsOfAuthority.ContentEditingRights):
-        del LimitsOfAuthority
-        Title,alias,content = get_or_post('alias'),get_or_post('Title'),get_or_post('content')
+    def a():
+        Title,alias,content = get_or_post('Title'),get_or_post('alias'),get_or_post('content')
         if (content == None): return rep('参数不完整')
         con = content_obj(session=s,Title=Title,alias=alias,content=content)
-        con.change()
+        try:
+            con.change()
+        except:
+            return rep('内容不存在')
         con.SubmitToDatabase() # 提交
         return rep('OK')
+    if (LimitsOfAuthority.administrators):
+        del LimitsOfAuthority
+        return a()
+    elif(LimitsOfAuthority.ContentEditingRights):
+        del LimitsOfAuthority
+        return a()
     else:
         del LimitsOfAuthority
         return rep('No use authority')
+    
+def ZUOzhEreadApi(get_or_post,EnableSession,rep,**para):
+    s = EnableSession()
+    alias = get_or_post('alias')
+    con = content_obj(session=s,alias=alias)
+    con.Pulling()
+    return rep(con.read())
