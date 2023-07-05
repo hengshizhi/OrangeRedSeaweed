@@ -3,21 +3,17 @@ import os
 sys.path.append(os.getcwd()+'/operation/')
 sys.path.append(os.getcwd()+'/sdk/')
 sys.path.append(os.getcwd()+'/fileApi/')
-# import mod.mods.mod.main # 暂时使用
 try:
     from sanic import Sanic
     from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类
     import api as api_main
-    # from operation.session import Session
 except:
-    pass
     # import autoinstall
     from sanic import Sanic
     from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #导入sanic web的工具类
     import api as api_main
-    # from operation.session import Session #导入会话
 from MainConfig import HttpServerConfig as config #定位配置文件
-
+import InitialLoading # 初始加载
 def get_or_post(request,key): # If there is no GET parameter, use post
     if(request.args.get(key) != None):
         return request.args.get(key)

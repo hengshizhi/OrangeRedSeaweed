@@ -1,0 +1,1 @@
+import Cache # 加载缓存
