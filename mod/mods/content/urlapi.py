@@ -1,4 +1,7 @@
 from sdk.other import Main as other
+from mod.mods.content.content import AliasSearchContent
+from mod.mods.content.ORSCFS import content as ORSCFScontent
+import json
 class URL():
     def __init__(self) -> None:
         '''
@@ -22,6 +25,10 @@ class URL():
             o = v.split('<%^')[0]
             n = v.split('^%>')[-1]
             if (url[:(len(o))] == o and url[-len(n):] == n):
-                url = url.translate({ord(letter): None for letter in [o,n]})
+                urlContent = url.translate({ord(letter): None for letter in [o,n]})
                 if (k == 'content'):
-                    pass
+                    content = AliasSearchContent(urlContent)
+                    content['content'] = ORSCFScontent(content['content']).html()
+                    return json.dumps(content)
+                
+        return ''
