@@ -4,12 +4,21 @@
 from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime as AtRuntimeForTheFirstTime
 import json
 from mod.mods.content.content import content as content_obj
+from mod.mods.content.urlapi import URL as _urlapi
 def main(api):
     api['GetAllContentTemplates'] = GetAllContentTemplatesAPI
     api['NewContent'] = NewContent
     api['change'] = change
     api['ZUOzhEreadApi'] = ZUOzhEreadApi
+    api['urlapi'] = urlapi
     return api
+
+def urlapi(get_or_post,EnableSession,rep,**para):
+    url = get_or_post('url')
+    if (url == None):rep('OK')
+    else:
+        obj = _urlapi()
+        return rep(obj.coverR(url))
 
 def GetAllContentTemplatesAPI(get_or_post,EnableSession,rep,**para):
     from mod.mods.content.ORSCFS import ContentTemplate as ContentTemplates 

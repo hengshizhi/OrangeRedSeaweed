@@ -22,5 +22,3 @@ def AtRuntimeForTheFirstTime():
         if('.ORStemplate.json' in k):
             with open(v[1],'r',encoding='utf-8') as template:
                 ContentTemplates[k.replace('.ORStemplate.json','')] = json.loads(template.read())
-    # from mod.mods.content.urlapi import URL as _urlapi
-    # _urlapi
