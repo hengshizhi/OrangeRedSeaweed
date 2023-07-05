@@ -6,7 +6,7 @@ from mod.mods.content.ORSCFS import content as ORSCFS
 from InitialLoading import Cache
 
 class content():
-    GenerateStorage = lambda self,Title,alias,content:{"title": Title, "alias": alias,"Release": time.time(),"change": [time.time(),],"ORSCFS": content}
+    GenerateStorage = lambda self,Title,alias,content:{"title": Title, "alias": alias,"Release": time.time(),"change": [time.time(),],"content": content}
     def __init__(self,session = None,Title = None,alias = None,content:list([dict({'name':'模板名称','...':'...'}),'...']) = None,USERID = None) -> None:
         '''
         parameter :session : session object         
@@ -15,6 +15,10 @@ class content():
         '''
         if (bool(session)):self.OT = other.Main('ContentList',session=session)
         else:self.OT = other.Main('ContentList',USERID=USERID)
+        try:
+            self.Pulling()
+        except:
+            pass
         if (alias == None):
             if (Title == None):
                 self.Title = 'None'
@@ -25,7 +29,6 @@ class content():
             self.Title = Title
             self.alias = alias
             self.content = content
-        self.Pulling()
     def new(self):
         '''新建内容'''
         try:
@@ -41,7 +44,7 @@ class content():
         return None # 内容不存在
     def change(self):
         AliasLookup = self.AliasLookup()
-        self.OT.data['main'][AliasLookup]['Title'] = self.Title
+        self.OT.data['main'][AliasLookup]['title'] = self.Title
         self.OT.data['main'][AliasLookup]['alias'] = self.alias
         self.OT.data['main'][AliasLookup]['content'] = self.content
         self.OT.data['main'][AliasLookup]['change'].append(time.time())
@@ -59,6 +62,6 @@ class content():
         return OSF.html()
     
 def AliasSearchContent(Alias):
-    userid = Cache.GetCache('ContentAliasesCorrespondUsersID').Pulling()[Alias]
-    return content(USERID=userid,alias=Alias).Pulling()
-    
+    userid = Cache.GetCache('ContentAliasesCorrespondUsersID').Pulling()
+    print(userid)
+    return content(USERID=userid[Alias],alias=Alias).Pulling()

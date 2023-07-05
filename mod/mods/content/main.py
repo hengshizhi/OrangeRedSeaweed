@@ -4,7 +4,6 @@
 from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime as AtRuntimeForTheFirstTime
 import json
 from mod.mods.content.content import content as content_obj
-
 def main(api):
     api['GetAllContentTemplates'] = GetAllContentTemplatesAPI
     api['NewContent'] = NewContent
@@ -26,7 +25,7 @@ def NewContent(get_or_post,EnableSession,rep,**para):
         if (content == None): return rep('参数不完整')
         con = content_obj(session=s,Title=Title,alias=alias,content=content)
         try:
-            con.change()
+            con.new()
         except:
             return rep('内容不存在')
         con.SubmitToDatabase() # 提交
