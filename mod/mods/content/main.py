@@ -5,7 +5,6 @@ from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime a
 import json
 from mod.mods.content.content import content as content_obj
 
-
 def main(api):
     api['GetAllContentTemplates'] = GetAllContentTemplatesAPI
     api['NewContent'] = NewContent

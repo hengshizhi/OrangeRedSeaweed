@@ -7,9 +7,17 @@ from operation.user import Change_user_data
 from operation.user import Traverse_other_data_with_the_same_key_value as TODWTSKV
 class Main():
     def __init__(self,KEY,UseJson:bool = True,USERID=2,session=False) -> None:
-        '''parameter:
+        '''
+        Other can store any common data type supported by Python, except for objects
+        Precautions for use:
+            1. Pulling() is required to obtain data
+            2. Uploading data requires executing SubmitToDatabase()
+            3. AdministratorVerification() can perform administrator verification, which verifies whether this Other is owned by the administrator
+            4. UserLoginAuthentication() can perform login authentication
+        parameter:
             KEY :The JSON key name in the data field
-            ID: User ID (2id is the super administrator ID, and non user data should be placed here)
+            UseJson :obsolete（已废弃）
+            USERID: User ID (2id is the super administrator ID, and non user data should be placed here)
             session: Session can be used to obtain logged in users_id ()
         '''
         if (bool(session)):
@@ -20,11 +28,7 @@ class Main():
         else:
             self.id = USERID
         self.key = KEY
-        self.UseJson = UseJson
-        if (UseJson):
-            self.data = {}
-        else:
-            self.data = ''
+        self.data = None
         # return ID
     def Pulling(self) -> bool:
         '''Pull data from the database to self.data'''
@@ -57,7 +61,6 @@ class Main():
                 return False
         except:
             return False
-    
     def UserLoginAuthentication(self,Session:object) -> bool:
         '''User login verification, 
         if login returns id, 

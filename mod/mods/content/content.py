@@ -3,6 +3,7 @@ import time
 # import json
 import uuid
 from mod.mods.content.ORSCFS import content as ORSCFS
+
 class content():
     GenerateStorage = lambda self,Title,alias,content:{"title": Title, "alias": alias,"Release": time.time(),"change": [time.time(),],"ORSCFS": content}
     def __init__(self,session,Title = None,alias = None,content:list([dict({'name':'模板名称','...':'...'}),'...']) = None) -> None:
