@@ -10,10 +10,11 @@ class CacheObj():
         renew : renew() -> contant || Used to obtain data from a data source
         '''
         self.name = name
-        self.renew = read
+        self.read = read
         self.SubmitToY = SubmitTo
         self.renew1 = renew
-        self.contant = read(name)
+        self.contant = renew()
+        self.SubmitTo()
     def Pulling(self):
         self.contant = self.read(self.name)
         return self.contant
@@ -47,4 +48,3 @@ class Cache():
         Memory.Caches[name] = CacheObj(name,read,SubmitTo,function)
         return Memory.Caches[name]
     
-Cache = Cache(UM.Memory)
