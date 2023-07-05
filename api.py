@@ -5,17 +5,6 @@ from sanic.response import text,html,json,file,raw,file_stream,redirect,empty #�
 from operation.session import session
 from mod.mod import main as ModMain
 user = user()
-'''
-API开发文档:
-返回的对象需要是sanic.response里面的
-session是会话,它支持会话
-返回示例：
-{'async':True,'data':file('./data/sanic.json')}
-apiDict:
-这个是一个API的字典:
-{'name':API_function}
-'''
-
 def restart_program(get_or_post,EnableSession,rep,**para):
     '''重启程序'''
     def RP():
@@ -85,7 +74,7 @@ def main(request,name):
         return output
     def EnableSession():
         '''启用会话
-        parameter :not have
+        parameter :None
         return :session_odj
         '''
         session_key = get_or_post('SessionKey')
