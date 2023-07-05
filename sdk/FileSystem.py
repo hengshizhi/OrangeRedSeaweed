@@ -7,5 +7,6 @@ import fileApi.route
 
 PathInfo_SDK = PathInfo_SDKs()
 
-class SDK(fileApi.file.Main,fileApi.route.main):
+
+class SDK(fileApi.file.Main, fileApi.route.main):
     pass

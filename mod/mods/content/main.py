@@ -5,6 +5,8 @@ from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime a
 import json
 from mod.mods.content.content import content as content_obj
 from mod.mods.content.urlapi import URL as _urlapi
+
+
 def main(api):
     api['GetAllContentTemplates'] = GetAllContentTemplatesAPI
     api['NewContent'] = NewContent
@@ -13,68 +15,78 @@ def main(api):
     api['urlapi'] = urlapi
     return api
 
-def urlapi(get_or_post,EnableSession,rep,**para):
+
+def urlapi(get_or_post, EnableSession, rep, **para):
     url = get_or_post('url')
-    if (url == None):rep('OK')
+    if (url == None):
+        rep('OK')
     else:
         obj = _urlapi()
         return rep(obj.coverR(url))
 
-def GetAllContentTemplatesAPI(get_or_post,EnableSession,rep,**para):
-    from mod.mods.content.ORSCFS import ContentTemplate as ContentTemplates 
+
+def GetAllContentTemplatesAPI(get_or_post, EnableSession, rep, **para):
+    from mod.mods.content.ORSCFS import ContentTemplate as ContentTemplates
     return rep(json.dumps(ContentTemplates))
 
 
-def NewContent(get_or_post,EnableSession,rep,**para):
+def NewContent(get_or_post, EnableSession, rep, **para):
     s = EnableSession()
     import sdk.other as other
     LimitsOfAuthority = other.CoreConfiguration(session=s)
+
     def a():
-        Title,alias,content = get_or_post('Title'),get_or_post('alias'),get_or_post('content')
+        Title, alias, content = get_or_post('Title'), get_or_post('alias'), get_or_post('content')
         if (content == None): return rep('参数不完整')
-        con = content_obj(session=s,Title=Title,alias=alias,content=content)
+        con = content_obj(session=s, Title=Title, alias=alias, content=content)
         try:
             con.new()
         except:
             return rep('内容不存在')
-        con.SubmitToDatabase() # 提交
+        con.SubmitToDatabase()  # 提交
         return rep('OK')
+
     if (LimitsOfAuthority.administrators):
         del LimitsOfAuthority
         return a()
-    elif(LimitsOfAuthority.ContentEditingRights):
+    elif (LimitsOfAuthority.ContentEditingRights):
         del LimitsOfAuthority
         return a()
     else:
         del LimitsOfAuthority
         return rep('No use authority')
-def change(get_or_post,EnableSession,rep,**para):
+
+
+def change(get_or_post, EnableSession, rep, **para):
     s = EnableSession()
     import sdk.other as other
     LimitsOfAuthority = other.CoreConfiguration(session=s)
+
     def a():
-        Title,alias,content = get_or_post('Title'),get_or_post('alias'),get_or_post('content')
+        Title, alias, content = get_or_post('Title'), get_or_post('alias'), get_or_post('content')
         if (content == None): return rep('参数不完整')
-        con = content_obj(session=s,Title=Title,alias=alias,content=content)
+        con = content_obj(session=s, Title=Title, alias=alias, content=content)
         try:
             con.change()
         except:
             return rep('内容不存在')
-        con.SubmitToDatabase() # 提交
+        con.SubmitToDatabase()  # 提交
         return rep('OK')
+
     if (LimitsOfAuthority.administrators):
         del LimitsOfAuthority
         return a()
-    elif(LimitsOfAuthority.ContentEditingRights):
+    elif (LimitsOfAuthority.ContentEditingRights):
         del LimitsOfAuthority
         return a()
     else:
         del LimitsOfAuthority
         return rep('No use authority')
-    
-def ZUOzhEreadApi(get_or_post,EnableSession,rep,**para):
+
+
+def ZUOzhEreadApi(get_or_post, EnableSession, rep, **para):
     s = EnableSession()
     alias = get_or_post('alias')
-    con = content_obj(session=s,alias=alias)
+    con = content_obj(session=s, alias=alias)
     con.Pulling()
     return rep(con.read())

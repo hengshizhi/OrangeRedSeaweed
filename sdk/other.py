@@ -5,8 +5,10 @@ from operation.user import Change_other_user_data_interior as CHANGE_other_user_
 import json as json
 from operation.user import Change_user_data
 from operation.user import Traverse_other_data_with_the_same_key_value as TODWTSKV
+
+
 class Main():
-    def __init__(self,KEY,UseJson:bool = True,USERID=2,session=False) -> None:
+    def __init__(self, KEY, UseJson: bool = True, USERID=2, session=False) -> None:
         '''
         Other can store any common data type supported by Python, except for objects
         Precautions for use:
@@ -30,21 +32,26 @@ class Main():
         self.key = KEY
         self.data = None
         # return ID
+
     def Pulling(self) -> bool:
         '''Pull data from the database to self.data'''
-        self.data = GET_other_user_data_interior(user_id=self.id,id=self.key)
-        if (self.data == None):self.data = {}
+        self.data = GET_other_user_data_interior(user_id=self.id, id=self.key)
+        if (self.data == None): self.data = {}
         return True
+
     def SubmitToDatabase(self) -> bool:
         '''Submit the content of self.data to the database'''
-        CHANGE_other_user_data_interior(user_id=self.id,id=self.key,v=self.data)
+        CHANGE_other_user_data_interior(user_id=self.id, id=self.key, v=self.data)
         return True
-    
-    def GetKeyData(self,key) -> int|None|str|dict :
+
+    def GetKeyData(self, key) -> int | None | str | dict:
         '''Obtain data for the key value specified in self.data'''
-        try:return self.data[key]
-        except KeyError:return None
-    def AdministratorVerification(self,Session:object) -> bool:
+        try:
+            return self.data[key]
+        except KeyError:
+            return None
+
+    def AdministratorVerification(self, Session: object) -> bool:
         '''Administrator verification function, 
             returning 'None' indicates not logged in, 
             returning 'true' indicates administrator, 
@@ -52,28 +59,33 @@ class Main():
         Parameters:
             Session: Objects returned using the 'EnableSession' function
         '''
-        if (not self.UserLoginAuthentication(Session)):return None
+        if (not self.UserLoginAuthentication(Session)): return None
         self.Pulling()
         try:
-            if(self.data['administrators']):
+            if (self.data['administrators']):
                 return True
             else:
                 return False
         except:
             return False
-    def UserLoginAuthentication(self,Session:object) -> bool:
+
+    def UserLoginAuthentication(self, Session: object) -> bool:
         '''User login verification, 
         if login returns id, 
         if not logged in returns none
         Parameter: Session: Objects returned using the 'Enabling Session' function  '''
-        try:return Session.data['login_status_id'] # Obtain login status
-        except:return None # Not Logged In
+        try:
+            return Session.data['login_status_id']  # Obtain login status
+        except:
+            return None  # Not Logged In
+
 
 class CoreConfiguration:
-    administrators = None # 管理员
-    ContentEditingRights = None # 内容编辑权
-    PermissionList = [administrators,ContentEditingRights] # 权限列表
-    def __init__(self,user_id = 2,session = False,Pulling = True,OT = False) -> None:
+    administrators = None  # 管理员
+    ContentEditingRights = None  # 内容编辑权
+    PermissionList = [administrators, ContentEditingRights]  # 权限列表
+
+    def __init__(self, user_id=2, session=False, Pulling=True, OT=False) -> None:
         '''
         '(class) CoreConfiguration' is used for editing, modifying, and viewing core configurations
         parameter :
@@ -87,28 +99,31 @@ class CoreConfiguration:
             PermissionList : use limits of authority's list
         '''
         if (bool(OT)):
-            if (user_id == None or user_id == 2):raise Exception('请传入正确的 user_id 参数')
-            self.OT = Main(KEY='CoreConfiguration',ID=user_id) # 加载用户数据
-        elif(bool(session)):
-            self.OT = Main(KEY='CoreConfiguration',session=session) # 加载用户数据
+            if (user_id == None or user_id == 2): raise Exception('请传入正确的 user_id 参数')
+            self.OT = Main(KEY='CoreConfiguration', ID=user_id)  # 加载用户数据
+        elif (bool(session)):
+            self.OT = Main(KEY='CoreConfiguration', session=session)  # 加载用户数据
         else:
             self.OT = OT
         if (Pulling): self.PullingDatabase()
+
     def PullingDatabase(self):
         '''Pull permission information'''
         self.OT.Pulling()
         self.administrators = self.OT.GetKeyData('administrators')
         self.ContentEditingRights = self.OT.GetKeyData('ContentEditingRights')
+
     def submitTo(self):
         '''Submit to database'''
-        self.OT.data = {'administrators':self.administrators,'ContentEditingRights':self.ContentEditingRights}
+        self.OT.data = {'administrators': self.administrators, 'ContentEditingRights': self.ContentEditingRights}
         return self.OT.SubmitToDatabase()
-    
+
+
 def ValidateLogon(s):
     '''登录验证使用，传入Session object'''
     try:
         a = s.data['login_status_id']
         del a
-        return [True,s.data['login_status_id']]
+        return [True, s.data['login_status_id']]
     except:
-        return [False,None]
+        return [False, None]

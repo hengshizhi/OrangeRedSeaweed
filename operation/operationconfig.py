@@ -1,15 +1,19 @@
 # openration config
 class main_config():
-    connect = 'smtp.163.com' #服务器地址
+    connect = 'smtp.163.com'  # 服务器地址
     user = 'xh_xhsz@163.com'
     password = 'HDLNJXVEKZUURQUQ'
-    nickname = '维度事务所' #发件人昵称
-    from_addr = 'xh_xhsz@163.com' #发件人邮箱
-    encoding  = 'utf8' #编码
-    MIME = 'html' #MIME type
-    secret = 'xh_xhsz@163.com' #密送人地址
-class information():#网站信息
-    name = 'dflstbols' #邮件显示的网站名
+    nickname = '维度事务所'  # 发件人昵称
+    from_addr = 'xh_xhsz@163.com'  # 发件人邮箱
+    encoding = 'utf8'  # 编码
+    MIME = 'html'  # MIME type
+    secret = 'xh_xhsz@163.com'  # 密送人地址
+
+
+class information():  # 网站信息
+    name = 'dflstbols'  # 邮件显示的网站名
+
+
 class Email_login():
     '''
     配置介绍
@@ -25,11 +29,12 @@ class Email_login():
     你的验证码是:<b>{Verification}</b><br>
     你本次会话的SessionKey是<b>{SessionKey}</b>
     请注意保管
-    ''' #邮件主体
+    '''  # 邮件主体
     Theme = '''
     {websiteName}的验证码
-    ''' #邮件主题
+    '''  # 邮件主题
+
 
 OtherUserDataGetsKey = {
 
-} # 其他用户数据获取密钥
+}  # 其他用户数据获取密钥

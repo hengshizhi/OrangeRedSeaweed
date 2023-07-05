@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Lci user, log in to register,welcome!Welcome to use lci</title>
     <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="stylesheet" href="//unpkg.com/layui@2.7.6/dist/css/layui.css">
+    <link href="/index.css" rel="stylesheet">
+    <link href="//unpkg.com/layui@2.7.6/dist/css/layui.css" rel="stylesheet">
     <script src="//unpkg.com/layui@2.7.6/dist/layui.js"></script>
     <script src="/lci_org_user_sdk.js"></script>
     <script src="/index.js"></script>
     <script>
         Lci_users = new Lci_user();
-        yanzheng = Lci_users.LoginStatus(function(data){
+        yanzheng = Lci_users.LoginStatus(function (data) {
             JSONobj = JSON.parse(data);
-            if(JSONobj['state'] == 'True'){
+            if (JSONobj['state'] == 'True') {
                 loginInformation.style.display = 'none';
                 logged_in.style.display = '';
             }
@@ -25,74 +25,77 @@
     </script>
 </head>
 <body>
-    <div id="mail">
-        <ul class="layui-nav" lay-filter="">
-            <li class="layui-nav-item"><a href="https://www.df100.ltd/">blog</a></li>
-            <li class="layui-nav-item layui-this"><a href="">log in to register</a></li>
-            </ul>
-            
-            <script>
-            //注意：导航 依赖 element 模块，否则无法进行功能性操作
-            layui.use('element', function(){
+<div id="mail">
+    <ul class="layui-nav" lay-filter="">
+        <li class="layui-nav-item"><a href="https://www.df100.ltd/">blog</a></li>
+        <li class="layui-nav-item layui-this"><a href="">log in to register</a></li>
+    </ul>
+
+    <script>
+        //注意：导航 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function () {
             var element = layui.element;
-            
+
             //…
+        });
+    </script>
+    <br>
+    <br>
+    <div id="logged_in" style="display: none;">
+        <h1>You have logged in</h1>
+        <br>
+        <img src="/api/HeadSculpture" style="width: 20%;">
+        <br>
+        <br>
+        前往<a href="https://cravatar.cn/" target="_blank">cravatar</a>更改你的头像
+        <br>
+        <br>
+        Hello <h2 id="Nickname"></h2>
+        <script>
+            $(document).ready(function () {
+                $("#Nickname").load("/api/GetNickname");
             });
-            </script>
-        <br>
-        <br>
-        <div id="logged_in" style="display: none;">
-            <h1>You have logged in</h1>
-            <br>
-            <img style="width: 20%;" src="/api/HeadSculpture">
-            <br>
-            <br>
-            前往<a href="https://cravatar.cn/" target="_blank" >cravatar</a>更改你的头像
-            <br>
-            <br>
-            Hello <h2 id="Nickname"></h2>
-            <script>
-                $(document).ready(function(){
-                    $("#Nickname").load("/api/GetNickname");
-                });
-            </script>
-        </div>
-        <form class="layui-form" action="" onsubmit="return false" id="loginInformation">
-            <!-- 登录信息表单 -->
-            <div class="layui-form-item">
+        </script>
+    </div>
+    <form action="" class="layui-form" id="loginInformation" onsubmit="return false">
+        <!-- 登录信息表单 -->
+        <div class="layui-form-item">
             <label class="layui-form-label">Mail</label>
             <div class="layui-input-block">
-                <input type="text" name="email" required  lay-verify="required" placeholder="Enter your email address, allowing only QQ mailbox, and must be online QQ" autocomplete="off" class="layui-input">
+                <input autocomplete="off" class="layui-input" lay-verify="required" name="email"
+                       placeholder="Enter your email address, allowing only QQ mailbox, and must be online QQ"
+                       required type="text">
             </div>
-            </div>
-            <div class="layui-form-item">
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <div class="layui-input-block">
-                <input type="radio" name="login_to_registered" value="login" title="login">
-                <input type="radio" name="login_to_registered" value="registered" title="registered" checked>
+                <input name="login_to_registered" title="login" type="radio" value="login">
+                <input checked name="login_to_registered" title="registered" type="radio" value="registered">
             </div>
-            </div>
-            <div class="layui-form-item">
+        </div>
+        <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">submit</button>
-                <button type="reset" class="layui-btn layui-btn-primary">reset</button>
+                <button class="layui-btn" lay-filter="formDemo" lay-submit>submit</button>
+                <button class="layui-btn layui-btn-primary" type="reset">reset</button>
             </div>
+        </div>
+    </form>
+    <form action="" class="layui-form" id="Verification" onsubmit="return false" style="display: none;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">Verification code</label>
+            <div class="layui-input-block">
+                <input autocomplete="off" class="layui-input" lay-verify="required" name="Verification"
+                       placeholder="Please enter the verification code" required type="text">
             </div>
-        </form>
-        <form class="layui-form" action="" onsubmit="return false" id="Verification" style="display: none;">
-            <div class="layui-form-item">
-              <label class="layui-form-label">Verification code</label>
-              <div class="layui-input-block">
-                <input type="text" name="Verification" required  lay-verify="required" placeholder="Please enter the verification code" autocomplete="off" class="layui-input">
-              </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="formDemo" lay-submit>submit</button>
+                <button class="layui-btn layui-btn-primary" type="reset">reset</button>
             </div>
-            <div class="layui-form-item">
-              <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">submit</button>
-                <button type="reset" class="layui-btn layui-btn-primary">reset</button>
-              </div>
-            </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

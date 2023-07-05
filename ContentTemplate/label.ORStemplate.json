@@ -1,25 +1,25 @@
 {
-    "H": {
-        "main": "<h<~H~> <~attribute~> ><~title~></h<~H~>>",
-        "format": {
-            "H": {
-                "introduce": "标题级别",
-                "Default": 1
-            },
-            "title": {
-                "introduce": "标题内容",
-                "Default": null
-            }
-        }
-    },
-    "img": {
-        "main": "<img decoding=\"<~decoding~>\" src=\"<~ImgUrl~>\" alt=\"<~alt~>\" width=\"<~width~>\" height=\"<~height~>\">",
-        "format": "同上"
-    },
-    "GlobalFormat": {
-        "attribute": {
-            "introduce": "标签属性",
-            "Default": null
-        }
+  "H": {
+    "main": "<h<~H~> <~attribute~> ><~title~></h<~H~>>",
+    "format": {
+      "H": {
+        "introduce": "标题级别",
+        "Default": 1
+      },
+      "title": {
+        "introduce": "标题内容",
+        "Default": null
+      }
     }
+  },
+  "img": {
+    "main": "<img decoding=\"<~decoding~>\" src=\"<~ImgUrl~>\" alt=\"<~alt~>\" width=\"<~width~>\" height=\"<~height~>\">",
+    "format": "同上"
+  },
+  "GlobalFormat": {
+    "attribute": {
+      "introduce": "标签属性",
+      "Default": null
+    }
+  }
 }

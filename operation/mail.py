@@ -2,12 +2,16 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 # try:
-    # import config #导入配置
+# import config #导入配置
 from operationconfig import main_config as main_config
+
 config = main_config()
+
+
 class mail():
     def __init__(self):
         self.connection()
+
     def connection(self):
         # 创建 SMTP 对象
         self.smtp = smtplib.SMTP()
@@ -15,7 +19,8 @@ class mail():
         self.smtp.connect(config.connect, port=25)
         # 登录，需要：登录邮箱和授权码
         self.smtp.login(user=config.user, password=config.password)
-    def send(self,content,theme,target:dict):
+
+    def send(self, content, theme, target: dict):
         '''发送邮件：
         content：邮件内容
         theme：邮件主题

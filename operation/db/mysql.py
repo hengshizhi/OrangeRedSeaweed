@@ -10,6 +10,7 @@ from sqlalchemy import (
 )
 from . import config as config
 from . import table as table_data
+
 # import config as  config # config模块里有自己写的配置，我们可以换成别的，注意下面用到config的地方也要一起换
 # import table as table_data #所有表
 engine = create_engine(
@@ -21,7 +22,8 @@ engine = create_engine(
 )
 
 Session = sessionmaker(bind=engine)
-Base = declarative_base() #生成orm基类
+Base = declarative_base()  # 生成orm基类
+
 
 @contextlib.contextmanager
 def get_session():
@@ -35,9 +37,12 @@ def get_session():
     finally:
         s.close()
 
-class table(): #表类
-    class User(table_data.User,Base):pass
-    class session(table_data.session,Base):pass
+
+class table():  # 表类
+    class User(table_data.User, Base): pass
+
+    class session(table_data.session, Base): pass
+
 
 try:
     # Base.metadata.create_all(engine) #创建表结构
