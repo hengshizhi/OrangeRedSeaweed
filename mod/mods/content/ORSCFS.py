@@ -2,7 +2,12 @@
 import json
 
 ContentTemplate = {}
-
+# 导入内容模板变量,储存内容模板
+# ContentTemplates = {
+#   '<Template file name (excluding suffix)>' = {
+#       json.loads()
+#   }
+# }
 class content:
     def __init__(self, ORSCFS_STR):
         self.content = json.loads(ORSCFS_STR) # ORSCFS 内容 字符串
