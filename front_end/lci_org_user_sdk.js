@@ -12,6 +12,28 @@ class Lci_user {
     OtherKey = '';
     SessionKey = null;
 
+    constructor(Lci_user_url = '/api/', SessionKey) {
+        this.RURL = Lci_user_url;
+        if (SessionKey == null) {
+            this.SessionKey = $.cookie('SessionKey');
+            ;
+            if (this.SessionKey == null) {
+                $(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: Lci_user_url + 'Get_session_key', //拼接接口地址
+                        data: {},
+                        success: function (data) {
+                            $.cookie('SessionKey', data);
+                            console.log(data);
+                        }
+                    });
+                });
+                // this.SessionKey = this.reqapi('Get_session_key',{})
+            }
+        }
+    }
+
     reqapi(name, parameter, Call = function (data) {
         console.log(data)
     }) {
@@ -33,28 +55,6 @@ class Lci_user {
                 }
             });
         });
-    }
-
-    constructor(Lci_user_url = '/api/', SessionKey) {
-        this.RURL = Lci_user_url;
-        if (SessionKey == null) {
-            this.SessionKey = $.cookie('SessionKey');
-            ;
-            if (this.SessionKey == null) {
-                $(function () {
-                    $.ajax({
-                        type: "GET",
-                        url: Lci_user_url + 'Get_session_key', //拼接接口地址
-                        data: {},
-                        success: function (data) {
-                            $.cookie('SessionKey', data);
-                            console.log(data);
-                        }
-                    });
-                });
-                // this.SessionKey = this.reqapi('Get_session_key',{})
-            }
-        }
     }
 
     signup(name, Key, nickname, postbox = None, Call = function (data) {

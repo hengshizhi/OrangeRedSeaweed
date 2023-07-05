@@ -2,8 +2,8 @@ print('''注意安装前需要填写好两项配置:
 数据库连接配置，路径:./operation/db/config.py
 其他配置，路径:./operation/config.py
 ''')
-import sys
 import os
+import sys
 
 sys.path.append(os.getcwd() + '/operation/')
 try:

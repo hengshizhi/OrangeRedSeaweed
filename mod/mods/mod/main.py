@@ -1,12 +1,13 @@
 # mod插件
 import json
+
 import sdk.other as other
-import PathInfo as PathInfo
-from .ModInformation import modlist
-from .ModJs import modjs as modjsObj
+from sanic.response import HTTPResponse
+
 from .ModInformation import information
 from .ModInformation import logo as Ilogo
-from sanic.response import HTTPResponse
+from .ModInformation import modlist
+from .ModJs import modjs as modjsObj
 
 
 def AtRuntimeForTheFirstTime():

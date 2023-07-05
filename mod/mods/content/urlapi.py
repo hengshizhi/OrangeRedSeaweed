@@ -1,7 +1,8 @@
-from sdk.other import Main as other
-from mod.mods.content.content import AliasSearchContent
-from mod.mods.content.ORSCFS import content as ORSCFScontent
 import json
+
+from mod.mods.content.ORSCFS import content as ORSCFScontent
+from mod.mods.content.content import AliasSearchContent
+from sdk.other import Main as other
 
 
 class URL():
@@ -33,9 +34,15 @@ class URL():
             n = v.split('^%>')[-1]
             if (len(url[:(len(o))]) == len(o) and len(url[-len(n):]) == len(n)):
                 urlContent = url.replace(o, '').replace(n, '')
-                if (k == 'content'):
-                    content = AliasSearchContent(urlContent)
-                    content['content'] = ORSCFScontent(content['content']).html()
-                    return json.dumps(content)
+                return {k: urlContent}
 
+        return {}
+
+    def LoadContent(self, url):
+        result = self.coverR(url)
+        for k, v in result.items():
+            if (k == 'content'):
+                content = AliasSearchContent(v)
+                content['content'] = ORSCFScontent(content['content']).html()
+                return json.dumps(content)
         return ''

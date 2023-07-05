@@ -1,20 +1,9 @@
-import fileApi.route as route
-import fileApi.PathInfo as PathInfo
 import json
+
+import fileApi.PathInfo as PathInfo
+import fileApi.route as route
 from InitialLoading import Cache as Cache
-from operation.user import Traverse_other_data_with_the_same_key_value
-
-
-def ContentAliasesCorrespondUsersID():
-    ret = {}
-    data = Traverse_other_data_with_the_same_key_value('ContentList')
-    try:
-        for k, v in data.items():
-            for i in v['main']:
-                ret[i['alias']] = k
-    except:
-        pass
-    return ret
+from mod.mods.content.content import ContentAliasesCorrespondUsersID
 
 
 def AtRuntimeForTheFirstTime():

@@ -1,9 +1,10 @@
 # api回调类
 
-from operation.user import api as user
-from sanic.response import text,empty
-from operation.session import session
+from sanic.response import text, empty
+
 from mod.mod import main as modmian
+from operation.session import session
+from operation.user import api as user
 
 user = user()
 
@@ -115,7 +116,7 @@ def main(request, name):
         except:
             print('提交失败')
         try:
-            ret['cookie']['Session_key'] = session_odj.key# 更新cookie的session_key
+            ret['cookie']['Session_key'] = session_odj.key  # 更新cookie的session_key
         except:
             pass
     return ret

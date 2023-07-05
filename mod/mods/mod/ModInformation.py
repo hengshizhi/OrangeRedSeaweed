@@ -1,7 +1,6 @@
 # mod information
-import json
-import os
 import importlib
+
 import PathInfo as PathInfo
 
 

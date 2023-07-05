@@ -4,7 +4,6 @@ def main(api):
 
 
 def helloWrold(get_or_post, EnableSession, rep, **para):
-    from other import Main
     s = EnableSession()
     s.data['hello'] = 'yes'
     s.refresh()

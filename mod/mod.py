@@ -1,8 +1,9 @@
 # Mod mechanism entry
 # /api/mod?ModName=ModName&ApiName=ApiName
 import importlib
-from sanic.response import text
+
 import fileApi.PathInfo as PathInfo
+from sanic.response import text
 
 
 def modlists() -> dict:

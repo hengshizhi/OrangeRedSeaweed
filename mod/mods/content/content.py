@@ -1,9 +1,11 @@
-import sdk.other as other
 import time
 # import json
 import uuid
-from mod.mods.content.ORSCFS import content as ORSCFS
+
+import sdk.other as other
 from InitialLoading import Cache
+from mod.mods.content.ORSCFS import content as ORSCFS
+from operation.user import Traverse_other_data_with_the_same_key_value
 
 
 class content():
@@ -78,3 +80,24 @@ def AliasSearchContent(Alias):
     userid = Cache.GetCache('ContentAliasesCorrespondUsersID').Pulling()
     print(userid)
     return content(USERID=userid[Alias], alias=Alias).Pulling()
+
+
+def content_list():
+    ret = []
+    data = Traverse_other_data_with_the_same_key_value('ContentList')
+    for k, v in data.items():
+        for i in v['main']:
+            ret.append(i)
+    return ret
+
+
+def ContentAliasesCorrespondUsersID():
+    ret = {}
+    data = Traverse_other_data_with_the_same_key_value('ContentList')
+    try:
+        for k, v in data.items():
+            for i in v['main']:
+                ret[i['alias']] = k
+    except:
+        pass
+    return ret

@@ -1,9 +1,11 @@
 # The content module of OrangeRedSeaweed is mainly used to handle website content
 # Belongs to the official module of OrangeRedSeaweed
 # Copyright 2023 Starweave
-from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime as AtRuntimeForTheFirstTime
+# from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime as AtRuntimeForTheFirstTime
 import json
+
 from mod.mods.content.content import content as content_obj
+from mod.mods.content.content import content_list as content_list_fun
 from mod.mods.content.urlapi import URL as _urlapi
 
 
@@ -12,17 +14,32 @@ def main(api):
     api['NewContent'] = NewContent
     api['change'] = change
     api['ZUOzhEreadApi'] = ZUOzhEreadApi
-    api['urlapi'] = urlapi
+    api['urlapi'] = url_api
+    api['ContentList'] = content_list
     return api
 
 
-def urlapi(get_or_post, EnableSession, rep, **para):
+def content_list(get_or_post, enable_session, rep, **para):
+    del enable_session
+    del para
+    paging = int(get_or_post('paging', 8))
+    number_pages = int(get_or_post('number_pages', 1)) - 1
+    content_presentation = bool(get_or_post('content_presentation', False))
+    c_list = content_list_fun()
+    a_list = []
+    try:
+        return rep(json.dumps(c_list[paging * number_pages:paging * (number_pages + 1)]))
+    except:
+        return rep(json.dumps(c_list[paging * number_pages:len(c_list)]))
+
+
+def url_api(get_or_post, EnableSession, rep, **para):
     url = get_or_post('url')
     if (url == None):
         rep('OK')
     else:
         obj = _urlapi()
-        return rep(obj.coverR(url))
+        return rep(obj.LoadContent(url))
 
 
 def GetAllContentTemplatesAPI(get_or_post, EnableSession, rep, **para):

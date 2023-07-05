@@ -3,7 +3,6 @@
 # Modjs will call modjs() in the "frontendModjs.py" under each mod
 # Add the returned JavaScript code to the return value of "modjs.output()"
 
-from .ModInformation import modlist
 import importlib
 
 

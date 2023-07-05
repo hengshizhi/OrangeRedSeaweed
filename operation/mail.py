@@ -1,6 +1,7 @@
 import smtplib
-from email.mime.text import MIMEText
 from email.header import Header
+from email.mime.text import MIMEText
+
 # try:
 # import config #导入配置
 from operationconfig import main_config as main_config

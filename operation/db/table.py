@@ -1,16 +1,11 @@
 # 储存表结构
-import contextlib
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import (
-    create_engine,
     Column,
     Integer,
     DateTime,
     String,
     TIMESTAMP
 )
-from sqlalchemy.sql import func
 
 
 class BaseMixin:

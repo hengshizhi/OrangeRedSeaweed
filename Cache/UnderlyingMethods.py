@@ -1,7 +1,7 @@
 # The underlying method of cache retrieval
-import fileApi.route as route
-import fileApi.file as file
 import Cache.Memory as Memory1
+import fileApi.file as file
+import fileApi.route as route
 
 
 class file_Cache():

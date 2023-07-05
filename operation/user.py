@@ -1,15 +1,16 @@
 # 用户相关
-import time as time
-from sanic.response import text, json, redirect
+import json
 import random
 import string
-import random
-import json
+import time as time
+
+from sanic.response import json, redirect
 from sanic.response import text
+
+import db.mysql as db
+import md5 as md5
 # try:
 import operationconfig as configs
-import md5 as md5
-import db.mysql as db
 from mail import mail as mails
 
 # except:

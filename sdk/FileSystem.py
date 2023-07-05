@@ -1,9 +1,7 @@
 # from fileApi.file import Main as file_Main
 # from fileApi.route import Main as route_Main
-from fileApi import PathInfo as PathInfo_SDKs
-
-import fileApi.file
 import fileApi.route
+from fileApi import PathInfo as PathInfo_SDKs
 
 PathInfo_SDK = PathInfo_SDKs()
 

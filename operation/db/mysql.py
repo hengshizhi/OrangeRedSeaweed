@@ -1,13 +1,11 @@
 import contextlib
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+
 from sqlalchemy import (
     create_engine,
-    Column,
-    Integer,
-    DateTime,
-    String,
 )
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
 from . import config as config
 from . import table as table_data
 
