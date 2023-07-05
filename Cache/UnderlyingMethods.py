@@ -1,20 +1,23 @@
 # The underlying method of cache retrieval
 import fileApi.route as route
 import fileApi.file as file
-import os
+import Cache.Memory as Memory1
+
 class file_Cache():
-    def __init__(self,path = './Cache/data') -> None:
+    def __init__(self) -> None:
+        '''Utilizing file storage caching (not recommended)'''
+        path = './Cache/data'
         route.mkdir(path)
-        self.path = path
-    def openw(self,name,con):
-        '''写入'''
-        with open(os.path.normpath(f'{self.path}/{name}')) as f:f.write(con)
-    def openr(self,name):
-        '''查看'''
-        with open(os.path.normpath(f'{self.path}/{name}'),encoding='utf-8') as f:return f.read()
+        self.file = file.New(path)
     def New(self,name,con):
-        '''
-        name :缓存名字
-        con :缓存内容
-        '''
-        
+        self.file.openw(name,str(con))
+    def read(self,name):
+        return eval(self.file.openr(name))
+    
+class Memory:
+    def __init__(self) -> None:
+        '''Using Memory to Store Caches'''
+        pass
+    def New(self,name,con):Memory1.data[name] = con
+    def read(self,name):return Memory1.data[name]
+
