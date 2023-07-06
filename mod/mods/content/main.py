@@ -4,9 +4,12 @@
 # from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime as AtRuntimeForTheFirstTime
 import json
 
+from mod.mods.content.AtRuntimeForTheFirstTime import AtRuntimeForTheFirstTime
 from mod.mods.content.content import content as content_obj
 from mod.mods.content.content import content_list as content_list_fun
 from mod.mods.content.urlapi import URL as _urlapi
+
+AtRuntimeForTheFirstTime
 
 
 def main(api):
