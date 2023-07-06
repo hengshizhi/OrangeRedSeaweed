@@ -1,9 +1,7 @@
 # Other Data SDKs
-
-from operation.user import Change_other_user_data_interior as CHANGE_other_user_data_interior
-from operation.user import GET_other_user_data_interior as GET_other_user_data_interior
-
-
+import json
+from sanic.response import text
+from operation.user import GET_other_user_data_interior , Change_other_user_data_interior
 class Main():
     def __init__(self, KEY, UseJson: bool = True, USERID=2, session=False) -> None:
         '''
@@ -38,7 +36,7 @@ class Main():
 
     def SubmitToDatabase(self) -> bool:
         '''Submit the content of self.data to the database'''
-        CHANGE_other_user_data_interior(user_id=self.id, id=self.key, v=self.data)
+        Change_other_user_data_interior(user_id=self.id, id=self.key, v=self.data)
         return True
 
     def GetKeyData(self, key) -> int | None | str | dict:
@@ -114,6 +112,43 @@ class CoreConfiguration:
         '''Submit to database'''
         self.OT.data = {'administrators': self.administrators, 'ContentEditingRights': self.ContentEditingRights}
         return self.OT.SubmitToDatabase()
+
+
+class api():
+    def __init__(self, key, pre_execution_function=lambda get_or_post, enable_session, **para: None):
+        '''
+        key :使用的键值
+        pre_execution_function (get_or_post,enable_session,**para) -> None:API执行之前调用的函数
+        '''
+        self.key = key
+        self.pre_execution_function = pre_execution_function
+    def generate_api(self):
+        def fun(get_or_post, enable_session, rep, **para):
+            self.pre_execution_function(get_or_post,enable_session,**para)
+            user_id = get_or_post('user_id')
+            mode = get_or_post('mode','gain') # 规定API的模式:gain,change
+            if bool(user_id):
+                ot = Main(KEY=self.key,USERID=user_id)
+            elif not bool(user_id):
+                ot = Main(KEY=self.key,session=enable_session())
+                if not bool(ot.id):
+                    return rep('Not Logged In')
+            else:
+                ot = None
+            if bool(ot):
+                return rep(text('Error: ot obj does not exist'),500)
+            elif mode == 'gain':
+                try:return rep(json.dumps(ot.data))
+                except:return rep(str(ot.data))
+            elif mode == 'change':
+                data = get_or_post('data') # 需要覆盖的数据
+                ot.data = data
+                ot.SubmitToDatabase()
+                return rep('OK')
+        return {self.key : fun}
+    def mod_js(self) -> str:
+        ''' SDK required for generating APIs '''
+
 
 
 def ValidateLogon(s):
