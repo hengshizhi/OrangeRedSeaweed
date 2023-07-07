@@ -13,14 +13,13 @@ from sdk.other import CoreConfiguration as ccf
 import uuid
 import json
 from InitialLoading import Cache as Cache
-import mod.mods.free_other.operate as operate 
-
+from mod.mods.free_other.operate import operate
 def AtRuntimeForTheFirstTime():
-    a = new_free_other_session('CoreConfiguration',1688268570)
-    operate.operate(a,['example_instruction'])
+    pass
 def main(api):
     api['free_other_session_new'] = free_other_session_new
     api['free_other_user_id_new'] = free_other_user_id_new
+    api['instruct'] = instruct
     return api
 
 def new_free_other_session(KEY, user_id=None, session='None'):
@@ -42,3 +41,7 @@ def free_other_user_id_new(get_or_post, enable_session, rep, **para):
     else:
         return free_other_session_new(get_or_post, enable_session, rep, **para)
 
+def instruct(get_or_post, enable_session, rep, **para):
+    free_other_s_id = get_or_post('free_other_s_id')
+    instruction_set = json.loads(get_or_post('instruction_set'))
+    return json.dumps(operate(free_other_s_id,instruction_set))

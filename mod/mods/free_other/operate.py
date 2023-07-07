@@ -9,26 +9,28 @@ class Execution:
         self.other = other
         self.instruction = instruction
 
+    def extract_command(self):
+        if isinstance(self.instruction, dict):
+            self. instruction_name = self.instruction['instruction_name']
+            self.instruction_parameters = self.instruction['instruction_parameters']
+        else:
+            self.instruction_name = self.instruction
+            self.instruction_parameters = None
     def execute(self):
         '''Execute the instruction'''
         try:
-            if isinstance(self.instruction, dict):
-                instruction_name = self.instruction['instruction_name']
-                instruction_parameters = self.instruction['instruction_parameters']
-            else:
-                instruction_name = self.instruction
-                instruction_parameters = None
-
-            if instruction_name in self.instruction_name_list:
+            self. extract_command()
+            if self.instruction_parameters in self.instruction_name_list:
                 # Call the corresponding method based on the instruction name
-                result = getattr(self, f'_execute_{instruction_name}')(instruction_parameters)
+                result = getattr(self, f'_execute_{self. instruction_name}')(self.instruction_parameters)
                 return result
             else:
-                raise ValueError(f"Invalid instruction: {instruction_name}")
+                raise ValueError(f"Invalid instruction: {self. instruction_name}")
         except Exception as e:
             # Handle the error appropriately
-            print(f"Error executing instruction: {e}")
-            return None
+            ep = f"Error executing instruction: {e}"
+            print(ep)
+            return ep
 
     def _execute_example_instruction(self, parameters):
         # Implement the logic for executing the "example_instruction" here
