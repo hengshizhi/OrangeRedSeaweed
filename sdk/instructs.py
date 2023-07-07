@@ -69,7 +69,6 @@ def run(instruction_set: list,
     Usage method:
         >>> run(instruction_set,instruction_name_list,instruction_func_list,dependency_table)
     '''
-    #  other_instance = Cache.GetCache(free_other_s_id).Pulling() # Get the other object from the cache instead of creating directly
 
     invalid_instructions = check_instructions(instruction_set,instruction_name_list,dependency_table)
 
