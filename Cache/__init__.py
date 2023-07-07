@@ -3,12 +3,21 @@ import Cache.UnderlyingMethods as UM
 
 
 class CacheObj():
-    def __init__(self, name: str, read: object, SubmitTo: object, renew: object) -> None:
+    def __init__(self, name: str,
+                  read: object = lambda name:str
+                 , SubmitTo: object = lambda name,contant:None, 
+                 renew: object = lambda :str,
+                 delete: object = lambda name:None) -> None:
         '''
         name : Cache Name
         read : def read(name) -> contant || Extract data from cache
+        >>>
         SubmitTo : def SubmitTo(name,contant) -> None || Submit data to cache
+        >>>
         renew : renew() -> contant || Used to obtain data from a data source
+        >>>
+        delete : delete(name) -> None || Used to delete cache
+        >>>
         '''
         self.name = name
         self.read = read
@@ -16,7 +25,7 @@ class CacheObj():
         self.renew1 = renew
         self.contant = renew()
         self.SubmitTo()
-
+        self._del = delete
     def Pulling(self):
         self.contant = self.read(self.name)
         return self.contant
@@ -29,7 +38,9 @@ class CacheObj():
         self.SubmitTo()
         return self.renew1()
 
-
+    def delete(self):
+        '''删除本缓存'''
+        self._del(self.name)
 class Cache():
     def __init__(self, mode: object = UM.Memory) -> None:
         '''Cache functionality for plugin developers,
@@ -37,7 +48,6 @@ class Cache():
         mode :The class in Cache.UnderlyingMethods has a file_ Cache and Memory, default to Memory
         '''
         self.mode = mode()
-
     def GetCache(self, name: str):
         '''Get a cached object'''
         return Memory.Caches[name]
@@ -56,5 +66,5 @@ class Cache():
         def SubmitTo(name, contant):
             return self.mode.New(name, contant)
 
-        Memory.Caches[name] = CacheObj(name, read, SubmitTo, function)
+        Memory.Caches[name] = CacheObj(name, read, SubmitTo, function, self.mode.delete)
         return Memory.Caches[name]

@@ -7,7 +7,7 @@ import fileApi.route as route
 class file_Cache():
     def __init__(self) -> None:
         '''Utilizing file storage caching (not recommended)'''
-        path = './Cache/data'
+        path = './Cache/data/'
         route.mkdir(path)
         self.file = file.New(path)
 
@@ -17,6 +17,8 @@ class file_Cache():
     def read(self, name):
         return eval(self.file.openr(name))
 
+    def delete(self,name):
+        self.file.delete(name)
 
 class Memory:
     def __init__(self) -> None:
@@ -26,3 +28,5 @@ class Memory:
     def New(self, name, con): Memory1.data[name] = con
 
     def read(self, name): return Memory1.data[name]
+
+    def delete(self,name): del Memory1.data[name]

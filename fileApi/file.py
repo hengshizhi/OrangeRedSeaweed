@@ -171,3 +171,16 @@ class New:
                 return False
         else:
             return False
+    def delete(self, path):
+        '''Delete删除文件、目录
+        参数：
+        path:删除文件、目录的路径
+        '''
+        path = os.path.normpath(f'{self.path}\{path}')
+        if (os.path.isfile(path)):
+            os.remove(path)
+        elif (os.path.isdir(path)):
+            shutil.rmtree(path)
+        else:
+            return False
+        return True

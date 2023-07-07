@@ -3,7 +3,7 @@ import json
 from sanic.response import text
 from operation.user import GET_other_user_data_interior , Change_other_user_data_interior
 class Main():
-    def __init__(self, KEY, UseJson: bool = True, USERID=2, session=False,) -> None:
+    def __init__(self, KEY, UseJson: bool = True, USERID=2, session='None',) -> None:
         '''
         Other can store any common data type supported by Python, except for objects
         Precautions for use:
@@ -17,12 +17,12 @@ class Main():
             USERID: User ID (2id is the super administrator ID, and non user data should be placed here)
             session: Session can be used to obtain logged in users_id ()
         '''
-        if (bool(session)):
+        if (session != 'None'):
             try:
                 self.id = session.data['login_status_id']
             except:
                 self.id = None
-        else:
+        elif(bool(USERID)):
             self.id = USERID
         self.key = KEY
         self.data = None
