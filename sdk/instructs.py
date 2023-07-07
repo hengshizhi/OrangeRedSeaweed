@@ -36,7 +36,7 @@ class Execution:
             self. extract_command()
             if self.instruction_name in self.instruction_name_list:
                 # Call the corresponding method based on the instruction name
-                result = self.instruction_func_list[self.instruction_name_list.index(self.instruction_name_list)](self.instruction_parameters)
+                result = self.instruction_func_list[self.instruction_name_list.index(self.instruction_name)](self.instruction_parameters)
                 return result
             else:
                 raise ValueError(f"Invalid instruction: {self. instruction_name}")
@@ -75,7 +75,7 @@ def run(instruction_set: list,
     if invalid_instructions:
         e = 'The following instructions have dependency issues: '
         for invalid_instruction in invalid_instructions:
-            e += f'"{invalid_instruction},"'
+            e += f'"{invalid_instruction}",'
         raise ValueError(e)
 
     # Define a helper function for executing a single instruction
