@@ -1,13 +1,23 @@
-#This module envisions a free other data API that utilizes caching to save other objects, and then utilizes a series of specific
-#Instructions (sets) can be used to manipulate objects, all of which can be accomplished through APIs
-#You need to first request a function such as new to create an object and get the cache location of the object
+#This module envisions a free other data API that utilizes caching to save other objects, 
+#and then utilizes a series of specific
+#Instructions (sets) can be used to manipulate objects, 
+#all of which can be accomplished through APIs
+#You need to first request a function such as new to create an object 
+#and get the cache location of the object
 #Then use functions such as' operate 'to manipulate the instruction set
-#With this thing, you can safely and quickly manipulate data without writing Python (only JS SDK is left)
+#With this thing, 
+#you can safely and quickly manipulate data without writing Python (only JS SDK is left)
+#Only the JS SDK is left, and the SDK is also universal, just write it once
 from sdk.other import Main as other
 from sdk.other import CoreConfiguration as ccf
 import uuid
 import json
 from InitialLoading import Cache as Cache
+import mod.mods.free_other.operate as operate 
+
+def AtRuntimeForTheFirstTime():
+    a = new_free_other_session('CoreConfiguration',1688268570)
+    operate.operate(a,['example_instruction'])
 def main(api):
     api['free_other_session_new'] = free_other_session_new
     api['free_other_user_id_new'] = free_other_user_id_new
