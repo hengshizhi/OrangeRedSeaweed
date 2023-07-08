@@ -36,7 +36,11 @@ class Execution:
             self. extract_command()
             if self.instruction_name in self.instruction_name_list:
                 # Call the corresponding method based on the instruction name
-                result = self.instruction_func_list[self.instruction_name_list.index(self.instruction_name)](self.instruction_parameters)
+                if (type(self.instruction_func_list) == list):
+                    result = self.instruction_func_list[self.instruction_name_list.index(self.instruction_name)](self.instruction_parameters)
+                else:
+                    # Extract functions from modules through strings
+                    result = getattr(self.instruction_func_list, self.instruction_name)(self.instruction_parameters)
                 return result
             else:
                 raise ValueError(f"Invalid instruction: {self. instruction_name}")
@@ -54,7 +58,7 @@ class Execution:
 
 def run(instruction_set: list,
         instruction_name_list:list,
-        instruction_func_list:list,
+        instruction_func_list:list|object,
         dependency_table:dict={}) -> list:
     '''This function is a function that utilizes the instruction set to operate on another
     Parameters:
@@ -62,6 +66,7 @@ def run(instruction_set: list,
         >>> instruction_set = [{'instruction_name': "<instruction_name>", <instruct_parameters>...}]
         >>> instruction_name_list = [<instruct1>,<instruct2>,...]
         >>> instruction_func_list = [<instruct_func1>,<instruct_func2>,...]
+        >>> # instruction_func_list = module_name # Extract functions from modules through strings
         >>> dependency_table = {<instruct1>:[<instruct2>,<instruct3>],...} 
         >>> # Instructions: dependent instructions of instructions (Need to execute an instruction dependent instruction first)
         >>> def instruct_func1(parameters:dict({'parameters':value})|None):
@@ -84,6 +89,8 @@ def run(instruction_set: list,
         return executor.execute()
 
     # Execute instructions synchronously
-    results = [execute_instruction(instruction) for instruction in instruction_set]
+    results = []
+    for instruction_index in range(len(instruction_set)):
+        results.append(execute_instruction(instruction_set[instruction_index]))
 
     return results

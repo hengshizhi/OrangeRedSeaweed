@@ -13,7 +13,8 @@ from sdk.other import CoreConfiguration as ccf
 import uuid
 import json
 from InitialLoading import Cache as Cache
-# from sdk.instructs import run
+from sdk.instructs import run as instructs_run
+import mod.mods.free_other.instructs_func as instructs_func
 def AtRuntimeForTheFirstTime():
     pass
 def main(api):
@@ -42,8 +43,13 @@ def free_other_user_id_new(get_or_post, enable_session, rep, **para):
         return free_other_session_new(get_or_post, enable_session, rep, **para)
 
 def instruct(get_or_post, enable_session, rep, **para):
-    free_other_s_id = get_or_post('free_other_s_id')
+    # free_other_s_id = get_or_post('free_other_s_id')
     instruction_set = json.loads(get_or_post('instruction_set'))
-
-    # other_instance = Cache.GetCache(free_other_s_id).Pulling() # Get the other object from the cache instead of creating directly
-    # return json.dumps(run(instruction_set,))
+    instruction_name_list = ['Pulling','SubmitToDatabase','AdministratorVerification','get_data','change']
+    instruction_func_list = instructs_func
+    dependency_table = {
+        'get_data':['Pulling'],
+        'SubmitToDatabase':['change'],
+        'AdministratorVerification':['Pulling']
+    }
+    return json.dumps(instructs_run(instruction_set,instruction_name_list,instruction_func_list,dependency_table))
