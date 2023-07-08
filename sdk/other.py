@@ -19,6 +19,7 @@ class Main():
         '''
         if (session != 'None'):
             try:
+                self.session = session
                 self.id = session.data['login_status_id']
             except:
                 self.id = None
@@ -54,6 +55,10 @@ class Main():
         Parameters:
             Session: Objects returned using the 'EnableSession' function
         '''
+        if (Session):
+            pass
+        else:
+            Session = self.session
         if (not self.UserLoginAuthentication(Session)): return None
         self.Pulling()
         try:
