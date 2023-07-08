@@ -6,7 +6,10 @@ def check_instructions(instructions, instruction_table, dependency_table):
     '''
     invalid_instructions = []
     for i in range(len(instructions)):
-        instruction = instructions[i]
+        if isinstance(instructions, dict):
+            instruction = instructions[i]['instruction_name']
+        else:
+            instruction = instructions[i]
         if instruction not in instruction_table:
             invalid_instructions.append(instruction)
         else:
@@ -36,7 +39,7 @@ class Execution:
             self. extract_command()
             if self.instruction_name in self.instruction_name_list:
                 # Call the corresponding method based on the instruction name
-                if (type(self.instruction_func_list) == list):
+                if isinstance(self.instruction_func_list, list):
                     result = self.instruction_func_list[self.instruction_name_list.index(self.instruction_name)](self.instruction_parameters)
                 else:
                     # Extract functions from modules through strings

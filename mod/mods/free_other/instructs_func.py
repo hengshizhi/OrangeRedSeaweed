@@ -1,4 +1,5 @@
 from InitialLoading import Cache
+import json
 def get_other_instance(free_other_s_id):
     '''Get the other object from the cache instead of creating directly'''
     return Cache.GetCache(free_other_s_id).Pulling()
@@ -20,5 +21,5 @@ def get_data(parameters):
 
 def change(parameters):
     other_instance = get_other_instance(parameters['free_other_s_id'])
-    other_instance.data = parameters['data']
+    other_instance.data = json.loads(parameters['data'])
     return other_instance.data

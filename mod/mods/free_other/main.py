@@ -43,13 +43,16 @@ def free_other_user_id_new(get_or_post, enable_session, rep, **para):
         return free_other_session_new(get_or_post, enable_session, rep, **para)
 
 def instruct(get_or_post, enable_session, rep, **para):
-    # free_other_s_id = get_or_post('free_other_s_id')
-    instruction_set = json.loads(get_or_post('instruction_set'))
-    instruction_name_list = ['Pulling','SubmitToDatabase','AdministratorVerification','get_data','change']
-    instruction_func_list = instructs_func
-    dependency_table = {
-        'get_data':['Pulling'],
-        'SubmitToDatabase':['change'],
-        'AdministratorVerification':['Pulling']
-    }
-    return json.dumps(instructs_run(instruction_set,instruction_name_list,instruction_func_list,dependency_table))
+    session = enable_session()
+    if other('CoreConfiguration',session=session).UserLoginAuthentication(session):
+        instruction_set = json.loads(get_or_post('instruction_set'))
+        instruction_name_list = ['Pulling','SubmitToDatabase','AdministratorVerification','get_data','change']
+        instruction_func_list = instructs_func
+        dependency_table = {
+            'get_data':['Pulling'],
+            'SubmitToDatabase':['change'],
+            'AdministratorVerification':['Pulling']
+        }
+        return rep(json.dumps(instructs_run(instruction_set,instruction_name_list,instruction_func_list,dependency_table)))
+    else:
+        return rep(json.dumps(['You are not logged in']))
