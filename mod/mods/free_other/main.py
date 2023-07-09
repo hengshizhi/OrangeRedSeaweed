@@ -50,4 +50,4 @@ def instruct(get_or_post, enable_session, rep, **para):
         'SubmitToDatabase':['change'],
         'AdministratorVerification':['Pulling']
     }
-    return instructs_api_func.func(get_or_post, enable_session, rep,instruction_name_list,instruction_func_list,dependency_table)
+    return instructs_api_func.func(get_or_post, enable_session, rep,instruction_name_list,instruction_func_list,dependency_table,logged=True)
