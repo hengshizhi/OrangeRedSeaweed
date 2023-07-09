@@ -19,7 +19,16 @@ def check_instructions(instructions, instruction_table, dependency_table):
                     invalid_instructions.append(instruction)
                     break
     return invalid_instructions
-
+class instruction_parameters():
+    def __init__(self,instruction_parameters_data:dict|None) -> None:
+        self.parameters = instruction_parameters_data
+    def get(self,parameter_name:str):
+        try:
+            return self.parameters.get(parameter_name)
+        except KeyError:
+            raise Exception(f'parameter not found:{parameter_name}')
+        except AttributeError:
+            raise Exception(f"No parameters used, parameters not found:'{parameter_name}'")
 class Execution:
     def __init__(self,instruction,instruction_name_list:list,instruction_func_list:list):
         '''Responsible for parsing each instruction'''
@@ -29,10 +38,10 @@ class Execution:
     def extract_command(self):
         if isinstance(self.instruction, dict):
             self.instruction_name = self.instruction['instruction_name']
-            self.instruction_parameters = self.instruction['instruction_parameters']
+            self.instruction_parameters = instruction_parameters(self.instruction['instruction_parameters'])
         else:
             self.instruction_name = self.instruction
-            self.instruction_parameters = None
+            self.instruction_parameters = instruction_parameters(instruction_parameters_data=None)
     def execute(self):
         '''Execute the instruction'''
         try:
@@ -50,7 +59,6 @@ class Execution:
         except Exception as e:
             # Handle the error appropriately
             ep = f"Error executing instruction: {e}"
-            print(ep)
             return ep
 
     def _execute_example_instruction(self, parameters):
