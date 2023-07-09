@@ -105,3 +105,8 @@ def run(instruction_set: list,
         results.append(execute_instruction(instruction_set[instruction_index]))
 
     return results
+
+def mod_js():
+    from fileApi.file import New as file
+    f = file('/sdk/instructs/')
+    return f.openr('requests_instructs.js')
