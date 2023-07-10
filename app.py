@@ -54,10 +54,11 @@ async def api(request, name):  # API执行函数
 async def front_end(request, path):
     '''前端'''
     try:
-        return await file('./front_end/' + path)
+        return await file(os.path.normpath('./front_end/' + path))
     except:
-        return await file('./front_end/index.html')
-
+        try:return await file(os.path.normpath('./front_end/index.html'))
+        except:return await file(os.path.normpath(f'./front_end/{path}/index.html'))
+        
 
 app.add_route(front_end, f'/<path:path>', methods=['GET', 'POST'])  # front_end
 app.add_route(api, f'/api/<name:path>', methods=['GET', 'POST'])  # HTTPAPI

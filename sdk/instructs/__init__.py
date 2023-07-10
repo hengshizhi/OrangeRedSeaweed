@@ -108,5 +108,5 @@ def run(instruction_set: list,
 
 def mod_js():
     from fileApi.file import New as file
-    f = file('/sdk/instructs/')
+    f = file('.\sdk\instructs\\')
     return f.openr('requests_instructs.js')

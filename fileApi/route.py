@@ -39,8 +39,15 @@ class main:
             old:复制前的路径
             new:复制后的路径
         '''  # shutil.copyfile
-        if (os.path.isdir(old) and not os.path.isdir(new)):  # 需要复制前的文件存在,复制的目标路径不存在
-            shutil.copytree(old, new)  # 复制成功
-            return True
-        else:
-            return False
+        source_path = os.path.abspath(old)
+        target_path = os.path.abspath(new)
+        
+        if not os.path.exists(target_path):
+            # 如果目标路径不存在原文件夹的话就创建
+            os.makedirs(target_path)
+        
+        if os.path.exists(source_path):
+            # 如果目标路径存在原文件夹的话就先删除
+            shutil.rmtree(target_path)
+        
+        shutil.copytree(source_path, target_path)

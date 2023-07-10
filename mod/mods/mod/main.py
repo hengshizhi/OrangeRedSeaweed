@@ -1,18 +1,25 @@
-# mod插件
 import json
+import os
 
 import sdk.other as other
 from sanic.response import HTTPResponse
+from fileApi.route import main as route
+
 
 from .ModInformation import information
 from .ModInformation import logo as Ilogo
 from .ModInformation import modlist
 from .ModJs import modjs as modjsObj
 
-
+def manage_front_end_copy():
+    robj = route()
+    old = os.path.normpath('.\mod\mods\mod\manage/')
+    new = os.path.normpath('./front_end/manage/')
+    robj.mkdir(new)
+    robj.CopyCatalog(old,new)
 def AtRuntimeForTheFirstTime():
     ''' Functions that will be executed every time the program runs mod '''
-    pass
+    manage_front_end_copy()
 
 
 def main(api):
@@ -21,7 +28,6 @@ def main(api):
             'logo': logo,
             'GetInformation': GetInformation
             }
-
 
 def apiModlist(get_or_post, EnableSession, rep, **para):
     s = EnableSession()
@@ -69,7 +75,29 @@ def GetInformation(get_or_post, EnableSession, rep, **para):
 
 
 def modjs() -> str:
-    ret = ''
+    ret = '''
+import $ from 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
+/**
+ * 获取 cookie 对象
+ * @returns  cookie 键值对对象
+ */
+function getCookieObject() {
+    let cookieString = document.cookie;
+    cookieString = cookieString.substring(0, cookieString.length - 1);
+    let tempCookieArray = cookieString.split('; ');
+
+    let cookieObject = {}; // 存放 cookie 键值对
+
+    tempCookieArray.forEach(item => {
+        let name = item.substring(0, item.indexOf('='));
+        let value = item.substring(item.indexOf('=') + 1);
+        value = decodeURIComponent(value); // 还原字符串
+        cookieObject[name] = value; // 将键值插入中这个对象中
+    });
+
+    return cookieObject // 返回包含 cookie 键值对的对象
+}
+'''
     modlsit = modlist()
     for k, v in modlsit.items():
         Modjs = modjsObj(k)

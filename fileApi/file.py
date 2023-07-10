@@ -3,7 +3,7 @@ import os
 import shutil
 
 from route import mkdir as mkdir
-
+import fileApi.PathInfo as PathInfo
 
 class Main:
     def delete(self, path):
@@ -117,23 +117,25 @@ import fileApi.route as route
 class New:
     def __init__(self, RootPath) -> None:
         route.mkdir(RootPath)
-        self.RootPath = RootPath
-
+        self.root_path = RootPath
+    def get_path(self,path):
+        return os.path.normpath(f'{self.root_path}\{path}')
     def openw(self, name, con):
-        with open(os.path.normpath(f'{self.path}/{name}'), 'w') as f: f.write(con)
+        
+        with open(self.get_path(name), 'w') as f: f.write(con)
 
     def openr(self, name):
-        with open(os.path.normpath(f'{self.path}/{name}'), 'r', encoding='utf-8') as f: return f.read()
+        with open(self.get_path(name), 'r', encoding='utf-8') as f: return f.read()
 
     def openwb(self, name, con):
-        with open(os.path.normpath(f'{self.path}/{name}'), 'wb') as f: f.write(con)
+        with open(self.get_path(name), 'wb') as f: f.write(con)
 
     def openrb(self, name):
-        with open(os.path.normpath(f'{self.path}/{name}'), 'rb', encoding='utf-8') as f: return f.read()
+        with open(self.get_path(name), 'rb', encoding='utf-8') as f: return f.read()
 
     def Move(self, old, new):
-        old = os.path.normpath(f'{self.path}\{old}')
-        new = os.path.normpath(f'{self.path}\{new}')
+        old = self.get_path(old)
+        new = self.get_path(new)
         if (os.path.exists(old) and not os.path.exists(new)):  # 需要移动前的文件存在,移动的目标路径不存在
             shutil.move(old, new)  # 移动成功
             return True
@@ -141,8 +143,8 @@ class New:
             return False
 
     def Copy(self, old, new):
-        old = os.path.normpath(f'{self.path}\{old}')
-        new = os.path.normpath(f'{self.path}\{new}')
+        old = self.get_path(old)
+        new = self.get_path(new)
         if (os.path.exists(old) and not os.path.exists(new)):  # 需要复制前的文件存在,复制的目标路径不存在
             mkdir(os.path.dirname(new))
             if (os.path.isfile(old)):
@@ -159,7 +161,7 @@ class New:
             path :文件路径
             content :文件写入内容(默认是null)
         '''
-        path = os.path.normpath(f'{self.path}\{path}')
+        path = self.get_path(path)
         route.mkdir(os.path.split(path)[0])  # 验证目录是否存在,不存在则创建目录
         if (not os.path.isfile(path)):
             try:
@@ -176,7 +178,7 @@ class New:
         参数：
         path:删除文件、目录的路径
         '''
-        path = os.path.normpath(f'{self.path}\{path}')
+        path = self.get_path(path)
         if (os.path.isfile(path)):
             os.remove(path)
         elif (os.path.isdir(path)):
@@ -184,3 +186,10 @@ class New:
         else:
             return False
         return True
+    def mkdir(self,path):
+        '''
+        创建目录
+        '''
+        route.mkdir(self.get_path(path))
+    def file_data(self,path):
+        PathInfo.FileData(path,wwwroot=self.root_path)
