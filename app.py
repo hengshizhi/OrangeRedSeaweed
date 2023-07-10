@@ -47,7 +47,7 @@ async def api(request, name):  # API执行函数
             return await ret
         else:
             return ret
-    except:
+    except KeyError:
         return ret
 
 

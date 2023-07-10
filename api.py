@@ -5,55 +5,60 @@ from sanic.response import text, empty
 from mod.mod import main as modmian
 from operation.session import session
 from operation.user import api as user
-
+from sdk.other import CoreConfiguration as ccf
 user = user()
 
+def restart_program_func():
+    import sys, os
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
 
-def restart_program(get_or_post, EnableSession, rep, **para):
+def restart_program(get_or_post, enableSession, rep, **para):
     '''重启程序'''
-
-    def RP():
-        import sys, os
-        python = sys.executable
-        os.execl(python, python, *sys.argv)
-
+    qunaxian = ccf(session=enableSession())
+    if (qunaxian.administrators):
+        restart_program_func()
+    else:
+        return rep('未登录')
 
 def get_session_key(get_or_post, EnableSession, rep, **para):
     s = EnableSession()
     return rep(s.key, s)
 
 
-def helloWorld(get_or_post, EnableSession, rep, **para):
-    '''
-    parameter :
-        get_or_post :获取get或者post参数
-        EnableSession :开启Session使用
-        rep :生成返回对象
-        **para : 注:本字典可能会随着需求变化而变化
-            {'request':<sanic's "request" object>}
-    '''
-    s = EnableSession()  # 开启Session
-    s.data = {'bbb': 'aaaa'}
-    s.refresh()
-    s.getDB()
-    return {'async': False,
-            'data': text(str(s.data)),
-            'cookie': {'Session_key': ''}, 'session_odj': s
-            }
+# def helloWorld(get_or_post, EnableSession, rep, **para):
+#     '''
+#     parameter :
+#         get_or_post :获取get或者post参数
+#         EnableSession :开启Session使用
+#         rep :生成返回对象
+#         **para : 注:本字典可能会随着需求变化而变化
+#             {'request':<sanic's "request" object>}
+#     '''
+#     s = EnableSession()  # 开启Session
+#     s.data = {'bbb': 'aaaa'}
+#     s.refresh()
+#     s.getDB()
+#     return {'async': False,
+#             'data': text(str(s.data)),
+#             'cookie': {'Session_key': ''}, 'session_odj': s
+#             }
 
-
-apiDict = {'helloWorld': helloWorld, 'Get_session_key': get_session_key, 'mod': modmian}
-apiDict.update(user.apiDict())  # 添加lui-user
+# apiDict = {'helloWorld': helloWorld}
+api_dict = {'Get_session_key': get_session_key,
+            'mod': modmian,
+            'restart_program':restart_program}
+api_dict.update(user.apiDict())  # 添加lci-user
 
 
 def main(request, name):
     try:  # api是否存在
-        if (type(apiDict[name]) == None):
+        if (type(api_dict[name]) == None):
             return {'data': empty(status=404)}
     except:
         return {'data': empty(status=404)}
 
-    def RepisOldVersion(session_odj, data, cookie={}):
+    def RepisOldVersion(session_odj, data, cookie={}): # 老版本 rep()
         return {'async': False,
                 'data': text(data),
                 'cookie': cookie,
@@ -108,7 +113,7 @@ def main(request, name):
         print('NEWsession_key:', session_odj.key)
         return session_odj
 
-    ret = apiDict[name](get_or_post, EnableSession, rep, request=request, RepisOldVersion=RepisOldVersion)
+    ret = api_dict[name](get_or_post, EnableSession, rep, request=request, RepisOldVersion=RepisOldVersion)
     if (ret['session_odj'] != None):
         try:
             session_odj = ret['session_odj']  # 覆写session_odj为更改过的session_odj
