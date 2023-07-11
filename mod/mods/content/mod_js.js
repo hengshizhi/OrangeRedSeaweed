@@ -7,122 +7,83 @@ class content{
             this.SessionID = getCookieObject()['Session_key']
         }
     }
-    changeRequest( alias, Title, content) {
+    changeRequest(alias, Title, content, successCallback, errorCallback) {
         $.ajax({
-        url: '/api/mod?ModName=content&ApiName=change',
-        type: 'POST',
-        data: {
-            SessionID: SessionID,
-            alias: alias,
-            Title: Title,
-            content: content
-        },
-        success: function(response) {
-            // 请求成功的处理逻辑
-            console.log(response);
-        },
-        error: function(error) {
-            // 请求失败的处理逻辑
-            console.log(error);
-        }
+            url: '/api/mod?ModName=content&ApiName=change',
+            type: 'POST',
+            data: {
+                SessionID: this.SessionID,
+                alias: alias,
+                Title: Title,
+                content: content
+            },
+            success: successCallback,
+            error: errorCallback
         });
     }
     
     // 请求函数：ContentList
-     contentListRequest(paging, number_pages) {
+    contentListRequest(successCallback, errorCallback) {
         $.ajax({
-        url: '/api/mod?ModName=content&ApiName=ContentList',
-        type: 'POST',
-        data: {
-            paging: paging,
-            number_pages: number_pages
-        },
-        success: function(response) {
-            // 请求成功的处理逻辑
-            console.log(response);
-        },
-        error: function(error) {
-            // 请求失败的处理逻辑
-            console.log(error);
-        }
+            url: '/api/mod?ModName=content&ApiName=ContentList',
+            type: 'POST',
+            success: successCallback,
+            error: errorCallback
         });
     }
     
     // 请求函数：GetAllContentTemplates
-     getAllContentTemplatesRequest() {
+    getAllContentTemplatesRequest(successCallback, errorCallback) {
         $.ajax({
-        url: '/api/mod?ModName=content&ApiName=GetAllContentTemplates',
-        type: 'POST',
-        success: function(response) {
-            // 请求成功的处理逻辑
-            console.log(response);
-        },
-        error: function(error) {
-            // 请求失败的处理逻辑
-            console.log(error);
-        }
+            url: '/api/mod?ModName=content&ApiName=GetAllContentTemplates',
+            type: 'POST',
+            success: successCallback,
+            error: errorCallback
         });
     }
     
     // 请求函数：NewContent
-    newContentRequest( alias, Title, content) {
+    newContentRequest(alias, Title, content, successCallback, errorCallback) {
         $.ajax({
-        url: '/api/mod?ModName=content&ApiName=NewContent',
-        type: 'POST',
-        data: {
-            SessionID: SessionID,
-            alias: alias,
-            Title: Title,
-            content: content
-        },
-        success: function(response) {
-            // 请求成功的处理逻辑
-            console.log(response);
-        },
-        error: function(error) {
-            // 请求失败的处理逻辑
-            console.log(error);
-        }
+            url: '/api/mod?ModName=content&ApiName=NewContent',
+            type: 'POST',
+            data: {
+                SessionID: this.SessionID,
+                alias: alias,
+                Title: Title,
+                content: content
+            },
+            success: successCallback,
+            error: errorCallback
         });
     }
     
     // 请求函数：urlapi
-    urlapiRequest(url) {
+    urlapiRequest(url, successCallback, errorCallback) {
         $.ajax({
-        url: '/api/mod?ModName=content&ApiName=urlapi',
-        type: 'POST',
-        data: {
-            url: url
-        },
-        success: function(response) {
-            // 请求成功的处理逻辑
-            console.log(response);
-        },
-        error: function(error) {
-            // 请求失败的处理逻辑
-            console.log(error);
-        }
+            url: '/api/mod?ModName=content&ApiName=urlapi',
+            type: 'POST',
+            data: {
+                url: url
+            },
+            success: successCallback,
+            error: errorCallback
         });
     }
     
     // 请求函数：ZUOzhEreadApi
-    ZUOzhEreadApiRequest( alias) {
+    ZUOzhEreadApiRequest(alias, successCallback, errorCallback) {
         $.ajax({
-        url: '/api/mod?ModName=content&ApiName=ZUOzhEreadApi',
-        type: 'POST',
-        data: {
-            SessionID: SessionID,
-            alias: alias
-        },
-        success: function(response) {
-            // 请求成功的处理逻辑
-            console.log(response);
-        },
-        error: function(error) {
-            // 请求失败的处理逻辑
-            console.log(error);
-        }
+            url: '/api/mod?ModName=content&ApiName=ZUOzhEreadApi',
+            type: 'POST',
+            data: {
+                SessionID: this.SessionID,
+                alias: alias
+            },
+            success: successCallback,
+            error: errorCallback
         });
     }
+    
 
 }

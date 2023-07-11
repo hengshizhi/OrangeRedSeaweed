@@ -1,1053 +1,2759 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-    <!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="/api/mod?ModName=mod&ApiName=modjs"></script>
-<script src="/manage/cdn.jsdelivr.net_npm_jquery@3.6.0_dist_jquery.min.js"></script>
-<title>OrangeRedSeaweed manage</title>
-
-<!-- Favicon icon-->
-
-
-<!-- Libs CSS -->
-
-
-<link href="./static/css/bootstrap-icons.css" rel="stylesheet">
-<link href="./static/css/dropzone.css" rel="stylesheet">
-<link href="./static/css/materialdesignicons.min.css" rel="stylesheet">
-<link href="./static/css/prism-okaidia.css" rel="stylesheet">
-
-
-
-
-
-
-
-
-<!-- Theme CSS -->
-<link rel="stylesheet" href="./static/css/theme.min.css">
-  </head>
-
-  <body class="bg-light">
-    <div id="db-wrapper">
-      <!-- navbar vertical -->
-       <!-- Sidebar -->
- <nav class="navbar-vertical navbar">
-    <div class="nav-scroller">
-        <!-- Brand logo -->
-        <a class="navbar-brand" href="">
-            <img src="./static/picture/logo.svg" alt="">
-        </a>
-        <!-- Navbar nav -->
-        <ul class="navbar-nav flex-column" id="sideNavbar">
-            <li class="nav-item">
-                <a class="nav-link has-arrow  active " href="">
-                    <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Dashboard
-                </a>
-
-            </li>
-
-
-         <!-- Nav item -->
-         <li class="nav-item">
-            <div class="navbar-heading">Layouts & Pages</div>
-        </li>
-
-
-             <!-- Nav item -->
-             <li class="nav-item">
-                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navPages" aria-expanded="false" aria-controls="navPages">
-                    <i data-feather="layers" class="nav-icon icon-xs me-2">
-                </i> Pages
-                </a>
-
-                <div id="navPages" class="collapse " data-bs-parent="#sideNavbar">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link " href="profile.html">
-                                Profile
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow   " href="settings.html">
-                                Settings
-                                </a>
-
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link " href="billing.html">
-                                Billing
-                </a>
-                        </li>
-
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link " href="pricing.html">
-                               Pricing
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="404-error.html">
-                                404 Error
-                </a>
-                        </li>
-                    </ul>
-                </div>
-
-                </li>
-
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false" aria-controls="navAuthentication">
-                                <i data-feather="lock" class="nav-icon icon-xs me-2">
-                                </i> Authentication
-                            </a>
-                            <div id="navAuthentication" class="collapse " data-bs-parent="#sideNavbar">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link " href="sign-in.html"> Sign In</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link  " href="sign-up.html"> Sign Up</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " href="forget-password.html">
-                                             Forget Password
-                                </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="layout.html">
-                                <i data-feather="sidebar" class="nav-icon icon-xs me-2">
-                                </i>
-                                Layouts
-                            </a>
-                        </li>
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <div class="navbar-heading">UI Components</div>
-                        </li>
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow " href="accordions.html">
-                                <i data-feather="package" class="nav-icon icon-xs me-2">
-                            </i>  Components
-                            </a>
-                         </li>
-                  
-
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevel" aria-expanded="false" aria-controls="navMenuLevel">
-                                <i data-feather="corner-left-down" class="nav-icon icon-xs me-2">
-                            </i> Menu Level
-                            </a>
-                            <div id="navMenuLevel" class="collapse " data-bs-parent="#sideNavbar">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link has-arrow " href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevelSecond" aria-expanded="false" aria-controls="navMenuLevelSecond">
-                                    Two Level
-                                </a>
-                                        <div id="navMenuLevelSecond" class="collapse" data-bs-parent="#navMenuLevel">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link " href="#!">  NavItem 1</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link " href="#!">  NavItem 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link has-arrow  collapsed  " href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThree" aria-expanded="false" aria-controls="navMenuLevelThree">
-                                    Three Level
-                                </a>
-                                        <div id="navMenuLevelThree" class="collapse " data-bs-parent="#navMenuLevel">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThreeOne" aria-expanded="false" aria-controls="navMenuLevelThreeOne">
-                                                         NavItem 1
-                                            </a>
-                                                    <div id="navMenuLevelThreeOne" class="collapse collapse " data-bs-parent="#navMenuLevelThree">
-                                                        <ul class="nav flex-column">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link " href="#!">
-                                                                     NavChild Item 1
-                                                        </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link " href="#!">  Nav Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                                         <!-- Nav item -->
-                        <li class="nav-item">
-                            <div class="navbar-heading">Documentation</div>
-                        </li>
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow " href="index1.html">
-                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i>  Docs
-                            </a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link has-arrow " href="changelog.html">
-                                <i data-feather="git-pull-request" class="nav-icon icon-xs me-2">
-                            </i>  Changelog
-                            </a>
-                         </li>
-
-
-
-
-                    </ul>
-
-                </div>
-</nav>
-       <!-- Page content -->
-      <div id="page-content">
-        <div class="header @@classList">
-  <!-- navbar -->
-  <nav class="navbar-classic navbar navbar-expand-lg">
-    <a id="nav-toggle" href="#"><i data-feather="menu" class="nav-icon me-2 icon-xs"></i></a>
-    <div class="ms-lg-3 d-none d-md-none d-lg-block">
-      <!-- Form -->
-      <form class="d-flex align-items-center">
-        <input type="search" class="form-control" placeholder="Search">
-      </form>
-    </div>
-    <!--Navbar nav -->
-    <ul class="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap">
-      <li class="dropdown stopevent">
-        <a class="btn btn-light btn-icon rounded-circle indicator
-          indicator-primary text-muted" href="#" role="button" id="dropdownNotification" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="icon-xs" data-feather="bell"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end" aria-labelledby="dropdownNotification">
-          <div>
-            <div class="border-bottom px-3 pt-2 pb-3 d-flex
-              justify-content-between align-items-center">
-              <p class="mb-0 text-dark fw-medium fs-4">Notifications</p>
-              <a href="#" class="text-muted">
-                <span>
-                  <i class="me-1 icon-xxs" data-feather="settings"></i>
-                </span>
-              </a>
-            </div>
-            <!-- List group -->
-            <ul class="list-group list-group-flush notification-list-scroll">
-              <!-- List group item -->
-              <li class="list-group-item bg-light">
-
-
-                <a href="#" class="text-muted">
-                    <h5 class=" mb-1">Rishi Chopra</h5>
-                    <p class="mb-0">
-                      Mauris blandit erat id nunc blandit, ac eleifend dolor pretium.
-                    </p>
-                </a>
-
-
-
-          </li>
-             <!-- List group item -->
-             <li class="list-group-item">
-
-
-              <a href="#" class="text-muted">
-                  <h5 class=" mb-1">Neha Kannned</h5>
-                  <p class="mb-0">
-                    Proin at elit vel est condimentum elementum id in ante. Maecenas et sapien metus.
-                  </p>
-              </a>
-
-
-
-        </li>
-              <!-- List group item -->
-              <li class="list-group-item">
-
-
-                <a href="#" class="text-muted">
-                    <h5 class=" mb-1">Nirmala Chauhan</h5>
-                    <p class="mb-0">
-                      Morbi maximus urna lobortis elit sollicitudin sollicitudieget elit vel pretium.
-                    </p>
-                </a>
-
-
-
-          </li>
-              <!-- List group item -->
-              <li class="list-group-item">
-
-
-                    <a href="#" class="text-muted">
-                        <h5 class=" mb-1">Sina Ray</h5>
-                        <p class="mb-0">
-                          Sed aliquam augue sit amet mauris volutpat hendrerit sed nunc eu diam.
-                        </p>
-                    </a>
-
-
-
-              </li>
-            </ul>
-            <div class="border-top px-3 py-2 text-center">
-              <a href="#" class="text-inherit fw-semi-bold">
-                View all Notifications
-              </a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <!-- List -->
-      <li class="dropdown ms-2">
-        <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="avatar avatar-md avatar-indicators avatar-online">
-            <img alt="avatar" src="./static/picture/avatar-1.jpg" class="rounded-circle">
-          </div>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-          <div class="px-4 pb-0 pt-2">
-
-
-            <div class="lh-1 ">
-              <h5 class="mb-1"> John E. Grainger</h5>
-              <a href="#" class="text-inherit fs-6">View my profile</a>
-            </div>
-            <div class=" dropdown-divider mt-3 mb-2"></div>
-          </div>
-
-          <ul class="list-unstyled">
-
-            <li>
-              <a class="dropdown-item" href="#">
-                <i class="me-2 icon-xxs dropdown-item-icon" data-feather="user"></i>Edit
-                Profile
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">
-                <i class="me-2 icon-xxs dropdown-item-icon" data-feather="activity"></i>Activity Log
-              </a>
-
-
-            </li>
-
-            <li>
-              <a class="dropdown-item text-primary" href="#">
-                <i class="me-2 icon-xxs text-primary dropdown-item-icon" data-feather="star"></i>Go Pro
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">
-                <i class="me-2 icon-xxs dropdown-item-icon" data-feather="settings"></i>Account Settings
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="">
-                <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>Sign Out
-              </a>
-            </li>
-          </ul>
-
-        </div>
-      </li>
-    </ul>
-  </nav>
-</div>
-        <!-- Container fluid -->
-        <div class="bg-primary pt-10 pb-21"></div>
-        <div class="container-fluid mt-n22 px-6">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
-              <!-- Page header -->
-              <div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="mb-2 mb-lg-0">
-                    <h3 class="mb-0  text-white">Projects</h3>
-                  </div>
-                  <div>
-                    <a href="#" class="btn btn-white">Create New Project</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
-              <!-- card -->
-              <div class="card ">
-                <!-- card body -->
-                <div class="card-body">
-                  <!-- heading -->
-                  <div class="d-flex justify-content-between align-items-center
-                    mb-3">
-                    <div>
-                      <h4 class="mb-0">Projects</h4>
-                    </div>
-                    <div class="icon-shape icon-md bg-light-primary text-primary
-                      rounded-2">
-                      <i class="bi bi-briefcase fs-4"></i>
-                    </div>
-                  </div>
-                  <!-- project number -->
-                  <div>
-                    <h1 class="fw-bold">18</h1>
-                    <p class="mb-0"><span class="text-dark me-2">2</span>Completed</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
-              <!-- card -->
-              <div class="card ">
-                <!-- card body -->
-                <div class="card-body">
-                  <!-- heading -->
-                  <div class="d-flex justify-content-between align-items-center
-                    mb-3">
-                    <div>
-                      <h4 class="mb-0">Active Task</h4>
-                    </div>
-                    <div class="icon-shape icon-md bg-light-primary text-primary
-                      rounded-2">
-                      <i class="bi bi-list-task fs-4"></i>
-                    </div>
-                  </div>
-                  <!-- project number -->
-                  <div>
-                    <h1 class="fw-bold">132</h1>
-                    <p class="mb-0"><span class="text-dark me-2">28</span>Completed</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
-              <!-- card -->
-              <div class="card ">
-                <!-- card body -->
-                <div class="card-body">
-                  <!-- heading -->
-                  <div class="d-flex justify-content-between align-items-center
-                    mb-3">
-                    <div>
-                      <h4 class="mb-0">Teams</h4>
-                    </div>
-                    <div class="icon-shape icon-md bg-light-primary text-primary
-                      rounded-2">
-                      <i class="bi bi-people fs-4"></i>
-                    </div>
-                  </div>
-                  <!-- project number -->
-                  <div>
-                    <h1 class="fw-bold">12</h1>
-                    <p class="mb-0"><span class="text-dark me-2">1</span>Completed</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
-              <!-- card -->
-              <div class="card ">
-                <!-- card body -->
-                <div class="card-body">
-                  <!-- heading -->
-                  <div class="d-flex justify-content-between align-items-center
-                    mb-3">
-                    <div>
-                      <h4 class="mb-0">Productivity</h4>
-                    </div>
-                    <div class="icon-shape icon-md bg-light-primary text-primary
-                      rounded-2">
-                      <i class="bi bi-bullseye fs-4"></i>
-                    </div>
-                  </div>
-                  <!-- project number -->
-                  <div>
-                    <h1 class="fw-bold">76%</h1>
-                    <p class="mb-0"><span class="text-success me-2">5%</span>Completed</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- row  -->
-          <div class="row mt-6">
-            <div class="col-md-12 col-12">
-              <!-- card  -->
-              <div class="card">
-                <!-- card header  -->
-                <div class="card-header bg-white  py-4">
-                  <h4 class="mb-0">Active Projects</h4>
-                </div>
-                <!-- table  -->
-                <div class="table-responsive">
-                  <table class="table text-nowrap mb-0">
-                    <thead class="table-light">
-                      <tr>
-                        <th>Project name</th>
-                        <th>Hours</th>
-                        <th>priority</th>
-                        <th>Members</th>
-                        <th>Progress</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="align-middle"><div class="d-flex
-                            align-items-center">
-                            <div>
-                              <div class="icon-shape icon-md border p-4
-                                rounded-1">
-                                <img src="./static/picture/dropbox-logo.svg" alt="">
-                              </div>
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1"> <a href="#" class="text-inherit">Dropbox Design
-                                  System</a></h5>
-
-                            </div>
-                          </div></td>
-                        <td class="align-middle">34</td>
-                        <td class="align-middle"><span class="badge
-                            bg-warning">Medium</span></td>
-                        <td class="align-middle"><div class="avatar-group">
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-1.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-2.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-3.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm avatar-primary">
-                              <span class="avatar-initials rounded-circle
-                                fs-6">+5</span>
-                            </span>
-                          </div></td>
-                        <td class="align-middle text-dark"><div class="float-start me-3">15%</div>
-                          <div class="mt-2">
-                            <div class="progress" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width:15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle"><div class="d-flex
-                            align-items-center">
-                            <div>
-                              <div class="icon-shape icon-md border p-4
-                                rounded-1">
-                                <img src="./static/picture/slack-logo.svg" alt="">
-                              </div>
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1"> <a href="#" class="text-inherit">Slack Team UI Design</a></h5>
-                            </div>
-                          </div></td>
-                        <td class="align-middle">47</td>
-                        <td class="align-middle"><span class="badge
-                            bg-danger">High</span></td>
-                        <td class="align-middle"><div class="avatar-group">
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-4.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-5.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-6.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm avatar-primary">
-                              <span class="avatar-initials rounded-circle
-                                fs-6">+5</span>
-                            </span>
-                          </div></td>
-                        <td class="align-middle text-dark"><div class="float-start me-3">35%</div>
-                          <div class="mt-2">
-                            <div class="progress" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width:35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle"><div class="d-flex
-                            align-items-center">
-                            <div>
-                              <div class="icon-shape icon-md border p-4
-                                rounded-1">
-                                <img src="./static/picture/github-logo.svg" alt="">
-                              </div>
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1"> <a href="#" class="text-inherit">GitHub Satellite</a></h5>
-                            </div>
-                          </div></td>
-                        <td class="align-middle">120</td>
-                        <td class="align-middle"><span class="badge bg-info">Low</span></td>
-                        <td class="align-middle"><div class="avatar-group">
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-7.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-8.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-9.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm avatar-primary">
-                              <span class="avatar-initials rounded-circle
-                                fs-6">+1</span>
-                            </span>
-                          </div></td>
-                        <td class="align-middle text-dark"><div class="float-start me-3">75%</div>
-                          <div class="mt-2">
-                            <div class="progress" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width:75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle"><div class="d-flex
-                            align-items-center">
-                            <div>
-                              <div class="icon-shape icon-md border p-4
-                                rounded-1">
-                                <img src="./static/picture/3dsmax-logo.svg" alt="">
-                              </div>
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1"> <a href="#" class="text-inherit">3D Character Modelling</a></h5>
-                            </div>
-                          </div></td>
-                        <td class="align-middle">89</td>
-                        <td class="align-middle"><span class="badge
-                            bg-warning">Medium</span></td>
-                        <td class="align-middle"><div class="avatar-group">
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-10.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-11.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-12.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm avatar-primary">
-                              <span class="avatar-initials rounded-circle
-                                fs-6">+5</span>
-                            </span>
-                          </div></td>
-                        <td class="align-middle text-dark"><div class="float-start me-3">63%</div>
-                          <div class="mt-2">
-                            <div class="progress" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width:63%" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle"><div class="d-flex
-                            align-items-center">
-                            <div>
-                              <div class="icon-shape icon-md border p-4 rounded
-                                bg-primary">
-                                <img src="./static/picture/layers-logo.svg" alt="">
-                              </div>
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1"> <a href="#" class="text-inherit">Webapp Design System</a>
-                              </h5>
-                            </div>
-                          </div></td>
-                        <td class="align-middle">108</td>
-                        <td class="align-middle"><span class="badge
-                            bg-success">Track</span></td>
-                        <td class="align-middle"><div class="avatar-group">
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-13.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-14.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-15.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm avatar-primary">
-                              <span class="avatar-initials rounded-circle
-                                fs-6">+5</span>
-                            </span>
-                          </div></td>
-                        <td class="align-middle text-dark"><div class="float-start me-3">100%</div>
-                          <div class="mt-2">
-                            <div class="progress" style="height: 5px;">
-                              <div class="progress-bar bg-success" role="progressbar" style="width:100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle border-bottom-0"><div class="d-flex
-                            align-items-center">
-                            <div>
-                              <div class="icon-shape icon-md border p-4 rounded-1">
-                                <img src="./static/picture/github-logo.svg" alt="">
-                              </div>
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1"> <a href="#" class="text-inherit">Github Event Design</a>
-                              </h5>
-
-                            </div>
-                          </div></td>
-                        <td class="align-middle border-bottom-0">120</td>
-                        <td class="align-middle border-bottom-0"><span class="badge bg-info">Low</span></td>
-                        <td class="align-middle border-bottom-0"><div class="avatar-group">
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-13.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-14.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm">
-                              <img alt="avatar" src="./static/picture/avatar-15.jpg" class="rounded-circle">
-                            </span>
-                            <span class="avatar avatar-sm avatar-primary">
-                              <span class="avatar-initials rounded-circle
-                                fs-6">+1</span>
-                            </span>
-                          </div></td>
-                        <td class="align-middle text-dark border-bottom-0"><div class="float-start me-3">75%</div>
-                          <div class="mt-2">
-                            <div class="progress" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width:75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-
-                        </td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-                <!-- card footer  -->
-                <div class="card-footer bg-white text-center">
-                  <a href="#" class="link-primary">View All Projects</a>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <!-- row  -->
-          <div class="row my-6">
-            <div class="col-xl-4 col-lg-12 col-md-12 col-12 mb-6 mb-xl-0">
-              <!-- card  -->
-              <div class="card h-100">
-                <!-- card body  -->
-                <div class="card-body">
-                  <div class="d-flex align-items-center
-                    justify-content-between">
-                    <div>
-                      <h4 class="mb-0">Tasks Performance </h4>
-                    </div>
-                    <!-- dropdown  -->
-                    <div class="dropdown dropstart">
-                      <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTask" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-xxs" data-feather="more-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownTask">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- chart  -->
-                  <div class="mb-8">
-                    <div id="perfomanceChart"></div>
-                  </div>
-                  <!-- icon with content  -->
-                  <div class="d-flex align-items-center justify-content-around">
-                    <div class="text-center">
-                      <i class="icon-sm text-success" data-feather="check-circle"></i>
-                      <h1 class="mt-3  mb-1 fw-bold">76%</h1>
-                      <p>Completed</p>
-                    </div>
-                    <div class="text-center">
-                      <i class="icon-sm text-warning" data-feather="trending-up"></i>
-                      <h1 class="mt-3  mb-1 fw-bold">32%</h1>
-                      <p>In-Progress</p>
-                    </div>
-                    <div class="text-center">
-                      <i class="icon-sm text-danger" data-feather="trending-down"></i>
-                      <h1 class="mt-3  mb-1 fw-bold">13%</h1>
-                      <p>Behind</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- card  -->
-            <div class="col-xl-8 col-lg-12 col-md-12 col-12">
-              <div class="card h-100">
-                <!-- card header  -->
-                <div class="card-header bg-white py-4">
-                  <h4 class="mb-0">Teams </h4>
-                </div>
-                <!-- table  -->
-                <div class="table-responsive">
-                  <table class="table text-nowrap">
-                    <thead class="table-light">
-                      <tr>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Last Activity</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="align-middle">
-                          <div class="d-flex align-items-center">
-                            <div>
-                              <img src="./static/picture/avatar-2.jpg" alt="" class="avatar-md avatar rounded-circle">
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1">Anita Parmar</h5>
-                              <p class="mb-0">anita@example.com</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">Front End Developer</td>
-                        <td class="align-middle">3 May, 2021</td>
-                        <td class="align-middle">
-                          <div class="dropdown dropstart">
-                            <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTeamOne" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="icon-xxs" data-feather="more-vertical"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownTeamOne">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else
-                                here</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle">
-                          <div class="d-flex align-items-center">
-                            <div>
-                              <img src="./static/picture/avatar-1.jpg" alt="" class="avatar-md avatar rounded-circle">
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1">Jitu Chauhan</h5>
-                              <p class="mb-0">jituchauhan@example.com</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">Project Director </td>
-                        <td class="align-middle">Today</td>
-                        <td class="align-middle">
-                          <div class="dropdown dropstart">
-                            <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTeamTwo" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="icon-xxs" data-feather="more-vertical"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownTeamTwo">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else
-                                here</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle">
-                          <div class="d-flex align-items-center">
-                            <div>
-                              <img src="./static/picture/avatar-3.jpg" alt="" class="avatar-md avatar rounded-circle">
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1">Sandeep Chauhan</h5>
-                              <p class="mb-0">sandeepchauhan@example.com</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">Full- Stack Developer</td>
-                        <td class="align-middle">Yesterday</td>
-                        <td class="align-middle">
-                          <div class="dropdown dropstart">
-                            <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTeamThree" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="icon-xxs" data-feather="more-vertical"></i>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownTeamThree">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else
-                                here</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle">
-                          <div class="d-flex align-items-center">
-
-                            <div>
-                              <img src="./static/picture/avatar-4.jpg" alt="" class="avatar-md avatar rounded-circle">
-                            </div>
-
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1">Amanda Darnell</h5>
-                              <p class="mb-0">amandadarnell@example.com</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">Digital Marketer</td>
-                        <td class="align-middle">3 May, 2023</td>
-                        <td class="align-middle">
-                          <div class="dropdown dropstart">
-                            <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTeamFour" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="icon-xxs" data-feather="more-vertical"></i>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownTeamFour">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else
-                                here</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td class="align-middle">
-                          <div class="d-flex align-items-center">
-
-                            <div>
-                              <img src="./static/picture/avatar-5.jpg" alt="" class="avatar-md avatar rounded-circle">
-                            </div>
-
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1">Patricia Murrill</h5>
-                              <p class="mb-0">patriciamurrill@example.com</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">Account Manager</td>
-                        <td class="align-middle">3 May, 2023</td>
-                        <td class="align-middle">
-                          <div class="dropdown dropstart">
-                            <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTeamFive" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="icon-xxs" data-feather="more-vertical"></i>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownTeamFive">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else
-                                here</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle border-bottom-0">
-                          <div class="d-flex align-items-center">
-                            <div>
-                              <img src="./static/picture/avatar-6.jpg" alt="" class="avatar-md avatar rounded-circle">
-                            </div>
-                            <div class="ms-3 lh-1">
-                              <h5 class=" mb-1">Darshini Nair</h5>
-                              <p class="mb-0">darshininair@example.com</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle border-bottom-0">Front End Developer</td>
-                        <td class="align-middle border-bottom-0">3 May, 2023</td>
-                        <td class="align-middle border-bottom-0">
-                          <div class="dropdown dropstart">
-                            <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTeamSix" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="icon-xxs" data-feather="more-vertical"></i>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownTeamSix">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else
-                                here</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-				<div class="copy-right">
-					<p>Copyright &copy; 2023.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+	<head>
+		<style id="ace-monokai">
+			.ace-monokai .ace_gutter {
+				background: #2F3129;
+				color: #8F908A
+			}
+
+			.ace-monokai .ace_print-margin {
+				width: 1px;
+				background: #555651
+			}
+
+			.ace-monokai {
+				background-color: #272822;
+				color: #F8F8F2
+			}
+
+			.ace-monokai .ace_cursor {
+				color: #F8F8F0
+			}
+
+			.ace-monokai .ace_marker-layer .ace_selection {
+				background: #49483E
+			}
+
+			.ace-monokai.ace_multiselect .ace_selection.ace_start {
+				box-shadow: 0 0 3px 0px #272822;
+			}
+
+			.ace-monokai .ace_marker-layer .ace_step {
+				background: rgb(102, 82, 0)
+			}
+
+			.ace-monokai .ace_marker-layer .ace_bracket {
+				margin: -1px 0 0 -1px;
+				border: 1px solid #49483E
+			}
+
+			.ace-monokai .ace_marker-layer .ace_active-line {
+				background: #202020
+			}
+
+			.ace-monokai .ace_gutter-active-line {
+				background-color: #272727
+			}
+
+			.ace-monokai .ace_marker-layer .ace_selected-word {
+				border: 1px solid #49483E
+			}
+
+			.ace-monokai .ace_invisible {
+				color: #52524d
+			}
+
+			.ace-monokai .ace_entity.ace_name.ace_tag,
+			.ace-monokai .ace_keyword,
+			.ace-monokai .ace_meta.ace_tag,
+			.ace-monokai .ace_storage {
+				color: #F92672
+			}
+
+			.ace-monokai .ace_punctuation,
+			.ace-monokai .ace_punctuation.ace_tag {
+				color: #fff
+			}
+
+			.ace-monokai .ace_constant.ace_character,
+			.ace-monokai .ace_constant.ace_language,
+			.ace-monokai .ace_constant.ace_numeric,
+			.ace-monokai .ace_constant.ace_other {
+				color: #AE81FF
+			}
+
+			.ace-monokai .ace_invalid {
+				color: #F8F8F0;
+				background-color: #F92672
+			}
+
+			.ace-monokai .ace_invalid.ace_deprecated {
+				color: #F8F8F0;
+				background-color: #AE81FF
+			}
+
+			.ace-monokai .ace_support.ace_constant,
+			.ace-monokai .ace_support.ace_function {
+				color: #66D9EF
+			}
+
+			.ace-monokai .ace_fold {
+				background-color: #A6E22E;
+				border-color: #F8F8F2
+			}
+
+			.ace-monokai .ace_storage.ace_type,
+			.ace-monokai .ace_support.ace_class,
+			.ace-monokai .ace_support.ace_type {
+				font-style: italic;
+				color: #66D9EF
+			}
+
+			.ace-monokai .ace_entity.ace_name.ace_function,
+			.ace-monokai .ace_entity.ace_other,
+			.ace-monokai .ace_entity.ace_other.ace_attribute-name,
+			.ace-monokai .ace_variable {
+				color: #A6E22E
+			}
+
+			.ace-monokai .ace_variable.ace_parameter {
+				font-style: italic;
+				color: #FD971F
+			}
+
+			.ace-monokai .ace_string {
+				color: #E6DB74
+			}
+
+			.ace-monokai .ace_comment {
+				color: #75715E
+			}
+
+			.ace-monokai .ace_indent-guide {
+				background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y
+			}
+
+			/*# sourceURL=ace/css/ace-monokai */
+		</style>
+		<style>
+			.error_widget_wrapper {
+				background: inherit;
+				color: inherit;
+				border: none
+			}
+
+			.error_widget {
+				border-top: solid 2px;
+				border-bottom: solid 2px;
+				margin: 5px 0;
+				padding: 10px 40px;
+				white-space: pre-wrap;
+			}
+
+			.error_widget.ace_error,
+			.error_widget_arrow.ace_error {
+				border-color: #ff5a5a
+			}
+
+			.error_widget.ace_warning,
+			.error_widget_arrow.ace_warning {
+				border-color: #F1D817
+			}
+
+			.error_widget.ace_info,
+			.error_widget_arrow.ace_info {
+				border-color: #5a5a5a
+			}
+
+			.error_widget.ace_ok,
+			.error_widget_arrow.ace_ok {
+				border-color: #5aaa5a
+			}
+
+			.error_widget_arrow {
+				position: absolute;
+				border: solid 5px;
+				border-top-color: transparent !important;
+				border-right-color: transparent !important;
+				border-left-color: transparent !important;
+				top: -5px;
+			}
+		</style>
+		<style id="ace-tm">
+			.ace-tm .ace_gutter {
+				background: #f0f0f0;
+				color: #333;
+			}
+
+			.ace-tm .ace_print-margin {
+				width: 1px;
+				background: #e8e8e8;
+			}
+
+			.ace-tm .ace_fold {
+				background-color: #6B72E6;
+			}
+
+			.ace-tm {
+				background-color: #FFFFFF;
+				color: black;
+			}
+
+			.ace-tm .ace_cursor {
+				color: black;
+			}
+
+			.ace-tm .ace_invisible {
+				color: rgb(191, 191, 191);
+			}
+
+			.ace-tm .ace_storage,
+			.ace-tm .ace_keyword {
+				color: blue;
+			}
+
+			.ace-tm .ace_constant {
+				color: rgb(197, 6, 11);
+			}
+
+			.ace-tm .ace_constant.ace_buildin {
+				color: rgb(88, 72, 246);
+			}
+
+			.ace-tm .ace_constant.ace_language {
+				color: rgb(88, 92, 246);
+			}
+
+			.ace-tm .ace_constant.ace_library {
+				color: rgb(6, 150, 14);
+			}
+
+			.ace-tm .ace_invalid {
+				background-color: rgba(255, 0, 0, 0.1);
+				color: red;
+			}
+
+			.ace-tm .ace_support.ace_function {
+				color: rgb(60, 76, 114);
+			}
+
+			.ace-tm .ace_support.ace_constant {
+				color: rgb(6, 150, 14);
+			}
+
+			.ace-tm .ace_support.ace_type,
+			.ace-tm .ace_support.ace_class {
+				color: rgb(109, 121, 222);
+			}
+
+			.ace-tm .ace_keyword.ace_operator {
+				color: rgb(104, 118, 135);
+			}
+
+			.ace-tm .ace_string {
+				color: rgb(3, 106, 7);
+			}
+
+			.ace-tm .ace_comment {
+				color: rgb(76, 136, 107);
+			}
+
+			.ace-tm .ace_comment.ace_doc {
+				color: rgb(0, 102, 255);
+			}
+
+			.ace-tm .ace_comment.ace_doc.ace_tag {
+				color: rgb(128, 159, 191);
+			}
+
+			.ace-tm .ace_constant.ace_numeric {
+				color: rgb(0, 0, 205);
+			}
+
+			.ace-tm .ace_variable {
+				color: rgb(49, 132, 149);
+			}
+
+			.ace-tm .ace_xml-pe {
+				color: rgb(104, 104, 91);
+			}
+
+			.ace-tm .ace_entity.ace_name.ace_function {
+				color: #0000A2;
+			}
+
+			.ace-tm .ace_heading {
+				color: rgb(12, 7, 255);
+			}
+
+			.ace-tm .ace_list {
+				color: rgb(185, 6, 144);
+			}
+
+			.ace-tm .ace_meta.ace_tag {
+				color: rgb(0, 22, 142);
+			}
+
+			.ace-tm .ace_string.ace_regex {
+				color: rgb(255, 0, 0)
+			}
+
+			.ace-tm .ace_marker-layer .ace_selection {
+				background: rgb(181, 213, 255);
+			}
+
+			.ace-tm.ace_multiselect .ace_selection.ace_start {
+				box-shadow: 0 0 3px 0px white;
+			}
+
+			.ace-tm .ace_marker-layer .ace_step {
+				background: rgb(252, 255, 0);
+			}
+
+			.ace-tm .ace_marker-layer .ace_stack {
+				background: rgb(164, 229, 101);
+			}
+
+			.ace-tm .ace_marker-layer .ace_bracket {
+				margin: -1px 0 0 -1px;
+				border: 1px solid rgb(192, 192, 192);
+			}
+
+			.ace-tm .ace_marker-layer .ace_active-line {
+				background: rgba(0, 0, 0, 0.07);
+			}
+
+			.ace-tm .ace_gutter-active-line {
+				background-color: #dcdcdc;
+			}
+
+			.ace-tm .ace_marker-layer .ace_selected-word {
+				background: rgb(250, 250, 255);
+				border: 1px solid rgb(200, 200, 250);
+			}
+
+			.ace-tm .ace_indent-guide {
+				background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+			}
+
+			/*# sourceURL=ace/css/ace-tm */
+		</style>
+		<style id="ace_editor.css">
+			.ace_br1 {
+				border-top-left-radius: 3px;
+			}
+
+			.ace_br2 {
+				border-top-right-radius: 3px;
+			}
+
+			.ace_br3 {
+				border-top-left-radius: 3px;
+				border-top-right-radius: 3px;
+			}
+
+			.ace_br4 {
+				border-bottom-right-radius: 3px;
+			}
+
+			.ace_br5 {
+				border-top-left-radius: 3px;
+				border-bottom-right-radius: 3px;
+			}
+
+			.ace_br6 {
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
+			}
+
+			.ace_br7 {
+				border-top-left-radius: 3px;
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
+			}
+
+			.ace_br8 {
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_br9 {
+				border-top-left-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_br10 {
+				border-top-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_br11 {
+				border-top-left-radius: 3px;
+				border-top-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_br12 {
+				border-bottom-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_br13 {
+				border-top-left-radius: 3px;
+				border-bottom-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_br14 {
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_br15 {
+				border-top-left-radius: 3px;
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
+
+			.ace_editor {
+				position: relative;
+				overflow: hidden;
+				padding: 0;
+				font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+				direction: ltr;
+				text-align: left;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			}
+
+			.ace_scroller {
+				position: absolute;
+				overflow: hidden;
+				top: 0;
+				bottom: 0;
+				background-color: inherit;
+				-ms-user-select: none;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;
+				cursor: text;
+			}
+
+			.ace_content {
+				position: absolute;
+				box-sizing: border-box;
+				min-width: 100%;
+				contain: style size layout;
+				font-variant-ligatures: no-common-ligatures;
+			}
+
+			.ace_dragging .ace_scroller:before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				content: '';
+				background: rgba(250, 250, 250, 0.01);
+				z-index: 1000;
+			}
+
+			.ace_dragging.ace_dark .ace_scroller:before {
+				background: rgba(0, 0, 0, 0.01);
+			}
+
+			.ace_selecting,
+			.ace_selecting * {
+				cursor: text !important;
+			}
+
+			.ace_gutter {
+				position: absolute;
+				overflow: hidden;
+				width: auto;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				cursor: default;
+				z-index: 4;
+				-ms-user-select: none;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;
+				contain: style size layout;
+			}
+
+			.ace_gutter-active-line {
+				position: absolute;
+				left: 0;
+				right: 0;
+			}
+
+			.ace_scroller.ace_scroll-left {
+				box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
+			}
+
+			.ace_gutter-cell {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				padding-left: 19px;
+				padding-right: 6px;
+				background-repeat: no-repeat;
+			}
+
+			.ace_gutter-cell.ace_error {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");
+				background-repeat: no-repeat;
+				background-position: 2px center;
+			}
+
+			.ace_gutter-cell.ace_warning {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");
+				background-position: 2px center;
+			}
+
+			.ace_gutter-cell.ace_info {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");
+				background-position: 2px center;
+			}
+
+			.ace_dark .ace_gutter-cell.ace_info {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");
+			}
+
+			.ace_scrollbar {
+				contain: strict;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				z-index: 6;
+			}
+
+			.ace_scrollbar-inner {
+				position: absolute;
+				cursor: text;
+				left: 0;
+				top: 0;
+			}
+
+			.ace_scrollbar-v {
+				overflow-x: hidden;
+				overflow-y: scroll;
+				top: 0;
+			}
+
+			.ace_scrollbar-h {
+				overflow-x: scroll;
+				overflow-y: hidden;
+				left: 0;
+			}
+
+			.ace_print-margin {
+				position: absolute;
+				height: 100%;
+			}
+
+			.ace_text-input {
+				position: absolute;
+				z-index: 0;
+				width: 0.5em;
+				height: 1em;
+				opacity: 0;
+				background: transparent;
+				-moz-appearance: none;
+				appearance: none;
+				border: none;
+				resize: none;
+				outline: none;
+				overflow: hidden;
+				font: inherit;
+				padding: 0 1px;
+				margin: 0 -1px;
+				contain: strict;
+				-ms-user-select: text;
+				-moz-user-select: text;
+				-webkit-user-select: text;
+				user-select: text;
+				white-space: pre !important;
+			}
+
+			.ace_text-input.ace_composition {
+				background: transparent;
+				color: inherit;
+				z-index: 1000;
+				opacity: 1;
+			}
+
+			.ace_composition_placeholder {
+				color: transparent
+			}
+
+			.ace_composition_marker {
+				border-bottom: 1px solid;
+				position: absolute;
+				border-radius: 0;
+				margin-top: 1px;
+			}
+
+			[ace_nocontext=true] {
+				transform: none !important;
+				filter: none !important;
+				clip-path: none !important;
+				mask: none !important;
+				contain: none !important;
+				perspective: none !important;
+				mix-blend-mode: initial !important;
+				z-index: auto;
+			}
+
+			.ace_layer {
+				z-index: 1;
+				position: absolute;
+				overflow: hidden;
+				word-wrap: normal;
+				white-space: pre;
+				height: 100%;
+				width: 100%;
+				box-sizing: border-box;
+				pointer-events: none;
+			}
+
+			.ace_gutter-layer {
+				position: relative;
+				width: auto;
+				text-align: right;
+				pointer-events: auto;
+				height: 1000000px;
+				contain: style size layout;
+			}
+
+			.ace_text-layer {
+				font: inherit !important;
+				position: absolute;
+				height: 1000000px;
+				width: 1000000px;
+				contain: style size layout;
+			}
+
+			.ace_text-layer>.ace_line,
+			.ace_text-layer>.ace_line_group {
+				contain: style size layout;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+			}
+
+			.ace_hidpi .ace_text-layer,
+			.ace_hidpi .ace_gutter-layer,
+			.ace_hidpi .ace_content,
+			.ace_hidpi .ace_gutter {
+				contain: strict;
+				will-change: transform;
+			}
+
+			.ace_hidpi .ace_text-layer>.ace_line,
+			.ace_hidpi .ace_text-layer>.ace_line_group {
+				contain: strict;
+			}
+
+			.ace_cjk {
+				display: inline-block;
+				text-align: center;
+			}
+
+			.ace_cursor-layer {
+				z-index: 4;
+			}
+
+			.ace_cursor {
+				z-index: 4;
+				position: absolute;
+				box-sizing: border-box;
+				border-left: 2px solid;
+				transform: translatez(0);
+			}
+
+			.ace_multiselect .ace_cursor {
+				border-left-width: 1px;
+			}
+
+			.ace_slim-cursors .ace_cursor {
+				border-left-width: 1px;
+			}
+
+			.ace_overwrite-cursors .ace_cursor {
+				border-left-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.ace_hidden-cursors .ace_cursor {
+				opacity: 0.2;
+			}
+
+			.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {
+				opacity: 0;
+			}
+
+			.ace_smooth-blinking .ace_cursor {
+				transition: opacity 0.18s;
+			}
+
+			.ace_animate-blinking .ace_cursor {
+				animation-duration: 1000ms;
+				animation-timing-function: step-end;
+				animation-name: blink-ace-animate;
+				animation-iteration-count: infinite;
+			}
+
+			.ace_animate-blinking.ace_smooth-blinking .ace_cursor {
+				animation-duration: 1000ms;
+				animation-timing-function: ease-in-out;
+				animation-name: blink-ace-animate-smooth;
+			}
+
+			@keyframes blink-ace-animate {
+
+				from,
+				to {
+					opacity: 1;
+				}
+
+				60% {
+					opacity: 0;
+				}
+			}
+
+			@keyframes blink-ace-animate-smooth {
+
+				from,
+				to {
+					opacity: 1;
+				}
+
+				45% {
+					opacity: 1;
+				}
+
+				60% {
+					opacity: 0;
+				}
+
+				85% {
+					opacity: 0;
+				}
+			}
+
+			.ace_marker-layer .ace_step,
+			.ace_marker-layer .ace_stack {
+				position: absolute;
+				z-index: 3;
+			}
+
+			.ace_marker-layer .ace_selection {
+				position: absolute;
+				z-index: 5;
+			}
+
+			.ace_marker-layer .ace_bracket {
+				position: absolute;
+				z-index: 6;
+			}
+
+			.ace_marker-layer .ace_error_bracket {
+				position: absolute;
+				border-bottom: 1px solid #DE5555;
+				border-radius: 0;
+			}
+
+			.ace_marker-layer .ace_active-line {
+				position: absolute;
+				z-index: 2;
+			}
+
+			.ace_marker-layer .ace_selected-word {
+				position: absolute;
+				z-index: 4;
+				box-sizing: border-box;
+			}
+
+			.ace_line .ace_fold {
+				box-sizing: border-box;
+				display: inline-block;
+				height: 11px;
+				margin-top: -2px;
+				vertical-align: middle;
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="), url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");
+				background-repeat: no-repeat, repeat-x;
+				background-position: center center, top left;
+				color: transparent;
+				border: 1px solid black;
+				border-radius: 2px;
+				cursor: pointer;
+				pointer-events: auto;
+			}
+
+			.ace_dark .ace_fold {}
+
+			.ace_fold:hover {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="), url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");
+			}
+
+			.ace_tooltip {
+				background-color: #FFF;
+				background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+				border: 1px solid gray;
+				border-radius: 1px;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+				color: black;
+				max-width: 100%;
+				padding: 3px 4px;
+				position: fixed;
+				z-index: 999999;
+				box-sizing: border-box;
+				cursor: default;
+				white-space: pre;
+				word-wrap: break-word;
+				line-height: normal;
+				font-style: normal;
+				font-weight: normal;
+				letter-spacing: normal;
+				pointer-events: none;
+			}
+
+			.ace_folding-enabled>.ace_gutter-cell {
+				padding-right: 13px;
+			}
+
+			.ace_fold-widget {
+				box-sizing: border-box;
+				margin: 0 -12px 0 1px;
+				display: none;
+				width: 11px;
+				vertical-align: top;
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");
+				background-repeat: no-repeat;
+				background-position: center;
+				border-radius: 3px;
+				border: 1px solid transparent;
+				cursor: pointer;
+			}
+
+			.ace_folding-enabled .ace_fold-widget {
+				display: inline-block;
+			}
+
+			.ace_fold-widget.ace_end {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");
+			}
+
+			.ace_fold-widget.ace_closed {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");
+			}
+
+			.ace_fold-widget:hover {
+				border: 1px solid rgba(0, 0, 0, 0.3);
+				background-color: rgba(255, 255, 255, 0.2);
+				box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+			}
+
+			.ace_fold-widget:active {
+				border: 1px solid rgba(0, 0, 0, 0.4);
+				background-color: rgba(0, 0, 0, 0.05);
+				box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+			}
+
+			.ace_dark .ace_fold-widget {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");
+			}
+
+			.ace_dark .ace_fold-widget.ace_end {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");
+			}
+
+			.ace_dark .ace_fold-widget.ace_closed {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");
+			}
+
+			.ace_dark .ace_fold-widget:hover {
+				box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+				background-color: rgba(255, 255, 255, 0.1);
+			}
+
+			.ace_dark .ace_fold-widget:active {
+				box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+			}
+
+			.ace_inline_button {
+				border: 1px solid lightgray;
+				display: inline-block;
+				margin: -1px 8px;
+				padding: 0 5px;
+				pointer-events: auto;
+				cursor: pointer;
+			}
+
+			.ace_inline_button:hover {
+				border-color: gray;
+				background: rgba(200, 200, 200, 0.2);
+				display: inline-block;
+				pointer-events: auto;
+			}
+
+			.ace_fold-widget.ace_invalid {
+				background-color: #FFB4B4;
+				border-color: #DE5555;
+			}
+
+			.ace_fade-fold-widgets .ace_fold-widget {
+				transition: opacity 0.4s ease 0.05s;
+				opacity: 0;
+			}
+
+			.ace_fade-fold-widgets:hover .ace_fold-widget {
+				transition: opacity 0.05s ease 0.05s;
+				opacity: 1;
+			}
+
+			.ace_underline {
+				text-decoration: underline;
+			}
+
+			.ace_bold {
+				font-weight: bold;
+			}
+
+			.ace_nobold .ace_bold {
+				font-weight: normal;
+			}
+
+			.ace_italic {
+				font-style: italic;
+			}
+
+			.ace_error-marker {
+				background-color: rgba(255, 0, 0, 0.2);
+				position: absolute;
+				z-index: 9;
+			}
+
+			.ace_highlight-marker {
+				background-color: rgba(255, 255, 0, 0.2);
+				position: absolute;
+				z-index: 8;
+			}
+
+			.ace_mobile-menu {
+				position: absolute;
+				line-height: 1.5;
+				border-radius: 4px;
+				-ms-user-select: none;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;
+				background: white;
+				box-shadow: 1px 3px 2px grey;
+				border: 1px solid #dcdcdc;
+				color: black;
+			}
+
+			.ace_dark>.ace_mobile-menu {
+				background: #333;
+				color: #ccc;
+				box-shadow: 1px 3px 2px grey;
+				border: 1px solid #444;
+			}
+
+			.ace_mobile-button {
+				padding: 2px;
+				cursor: pointer;
+				overflow: hidden;
+			}
+
+			.ace_mobile-button:hover {
+				background-color: #eee;
+				opacity: 1;
+			}
+
+			.ace_mobile-button:active {
+				background-color: #ddd;
+			}
+
+			.ace_placeholder {
+				font-family: arial;
+				transform: scale(0.9);
+				transform-origin: left;
+				white-space: pre;
+				opacity: 0.7;
+				margin: 0 10px;
+			}
+
+			/*# sourceURL=ace/css/ace_editor.css */
+		</style>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<script src="/manage/cdn.jsdelivr.net_npm_jquery@3.6.0_dist_jquery.min.js"></script>
+		<script src="/api/mod?ModName=mod&amp;ApiName=modjs"></script>
+		<script src="/manage/lci_org_user_sdk.js"></script>
+		<title>OrangeRedSeaweed manage</title>
+
+		<!-- Favicon icon-->
+
+
+		<!-- Libs CSS -->
+
+		<link href="./static/css/bootstrap-icons.css" rel="stylesheet">
+		<link href="./static/css/dropzone.css" rel="stylesheet">
+		<link href="./static/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="./static/css/prism-okaidia.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="./static/css/theme.min.css">
+		<style id="apexcharts-css">
+			.apexcharts-canvas {
+				position: relative;
+				user-select: none;
+				/* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+			}
+
+
+			/* scrollbar is not visible by default for legend, hence forcing the visibility */
+			.apexcharts-canvas ::-webkit-scrollbar {
+				-webkit-appearance: none;
+				width: 6px;
+			}
+
+			.apexcharts-canvas ::-webkit-scrollbar-thumb {
+				border-radius: 4px;
+				background-color: rgba(0, 0, 0, .5);
+				box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+				-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+			}
+
+
+			.apexcharts-inner {
+				position: relative;
+			}
+
+			.apexcharts-text tspan {
+				font-family: inherit;
+			}
+
+			.legend-mouseover-inactive {
+				transition: 0.15s ease all;
+				opacity: 0.20;
+			}
+
+			.apexcharts-series-collapsed {
+				opacity: 0;
+			}
+
+			.apexcharts-tooltip {
+				border-radius: 5px;
+				box-shadow: 2px 2px 6px -4px #999;
+				cursor: default;
+				font-size: 14px;
+				left: 62px;
+				opacity: 0;
+				pointer-events: none;
+				position: absolute;
+				top: 20px;
+				display: flex;
+				flex-direction: column;
+				overflow: hidden;
+				white-space: nowrap;
+				z-index: 12;
+				transition: 0.15s ease all;
+			}
+
+			.apexcharts-tooltip.apexcharts-active {
+				opacity: 1;
+				transition: 0.15s ease all;
+			}
+
+			.apexcharts-tooltip.apexcharts-theme-light {
+				border: 1px solid #e3e3e3;
+				background: rgba(255, 255, 255, 0.96);
+			}
+
+			.apexcharts-tooltip.apexcharts-theme-dark {
+				color: #fff;
+				background: rgba(30, 30, 30, 0.8);
+			}
+
+			.apexcharts-tooltip * {
+				font-family: inherit;
+			}
+
+
+			.apexcharts-tooltip-title {
+				padding: 6px;
+				font-size: 15px;
+				margin-bottom: 4px;
+			}
+
+			.apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+				background: #ECEFF1;
+				border-bottom: 1px solid #ddd;
+			}
+
+			.apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+				background: rgba(0, 0, 0, 0.7);
+				border-bottom: 1px solid #333;
+			}
+
+			.apexcharts-tooltip-text-y-value,
+			.apexcharts-tooltip-text-goals-value,
+			.apexcharts-tooltip-text-z-value {
+				display: inline-block;
+				font-weight: 600;
+				margin-left: 5px;
+			}
+
+			.apexcharts-tooltip-text-y-label:empty,
+			.apexcharts-tooltip-text-y-value:empty,
+			.apexcharts-tooltip-text-goals-label:empty,
+			.apexcharts-tooltip-text-goals-value:empty,
+			.apexcharts-tooltip-text-z-value:empty {
+				display: none;
+			}
+
+			.apexcharts-tooltip-text-y-value,
+			.apexcharts-tooltip-text-goals-value,
+			.apexcharts-tooltip-text-z-value {
+				font-weight: 600;
+			}
+
+			.apexcharts-tooltip-text-goals-label,
+			.apexcharts-tooltip-text-goals-value {
+				padding: 6px 0 5px;
+			}
+
+			.apexcharts-tooltip-goals-group,
+			.apexcharts-tooltip-text-goals-label,
+			.apexcharts-tooltip-text-goals-value {
+				display: flex;
+			}
+
+			.apexcharts-tooltip-text-goals-label:not(:empty),
+			.apexcharts-tooltip-text-goals-value:not(:empty) {
+				margin-top: -6px;
+			}
+
+			.apexcharts-tooltip-marker {
+				width: 12px;
+				height: 12px;
+				position: relative;
+				top: 0px;
+				margin-right: 10px;
+				border-radius: 50%;
+			}
+
+			.apexcharts-tooltip-series-group {
+				padding: 0 10px;
+				display: none;
+				text-align: left;
+				justify-content: left;
+				align-items: center;
+			}
+
+			.apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+				opacity: 1;
+			}
+
+			.apexcharts-tooltip-series-group.apexcharts-active,
+			.apexcharts-tooltip-series-group:last-child {
+				padding-bottom: 4px;
+			}
+
+			.apexcharts-tooltip-series-group-hidden {
+				opacity: 0;
+				height: 0;
+				line-height: 0;
+				padding: 0 !important;
+			}
+
+			.apexcharts-tooltip-y-group {
+				padding: 6px 0 5px;
+			}
+
+			.apexcharts-tooltip-box,
+			.apexcharts-custom-tooltip {
+				padding: 4px 8px;
+			}
+
+			.apexcharts-tooltip-boxPlot {
+				display: flex;
+				flex-direction: column-reverse;
+			}
+
+			.apexcharts-tooltip-box>div {
+				margin: 4px 0;
+			}
+
+			.apexcharts-tooltip-box span.value {
+				font-weight: bold;
+			}
+
+			.apexcharts-tooltip-rangebar {
+				padding: 5px 8px;
+			}
+
+			.apexcharts-tooltip-rangebar .category {
+				font-weight: 600;
+				color: #777;
+			}
+
+			.apexcharts-tooltip-rangebar .series-name {
+				font-weight: bold;
+				display: block;
+				margin-bottom: 5px;
+			}
+
+			.apexcharts-xaxistooltip {
+				opacity: 0;
+				padding: 9px 10px;
+				pointer-events: none;
+				color: #373d3f;
+				font-size: 13px;
+				text-align: center;
+				border-radius: 2px;
+				position: absolute;
+				z-index: 10;
+				background: #ECEFF1;
+				border: 1px solid #90A4AE;
+				transition: 0.15s ease all;
+			}
+
+			.apexcharts-xaxistooltip.apexcharts-theme-dark {
+				background: rgba(0, 0, 0, 0.7);
+				border: 1px solid rgba(0, 0, 0, 0.5);
+				color: #fff;
+			}
+
+			.apexcharts-xaxistooltip:after,
+			.apexcharts-xaxistooltip:before {
+				left: 50%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+			}
+
+			.apexcharts-xaxistooltip:after {
+				border-color: rgba(236, 239, 241, 0);
+				border-width: 6px;
+				margin-left: -6px;
+			}
+
+			.apexcharts-xaxistooltip:before {
+				border-color: rgba(144, 164, 174, 0);
+				border-width: 7px;
+				margin-left: -7px;
+			}
+
+			.apexcharts-xaxistooltip-bottom:after,
+			.apexcharts-xaxistooltip-bottom:before {
+				bottom: 100%;
+			}
+
+			.apexcharts-xaxistooltip-top:after,
+			.apexcharts-xaxistooltip-top:before {
+				top: 100%;
+			}
+
+			.apexcharts-xaxistooltip-bottom:after {
+				border-bottom-color: #ECEFF1;
+			}
+
+			.apexcharts-xaxistooltip-bottom:before {
+				border-bottom-color: #90A4AE;
+			}
+
+			.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after {
+				border-bottom-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+				border-bottom-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-xaxistooltip-top:after {
+				border-top-color: #ECEFF1
+			}
+
+			.apexcharts-xaxistooltip-top:before {
+				border-top-color: #90A4AE;
+			}
+
+			.apexcharts-xaxistooltip-top.apexcharts-theme-dark:after {
+				border-top-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+				border-top-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-xaxistooltip.apexcharts-active {
+				opacity: 1;
+				transition: 0.15s ease all;
+			}
+
+			.apexcharts-yaxistooltip {
+				opacity: 0;
+				padding: 4px 10px;
+				pointer-events: none;
+				color: #373d3f;
+				font-size: 13px;
+				text-align: center;
+				border-radius: 2px;
+				position: absolute;
+				z-index: 10;
+				background: #ECEFF1;
+				border: 1px solid #90A4AE;
+			}
+
+			.apexcharts-yaxistooltip.apexcharts-theme-dark {
+				background: rgba(0, 0, 0, 0.7);
+				border: 1px solid rgba(0, 0, 0, 0.5);
+				color: #fff;
+			}
+
+			.apexcharts-yaxistooltip:after,
+			.apexcharts-yaxistooltip:before {
+				top: 50%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+			}
+
+			.apexcharts-yaxistooltip:after {
+				border-color: rgba(236, 239, 241, 0);
+				border-width: 6px;
+				margin-top: -6px;
+			}
+
+			.apexcharts-yaxistooltip:before {
+				border-color: rgba(144, 164, 174, 0);
+				border-width: 7px;
+				margin-top: -7px;
+			}
+
+			.apexcharts-yaxistooltip-left:after,
+			.apexcharts-yaxistooltip-left:before {
+				left: 100%;
+			}
+
+			.apexcharts-yaxistooltip-right:after,
+			.apexcharts-yaxistooltip-right:before {
+				right: 100%;
+			}
+
+			.apexcharts-yaxistooltip-left:after {
+				border-left-color: #ECEFF1;
+			}
+
+			.apexcharts-yaxistooltip-left:before {
+				border-left-color: #90A4AE;
+			}
+
+			.apexcharts-yaxistooltip-left.apexcharts-theme-dark:after {
+				border-left-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+				border-left-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-yaxistooltip-right:after {
+				border-right-color: #ECEFF1;
+			}
+
+			.apexcharts-yaxistooltip-right:before {
+				border-right-color: #90A4AE;
+			}
+
+			.apexcharts-yaxistooltip-right.apexcharts-theme-dark:after {
+				border-right-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+				border-right-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.apexcharts-yaxistooltip.apexcharts-active {
+				opacity: 1;
+			}
+
+			.apexcharts-yaxistooltip-hidden {
+				display: none;
+			}
+
+			.apexcharts-xcrosshairs,
+			.apexcharts-ycrosshairs {
+				pointer-events: none;
+				opacity: 0;
+				transition: 0.15s ease all;
+			}
+
+			.apexcharts-xcrosshairs.apexcharts-active,
+			.apexcharts-ycrosshairs.apexcharts-active {
+				opacity: 1;
+				transition: 0.15s ease all;
+			}
+
+			.apexcharts-ycrosshairs-hidden {
+				opacity: 0;
+			}
+
+			.apexcharts-selection-rect {
+				cursor: move;
+			}
+
+			.svg_select_boundingRect,
+			.svg_select_points_rot {
+				pointer-events: none;
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			.apexcharts-selection-rect+g .svg_select_boundingRect,
+			.apexcharts-selection-rect+g .svg_select_points_rot {
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			.apexcharts-selection-rect+g .svg_select_points_l,
+			.apexcharts-selection-rect+g .svg_select_points_r {
+				cursor: ew-resize;
+				opacity: 1;
+				visibility: visible;
+			}
+
+			.svg_select_points {
+				fill: #efefef;
+				stroke: #333;
+				rx: 2;
+			}
+
+			.apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+				cursor: crosshair
+			}
+
+			.apexcharts-svg.apexcharts-zoomable.hovering-pan {
+				cursor: move
+			}
+
+			.apexcharts-zoom-icon,
+			.apexcharts-zoomin-icon,
+			.apexcharts-zoomout-icon,
+			.apexcharts-reset-icon,
+			.apexcharts-pan-icon,
+			.apexcharts-selection-icon,
+			.apexcharts-menu-icon,
+			.apexcharts-toolbar-custom-icon {
+				cursor: pointer;
+				width: 20px;
+				height: 20px;
+				line-height: 24px;
+				color: #6E8192;
+				text-align: center;
+			}
+
+			.apexcharts-zoom-icon svg,
+			.apexcharts-zoomin-icon svg,
+			.apexcharts-zoomout-icon svg,
+			.apexcharts-reset-icon svg,
+			.apexcharts-menu-icon svg {
+				fill: #6E8192;
+			}
+
+			.apexcharts-selection-icon svg {
+				fill: #444;
+				transform: scale(0.76)
+			}
+
+			.apexcharts-theme-dark .apexcharts-zoom-icon svg,
+			.apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+			.apexcharts-theme-dark .apexcharts-zoomout-icon svg,
+			.apexcharts-theme-dark .apexcharts-reset-icon svg,
+			.apexcharts-theme-dark .apexcharts-pan-icon svg,
+			.apexcharts-theme-dark .apexcharts-selection-icon svg,
+			.apexcharts-theme-dark .apexcharts-menu-icon svg,
+			.apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg {
+				fill: #f3f4f5;
+			}
+
+			.apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg,
+			.apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+			.apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg {
+				fill: #008FFB;
+			}
+
+			.apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+			.apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+			.apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+			.apexcharts-theme-light .apexcharts-zoomout-icon:hover svg,
+			.apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+			.apexcharts-theme-light .apexcharts-menu-icon:hover svg {
+				fill: #333;
+			}
+
+			.apexcharts-selection-icon,
+			.apexcharts-menu-icon {
+				position: relative;
+			}
+
+			.apexcharts-reset-icon {
+				margin-left: 5px;
+			}
+
+			.apexcharts-zoom-icon,
+			.apexcharts-reset-icon,
+			.apexcharts-menu-icon {
+				transform: scale(0.85);
+			}
+
+			.apexcharts-zoomin-icon,
+			.apexcharts-zoomout-icon {
+				transform: scale(0.7)
+			}
+
+			.apexcharts-zoomout-icon {
+				margin-right: 3px;
+			}
+
+			.apexcharts-pan-icon {
+				transform: scale(0.62);
+				position: relative;
+				left: 1px;
+				top: 0px;
+			}
+
+			.apexcharts-pan-icon svg {
+				fill: #fff;
+				stroke: #6E8192;
+				stroke-width: 2;
+			}
+
+			.apexcharts-pan-icon.apexcharts-selected svg {
+				stroke: #008FFB;
+			}
+
+			.apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+				stroke: #333;
+			}
+
+			.apexcharts-toolbar {
+				position: absolute;
+				z-index: 11;
+				max-width: 176px;
+				text-align: right;
+				border-radius: 3px;
+				padding: 0px 6px 2px 6px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.apexcharts-menu {
+				background: #fff;
+				position: absolute;
+				top: 100%;
+				border: 1px solid #ddd;
+				border-radius: 3px;
+				padding: 3px;
+				right: 10px;
+				opacity: 0;
+				min-width: 110px;
+				transition: 0.15s ease all;
+				pointer-events: none;
+			}
+
+			.apexcharts-menu.apexcharts-menu-open {
+				opacity: 1;
+				pointer-events: all;
+				transition: 0.15s ease all;
+			}
+
+			.apexcharts-menu-item {
+				padding: 6px 7px;
+				font-size: 12px;
+				cursor: pointer;
+			}
+
+			.apexcharts-theme-light .apexcharts-menu-item:hover {
+				background: #eee;
+			}
+
+			.apexcharts-theme-dark .apexcharts-menu {
+				background: rgba(0, 0, 0, 0.7);
+				color: #fff;
+			}
+
+			@media screen and (min-width: 768px) {
+				.apexcharts-canvas:hover .apexcharts-toolbar {
+					opacity: 1;
+				}
+			}
+
+			.apexcharts-datalabel.apexcharts-element-hidden {
+				opacity: 0;
+			}
+
+			.apexcharts-pie-label,
+			.apexcharts-datalabels,
+			.apexcharts-datalabel,
+			.apexcharts-datalabel-label,
+			.apexcharts-datalabel-value {
+				cursor: default;
+				pointer-events: none;
+			}
+
+			.apexcharts-pie-label-delay {
+				opacity: 0;
+				animation-name: opaque;
+				animation-duration: 0.3s;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease;
+			}
+
+			.apexcharts-canvas .apexcharts-element-hidden {
+				opacity: 0;
+			}
+
+			.apexcharts-hide .apexcharts-series-points {
+				opacity: 0;
+			}
+
+			.apexcharts-gridline,
+			.apexcharts-annotation-rect,
+			.apexcharts-tooltip .apexcharts-marker,
+			.apexcharts-area-series .apexcharts-area,
+			.apexcharts-line,
+			.apexcharts-zoom-rect,
+			.apexcharts-toolbar svg,
+			.apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+			.apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+			.apexcharts-radar-series path,
+			.apexcharts-radar-series polygon {
+				pointer-events: none;
+			}
+
+
+			/* markers */
+
+			.apexcharts-marker {
+				transition: 0.15s ease all;
+			}
+
+			@keyframes opaque {
+				0% {
+					opacity: 0;
+				}
+
+				100% {
+					opacity: 1;
+				}
+			}
+
+
+			/* Resize generated styles */
+
+			@keyframes resizeanim {
+				from {
+					opacity: 0;
+				}
+
+				to {
+					opacity: 0;
+				}
+			}
+
+			.resize-triggers {
+				animation: 1ms resizeanim;
+				visibility: hidden;
+				opacity: 0;
+			}
+
+			.resize-triggers,
+			.resize-triggers>div,
+			.contract-trigger:before {
+				content: " ";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			.resize-triggers>div {
+				background: #eee;
+				overflow: auto;
+			}
+
+			.contract-trigger:before {
+				width: 200%;
+				height: 200%;
+			}
+		</style>
+	</head>
+
+	<body class="bg-light">
+		<div id="db-wrapper">
+			<!-- navbar vertical -->
+			<!-- Sidebar -->
+			<nav class="navbar-vertical navbar">
+				<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 97%;">
+					<div class="nav-scroller" style="overflow: hidden; width: auto; height: 97%;">
+						<!-- Brand logo -->
+						<a class="navbar-brand" href="">
+							<img src="/favicon.ico" alt="">
+						</a>
+						<!-- Navbar nav -->
+						<ul class="navbar-nav flex-column" id="sideNavbar">
+							<li class="nav-item">
+								<a class="nav-link has-arrow  active " href="">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-home nav-icon icon-xs me-2">
+										<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+										<polyline points="9 22 9 12 15 12 15 22"></polyline>
+									</svg>主页 </a>
+
+							</li>
+
+
+							<!-- Nav item -->
+							<li class="nav-item">
+								<div class="navbar-heading">用户设置</div>
+							</li>
+
+
+							<!-- Nav item -->
+
+
+
+							<!-- Nav item -->
+
+
+
+							<!-- Nav item -->
+							<li class="nav-item">
+								<div class="navbar-heading">插件设置</div>
+							</li>
+
+							<!-- Nav item -->
+
+
+
+
+
+							<!-- Nav item -->
+							<li class="nav-item">
+								<div class="navbar-heading">配置修改</div>
+							</li>
+
+							<!-- Nav item -->
+							<li class="nav-item">
+								<a class="nav-link has-arrow " href="index1.html">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-clipboard nav-icon icon-xs me-2">
+										<path
+											d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
+										</path>
+										<rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+									</svg> 文档
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link has-arrow " href="changelog.html">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round"
+										class="feather feather-git-pull-request nav-icon icon-xs me-2">
+										<circle cx="18" cy="18" r="3"></circle>
+										<circle cx="6" cy="6" r="3"></circle>
+										<path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+										<line x1="6" y1="9" x2="6" y2="21"></line>
+									</svg> 更新日志
+								</a>
+							</li>
+
+
+
+
+						</ul>
+
+					</div>
+					<div class="slimScrollBar"
+						style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 499.182px;">
+					</div>
+					<div class="slimScrollRail"
+						style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+					</div>
 				</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-			
+			</nav>
+			<!-- Page content -->
+			<div id="page-content">
+				<div class="header @@classList">
+					<!-- navbar -->
+					<nav class="navbar-classic navbar navbar-expand-lg">
+						<a id="nav-toggle" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round"
+								class="feather feather-menu nav-icon me-2 icon-xs">
+								<line x1="3" y1="12" x2="21" y2="12"></line>
+								<line x1="3" y1="6" x2="21" y2="6"></line>
+								<line x1="3" y1="18" x2="21" y2="18"></line>
+							</svg></a>
+						<div class="ms-lg-3 d-none d-md-none d-lg-block">
+							<!-- Form -->
+							<form class="d-flex align-items-center">
+								<input type="search" class="form-control" placeholder="搜索">
+							</form>
+						</div>
+						<!--Navbar nav -->
+						<ul class="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap">
+							<li class="dropdown stopevent">
+								<a class="btn btn-light btn-icon rounded-circle indicator
+          indicator-primary text-muted" href="#" role="button" id="dropdownNotification" data-bs-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-bell icon-xs">
+										<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+										<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+									</svg>
+								</a>
+								<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end"
+									aria-labelledby="dropdownNotification">
+									<div>
+										<div class="border-bottom px-3 pt-2 pb-3 d-flex
+              justify-content-between align-items-center">
+											<p class="mb-0 text-dark fw-medium fs-4">Notifications</p>
+											<a href="#" class="text-muted">
+												<span>
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+														viewBox="0 0 24 24" fill="none" stroke="currentColor"
+														stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+														class="feather feather-settings me-1 icon-xxs">
+														<circle cx="12" cy="12" r="3"></circle>
+														<path
+															d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+														</path>
+													</svg>
+												</span>
+											</a>
+										</div>
+										<!-- List group -->
+										<div class="slimScrollDiv"
+											style="position: relative; overflow: hidden; width: auto; height: 300px;">
+											<ul class="list-group list-group-flush notification-list-scroll"
+												style="overflow: hidden; width: auto; height: 300px;">
+												<!-- List group item -->
+												<li class="list-group-item bg-light">
 
-    <!-- Scripts -->
-    <!-- Libs JS -->
-<script src="./static/js/jquery.min.js"></script>
-<script src="./static/js/bootstrap.bundle.min.js"></script>
-<script src="./static/js/jquery.slimscroll.min.js"></script>
-<script src="./static/js/feather.min.js"></script>
-<script src="./static/js/prism.js"></script>
-<script src="./static/js/apexcharts.min.js"></script>
-<script src="./static/js/dropzone.min.js"></script>
-<script src="./static/js/prism-toolbar.min.js"></script>
-<script src="./static/js/prism-copy-to-clipboard.min.js"></script>
+
+													<a href="#" class="text-muted">
+														<h5 class=" mb-1">Rishi Chopra</h5>
+														<p class="mb-0">
+															Mauris blandit erat id nunc blandit, ac eleifend dolor
+															pretium.
+														</p>
+													</a>
+
+
+
+												</li>
+												<!-- List group item -->
+												<li class="list-group-item">
+
+
+													<a href="#" class="text-muted">
+														<h5 class=" mb-1">Neha Kannned</h5>
+														<p class="mb-0">
+															Proin at elit vel est condimentum elementum id in ante.
+															Maecenas et sapien metus.
+														</p>
+													</a>
+
+
+
+												</li>
+												<!-- List group item -->
+												<li class="list-group-item">
+
+
+													<a href="#" class="text-muted">
+														<h5 class=" mb-1">Nirmala Chauhan</h5>
+														<p class="mb-0">
+															Morbi maximus urna lobortis elit sollicitudin
+															sollicitudieget elit vel pretium.
+														</p>
+													</a>
+
+
+
+												</li>
+												<!-- List group item -->
+												<li class="list-group-item">
+
+
+													<a href="#" class="text-muted">
+														<h5 class=" mb-1">Sina Ray</h5>
+														<p class="mb-0">
+															Sed aliquam augue sit amet mauris volutpat hendrerit sed
+															nunc eu diam.
+														</p>
+													</a>
+
+
+
+												</li>
+											</ul>
+											<div class="slimScrollBar"
+												style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 227.848px;">
+											</div>
+											<div class="slimScrollRail"
+												style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+											</div>
+										</div>
+										<div class="border-top px-3 py-2 text-center">
+											<a href="#" class="text-inherit fw-semi-bold">
+												View all Notifications
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<!-- List -->
+							<li class="dropdown ms-2">
+								<a class="rounded-circle" href="#" role="button" id="dropdownUser"
+									data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<div class="avatar avatar-md avatar-indicators avatar-online">
+										<img alt="avatar" src="/api/HeadSculpture" class="rounded-circle">
+									</div>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+									<div class="px-4 pb-0 pt-2">
+
+
+										<div class="lh-1 ">
+											<script>
+												b = new Lci_user('/api/', getCookieObject()['SessionKey'])
+												b.GetNickname(function(data) {
+													$(function() {
+														$("#nickname").text(data);
+													})
+												})
+											</script>
+											<h5 class="mb-1" id="nickname">
+											</h5>
+											<a href="#" class="text-inherit fs-6">查看个人资料</a>
+										</div>
+										<div class=" dropdown-divider mt-3 mb-2"></div>
+									</div>
+
+									<ul class="list-unstyled">
+
+										<li>
+											<a class="dropdown-item" href="#">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-user me-2 icon-xxs dropdown-item-icon">
+													<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+													<circle cx="12" cy="7" r="4"></circle>
+												</svg>编辑资料
+											</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="#">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-activity me-2 icon-xxs dropdown-item-icon">
+													<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+												</svg>活动日志
+											</a>
+
+
+										</li>
+
+										<!-- <li>
+											<a class="dropdown-item text-primary" href="#">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-star me-2 icon-xxs text-primary dropdown-item-icon">
+													<polygon
+														points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+													</polygon>
+												</svg>Go Pro
+											</a>
+										</li> -->
+										<li>
+											<a class="dropdown-item" href="#">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-settings me-2 icon-xxs dropdown-item-icon">
+													<circle cx="12" cy="12" r="3"></circle>
+													<path
+														d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+													</path>
+												</svg>账户设置
+											</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-power me-2 icon-xxs dropdown-item-icon">
+													<path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+													<line x1="12" y1="2" x2="12" y2="12"></line>
+												</svg>登出
+											</a>
+										</li>
+									</ul>
+
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<!-- Container fluid -->
+				<div class="bg-primary pt-10 pb-21"></div>
+				<div class="container-fluid mt-n22 px-6">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-12">
+							<!-- Page header -->
+							<div>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="mb-2 mb-lg-0">
+										<h3 class="mb-0  text-white">仪表盘</h3>
+									</div>
+									<div>
+										<a href="#" class="btn btn-white">创建新内容</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
+							<!-- card -->
+							<div class="card ">
+								<!-- card body -->
+								<div class="card-body">
+									<!-- heading -->
+									<div class="d-flex justify-content-between align-items-center
+                    mb-3">
+										<div>
+											<h4 class="mb-0">分类数量</h4>
+										</div>
+										<div class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2">
+											<i class="bi bi-briefcase fs-4"></i>
+										</div>
+									</div>
+									<!-- project number -->
+									<div>
+										<h1 class="fw-bold">18</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
+							<!-- card -->
+							<div class="card ">
+								<!-- card body -->
+								<div class="card-body">
+									<!-- heading -->
+									<div class="d-flex justify-content-between align-items-center
+                    mb-3">
+										<div>
+											<h4 class="mb-0">内容数量</h4>
+										</div>
+										<div class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2">
+											<i class="bi bi-list-task fs-4"></i>
+										</div>
+									</div>
+									<!-- project number -->
+									<div>
+										<h1 class="fw-bold">132</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
+							<!-- card -->
+							<div class="card ">
+								<!-- card body -->
+								<div class="card-body">
+									<!-- heading -->
+									<div class="d-flex justify-content-between align-items-center
+                    mb-3">
+										<div>
+											<h4 class="mb-0">用户数量</h4>
+										</div>
+										<div class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2">
+											<i class="bi bi-people fs-4"></i>
+										</div>
+									</div>
+									<!-- project number -->
+									<div>
+										<h1 class="fw-bold">12</h1>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
+							<!-- card -->
+							<div class="card ">
+								<!-- card body -->
+								<div class="card-body">
+									<!-- heading -->
+									<div class="d-flex justify-content-between align-items-center
+                    mb-3">
+										<div>
+											<h4 class="mb-0">访问次数</h4>
+										</div>
+										<div class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2">
+											<i class="bi bi-bullseye fs-4"></i>
+										</div>
+									</div>
+									<!-- project number -->
+									<div>
+										<h1 class="fw-bold">114514</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- row  -->
+					<div class="row mt-6">
+						<div class="col-md-12 col-12">
+							<!-- card  -->
+							<div class="card">
+								<!-- card header  -->
+								<div class="card-header bg-white  py-4">
+									<h4 class="mb-0">最近内容</h4>
+								</div>
+								<!-- table  -->
+								<div class="table-responsive">
+									<table class="table text-nowrap mb-0">
+										<thead class="table-light">
+											<tr>
+												<th>内容</th>
+												<th>发布时间</th>
+												<th>别名</th>
+												<th>作者</th>
+												<th>查看</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="align-middle">
+													<div class="d-flex
+                            align-items-center">
+														<div>
+															<div class="icon-shape icon-md border p-4
+                                rounded-1">
+																<img src="./static/picture/dropbox-logo.svg" alt="">
+															</div>
+														</div>
+														<div class="ms-3 lh-1">
+															<h5 class=" mb-1"> <a href="#" class="text-inherit">Dropbox
+																	Design
+																	System</a></h5>
+
+														</div>
+													</div>
+												</td>
+												<td class="align-middle">34</td>
+												<td class="align-middle"><span class="badge
+                            bg-warning">Medium</span></td>
+												<td class="align-middle">
+													<div class="avatar-group">
+														<span class="avatar avatar-sm">
+															<img alt="avatar" src="./static/picture/avatar-1.jpg"
+																class="rounded-circle">
+														</span>
+														<span class="avatar avatar-sm">
+															<img alt="avatar" src="./static/picture/avatar-2.jpg"
+																class="rounded-circle">
+														</span>
+														<span class="avatar avatar-sm">
+															<img alt="avatar" src="./static/picture/avatar-3.jpg"
+																class="rounded-circle">
+														</span>
+														<span class="avatar avatar-sm avatar-primary">
+															<span class="avatar-initials rounded-circle
+                                fs-6">+5</span>
+														</span>
+													</div>
+												</td>
+												<td class="align-middle text-dark">
+													<div class="float-start me-3">15%</div>
+													<div class="mt-2">
+														<div class="progress" style="height: 5px;">
+															<div class="progress-bar" role="progressbar"
+																style="width:15%" aria-valuenow="15" aria-valuemin="0"
+																aria-valuemax="100"></div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- card footer  -->
+								<div class="card-footer bg-white text-center">
+									<a href="#" class="link-primary">查看所有内容</a>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- row  -->
+					<div class="row my-6">
+						<div class="col-xl-4 col-lg-12 col-md-12 col-12 mb-6 mb-xl-0">
+							<!-- card  -->
+							<div class="card h-100">
+								<!-- card body  -->
+								<div class="card-body">
+									<div class="d-flex align-items-center
+                    justify-content-between">
+										<div>
+											<h4 class="mb-0">性能</h4>
+										</div>
+										<!-- dropdown  -->
+										<div class="dropdown dropstart">
+											<a class="text-muted text-primary-hover" href="#" role="button"
+												id="dropdownTask" data-bs-toggle="dropdown" aria-haspopup="true"
+												aria-expanded="false">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-more-vertical icon-xxs">
+													<circle cx="12" cy="12" r="1"></circle>
+													<circle cx="12" cy="5" r="1"></circle>
+													<circle cx="12" cy="19" r="1"></circle>
+												</svg>
+											</a>
+											<div class="dropdown-menu" aria-labelledby="dropdownTask">
+												<a class="dropdown-item" href="#">Action</a>
+												<a class="dropdown-item" href="#">Another action</a>
+												<a class="dropdown-item" href="#">Something else here</a>
+											</div>
+										</div>
+									</div>
+									<!-- chart  -->
+									<div class="mb-8">
+										<div id="perfomanceChart" style="min-height: 250.074px;">
+											<div id="apexcharts01fx9krt"
+												class="apexcharts-canvas apexcharts01fx9krt apexcharts-theme-light"
+												style="width: 350px; height: 250.074px;"><svg id="SvgjsSvg1081"
+													width="350" height="250.07444763183594"
+													xmlns="http://www.w3.org/2000/svg" version="1.1"
+													xmlns:xlink="http://www.w3.org/1999/xlink"
+													xmlns:svgjs="http://svgjs.dev" class="apexcharts-svg"
+													xmlns:data="ApexChartsNS" transform="translate(0, 0)"
+													style="background: transparent;">
+													<g id="SvgjsG1083" class="apexcharts-inner apexcharts-graphical"
+														transform="translate(28, 0)">
+														<defs id="SvgjsDefs1082">
+															<clipPath id="gridRectMask01fx9krt">
+																<rect id="SvgjsRect1085" width="302" height="320" x="-3"
+																	y="-1" rx="0" ry="0" opacity="1" stroke-width="0"
+																	stroke="none" stroke-dasharray="0" fill="#fff">
+																</rect>
+															</clipPath>
+															<clipPath id="forecastMask01fx9krt"></clipPath>
+															<clipPath id="nonForecastMask01fx9krt"></clipPath>
+															<clipPath id="gridRectMarkerMask01fx9krt">
+																<rect id="SvgjsRect1086" width="300" height="322" x="-2"
+																	y="-2" rx="0" ry="0" opacity="1" stroke-width="0"
+																	stroke="none" stroke-dasharray="0" fill="#fff">
+																</rect>
+															</clipPath>
+														</defs>
+														<g id="SvgjsG1087" class="apexcharts-radialbar">
+															<g id="SvgjsG1088">
+																<g id="SvgjsG1089" class="apexcharts-tracks">
+																	<g id="SvgjsG1090"
+																		class="apexcharts-radialbar-track apexcharts-track"
+																		rel="1">
+																		<path id="apexcharts-radialbarTrack-0"
+																			d="M 123.56270641592879 262.9684271897858 A 117.53689024390246 117.53689024390246 0 1 1 123.76340129320306 263.0109031845801"
+																			fill="none" fill-opacity="1"
+																			stroke="transaprent" stroke-opacity="1"
+																			stroke-linecap="round"
+																			stroke-width="10.25183536585366"
+																			stroke-dasharray="0"
+																			class="apexcharts-radialbar-area"
+																			data:pathOrig="M 123.56270641592879 262.9684271897858 A 117.53689024390246 117.53689024390246 0 1 1 123.76340129320306 263.0109031845801">
+																		</path>
+																	</g>
+																	<g id="SvgjsG1092"
+																		class="apexcharts-radialbar-track apexcharts-track"
+																		rel="2">
+																		<path id="apexcharts-radialbarTrack-1"
+																			d="M 126.7996632462031 247.73974262299544 A 101.96798780487808 101.96798780487808 0 1 1 126.97377413816169 247.77659225982177"
+																			fill="none" fill-opacity="1"
+																			stroke="transaprent" stroke-opacity="1"
+																			stroke-linecap="round"
+																			stroke-width="10.25183536585366"
+																			stroke-dasharray="0"
+																			class="apexcharts-radialbar-area"
+																			data:pathOrig="M 126.7996632462031 247.73974262299544 A 101.96798780487808 101.96798780487808 0 1 1 126.97377413816169 247.77659225982177">
+																		</path>
+																	</g>
+																	<g id="SvgjsG1094"
+																		class="apexcharts-radialbar-track apexcharts-track"
+																		rel="3">
+																		<path id="apexcharts-radialbarTrack-2"
+																			d="M 130.0366200764774 232.51105805620506 A 86.3990853658537 86.3990853658537 0 1 1 130.18414698312029 232.54228133506342"
+																			fill="none" fill-opacity="1"
+																			stroke="transaprent" stroke-opacity="1"
+																			stroke-linecap="round"
+																			stroke-width="10.25183536585366"
+																			stroke-dasharray="0"
+																			class="apexcharts-radialbar-area"
+																			data:pathOrig="M 130.0366200764774 232.51105805620506 A 86.3990853658537 86.3990853658537 0 1 1 130.18414698312029 232.54228133506342">
+																		</path>
+																	</g>
+																</g>
+																<g id="SvgjsG1096">
+																	<g id="SvgjsG1098"
+																		class="apexcharts-series apexcharts-radial-series"
+																		seriesName="seriesx1" rel="1"
+																		data:realIndex="0">
+																		<path id="SvgjsPath1099"
+																			d="M 123.56270641592879 262.9684271897858 A 117.53689024390246 117.53689024390246 0 1 1 255.37529218775404 195.80656017537365"
+																			fill="none" fill-opacity="0.85"
+																			stroke="rgba(40,167,69,0.85)"
+																			stroke-opacity="1" stroke-linecap="round"
+																			stroke-width="10.568902439024392"
+																			stroke-dasharray="0"
+																			class="apexcharts-radialbar-area apexcharts-radialbar-slice-0"
+																			data:angle="282" data:value="100" index="0"
+																			j="0"
+																			data:pathOrig="M 123.56270641592879 262.9684271897858 A 117.53689024390246 117.53689024390246 0 1 1 255.37529218775404 195.80656017537365">
+																		</path>
+																	</g>
+																	<g id="SvgjsG1100"
+																		class="apexcharts-series apexcharts-radial-series"
+																		seriesName="seriesx2" rel="2"
+																		data:realIndex="1">
+																		<path id="SvgjsPath1101"
+																			d="M 126.7996632462031 247.73974262299544 A 101.96798780487808 101.96798780487808 0 1 1 228.35187091388303 85.22223819206005"
+																			fill="none" fill-opacity="0.85"
+																			stroke="rgba(255,193,7,0.85)"
+																			stroke-opacity="1" stroke-linecap="round"
+																			stroke-width="10.568902439024392"
+																			stroke-dasharray="0"
+																			class="apexcharts-radialbar-area apexcharts-radialbar-slice-1"
+																			data:angle="220" data:value="78" index="0"
+																			j="1"
+																			data:pathOrig="M 126.7996632462031 247.73974262299544 A 101.96798780487808 101.96798780487808 0 1 1 228.35187091388303 85.22223819206005">
+																		</path>
+																	</g>
+																	<g id="SvgjsG1102"
+																		class="apexcharts-series apexcharts-radial-series"
+																		seriesName="seriesx3" rel="3"
+																		data:realIndex="2">
+																		<path id="SvgjsPath1103"
+																			d="M 130.0366200764774 232.51105805620506 A 86.3990853658537 86.3990853658537 0 1 1 233.75507968520816 137.47060019565814"
+																			fill="none" fill-opacity="0.85"
+																			stroke="rgba(220,53,69,0.85)"
+																			stroke-opacity="1" stroke-linecap="round"
+																			stroke-width="10.568902439024392"
+																			stroke-dasharray="0"
+																			class="apexcharts-radialbar-area apexcharts-radialbar-slice-2"
+																			data:angle="251" data:value="89" index="0"
+																			j="2"
+																			data:pathOrig="M 130.0366200764774 232.51105805620506 A 86.3990853658537 86.3990853658537 0 1 1 233.75507968520816 137.47060019565814">
+																		</path>
+																	</g>
+																	<circle id="SvgjsCircle1097" r="76.27316768292684"
+																		cx="148" cy="148"
+																		class="apexcharts-radialbar-hollow"
+																		fill="transparent"></circle>
+																</g>
+															</g>
+														</g>
+														<line id="SvgjsLine1104" x1="0" y1="0" x2="296" y2="0"
+															stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1"
+															stroke-linecap="butt" class="apexcharts-ycrosshairs"></line>
+														<line id="SvgjsLine1105" x1="0" y1="0" x2="296" y2="0"
+															stroke-dasharray="0" stroke-width="0" stroke-linecap="butt"
+															class="apexcharts-ycrosshairs-hidden"></line>
+													</g>
+													<g id="SvgjsG1084" class="apexcharts-annotations"></g>
+												</svg>
+												<div class="apexcharts-legend"></div>
+											</div>
+										</div>
+									</div>
+									<!-- icon with content  -->
+									<div class="d-flex align-items-center justify-content-around">
+										<div class="text-center">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+												stroke-linecap="round" stroke-linejoin="round"
+												class="feather feather-check-circle icon-sm text-success">
+												<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+												<polyline points="22 4 12 14.01 9 11.01"></polyline>
+											</svg>
+											<h1 class="mt-3  mb-1 fw-bold">76%</h1>
+											<p>Completed</p>
+										</div>
+										<div class="text-center">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+												stroke-linecap="round" stroke-linejoin="round"
+												class="feather feather-trending-up icon-sm text-warning">
+												<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+												<polyline points="17 6 23 6 23 12"></polyline>
+											</svg>
+											<h1 class="mt-3  mb-1 fw-bold">32%</h1>
+											<p>In-Progress</p>
+										</div>
+										<div class="text-center">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+												stroke-linecap="round" stroke-linejoin="round"
+												class="feather feather-trending-down icon-sm text-danger">
+												<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+												<polyline points="17 18 23 18 23 12"></polyline>
+											</svg>
+											<h1 class="mt-3  mb-1 fw-bold">13%</h1>
+											<p>Behind</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- card  -->
+						<div class="col-xl-8 col-lg-12 col-md-12 col-12">
+							<div class="card h-100">
+								<!-- card header  -->
+								<div class="card-header bg-white py-4">
+									<h4 class="mb-0">活跃用户</h4>
+								</div>
+								<!-- table  -->
+								<div class="table-responsive">
+									<table class="table text-nowrap">
+										<thead class="table-light">
+											<tr>
+												<th>Name</th>
+												<th>Role</th>
+												<th>Last Activity</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="align-middle">
+													<div class="d-flex align-items-center">
+														<div>
+															<img src="./static/picture/avatar-2.jpg" alt=""
+																class="avatar-md avatar rounded-circle">
+														</div>
+														<div class="ms-3 lh-1">
+															<h5 class=" mb-1">Anita Parmar</h5>
+															<p class="mb-0">anita@example.com</p>
+														</div>
+													</div>
+												</td>
+												<td class="align-middle">Front End Developer</td>
+												<td class="align-middle">3 May, 2021</td>
+												<td class="align-middle">
+													<div class="dropdown dropstart">
+														<a class="text-muted text-primary-hover" href="#" role="button"
+															id="dropdownTeamOne" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" viewBox="0 0 24 24" fill="none"
+																stroke="currentColor" stroke-width="2"
+																stroke-linecap="round" stroke-linejoin="round"
+																class="feather feather-more-vertical icon-xxs">
+																<circle cx="12" cy="12" r="1"></circle>
+																<circle cx="12" cy="5" r="1"></circle>
+																<circle cx="12" cy="19" r="1"></circle>
+															</svg>
+														</a>
+														<div class="dropdown-menu" aria-labelledby="dropdownTeamOne">
+															<a class="dropdown-item" href="#">Action</a>
+															<a class="dropdown-item" href="#">Another action</a>
+															<a class="dropdown-item" href="#">Something else
+																here</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="align-middle">
+													<div class="d-flex align-items-center">
+														<div>
+															<img src="./static/picture/avatar-1.jpg" alt=""
+																class="avatar-md avatar rounded-circle">
+														</div>
+														<div class="ms-3 lh-1">
+															<h5 class=" mb-1">Jitu Chauhan</h5>
+															<p class="mb-0">jituchauhan@example.com</p>
+														</div>
+													</div>
+												</td>
+												<td class="align-middle">Project Director </td>
+												<td class="align-middle">Today</td>
+												<td class="align-middle">
+													<div class="dropdown dropstart">
+														<a class="text-muted text-primary-hover" href="#" role="button"
+															id="dropdownTeamTwo" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" viewBox="0 0 24 24" fill="none"
+																stroke="currentColor" stroke-width="2"
+																stroke-linecap="round" stroke-linejoin="round"
+																class="feather feather-more-vertical icon-xxs">
+																<circle cx="12" cy="12" r="1"></circle>
+																<circle cx="12" cy="5" r="1"></circle>
+																<circle cx="12" cy="19" r="1"></circle>
+															</svg>
+														</a>
+														<div class="dropdown-menu" aria-labelledby="dropdownTeamTwo">
+															<a class="dropdown-item" href="#">Action</a>
+															<a class="dropdown-item" href="#">Another action</a>
+															<a class="dropdown-item" href="#">Something else
+																here</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="align-middle">
+													<div class="d-flex align-items-center">
+														<div>
+															<img src="./static/picture/avatar-3.jpg" alt=""
+																class="avatar-md avatar rounded-circle">
+														</div>
+														<div class="ms-3 lh-1">
+															<h5 class=" mb-1">Sandeep Chauhan</h5>
+															<p class="mb-0">sandeepchauhan@example.com</p>
+														</div>
+													</div>
+												</td>
+												<td class="align-middle">Full- Stack Developer</td>
+												<td class="align-middle">Yesterday</td>
+												<td class="align-middle">
+													<div class="dropdown dropstart">
+														<a class="text-muted text-primary-hover" href="#" role="button"
+															id="dropdownTeamThree" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" viewBox="0 0 24 24" fill="none"
+																stroke="currentColor" stroke-width="2"
+																stroke-linecap="round" stroke-linejoin="round"
+																class="feather feather-more-vertical icon-xxs">
+																<circle cx="12" cy="12" r="1"></circle>
+																<circle cx="12" cy="5" r="1"></circle>
+																<circle cx="12" cy="19" r="1"></circle>
+															</svg>
+														</a>
+
+														<div class="dropdown-menu" aria-labelledby="dropdownTeamThree">
+															<a class="dropdown-item" href="#">Action</a>
+															<a class="dropdown-item" href="#">Another action</a>
+															<a class="dropdown-item" href="#">Something else
+																here</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="align-middle">
+													<div class="d-flex align-items-center">
+
+														<div>
+															<img src="./static/picture/avatar-4.jpg" alt=""
+																class="avatar-md avatar rounded-circle">
+														</div>
+
+														<div class="ms-3 lh-1">
+															<h5 class=" mb-1">Amanda Darnell</h5>
+															<p class="mb-0">amandadarnell@example.com</p>
+														</div>
+													</div>
+												</td>
+												<td class="align-middle">Digital Marketer</td>
+												<td class="align-middle">3 May, 2023</td>
+												<td class="align-middle">
+													<div class="dropdown dropstart">
+														<a class="text-muted text-primary-hover" href="#" role="button"
+															id="dropdownTeamFour" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" viewBox="0 0 24 24" fill="none"
+																stroke="currentColor" stroke-width="2"
+																stroke-linecap="round" stroke-linejoin="round"
+																class="feather feather-more-vertical icon-xxs">
+																<circle cx="12" cy="12" r="1"></circle>
+																<circle cx="12" cy="5" r="1"></circle>
+																<circle cx="12" cy="19" r="1"></circle>
+															</svg>
+														</a>
+
+														<div class="dropdown-menu" aria-labelledby="dropdownTeamFour">
+															<a class="dropdown-item" href="#">Action</a>
+															<a class="dropdown-item" href="#">Another action</a>
+															<a class="dropdown-item" href="#">Something else
+																here</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+
+												<td class="align-middle">
+													<div class="d-flex align-items-center">
+
+														<div>
+															<img src="./static/picture/avatar-5.jpg" alt=""
+																class="avatar-md avatar rounded-circle">
+														</div>
+
+														<div class="ms-3 lh-1">
+															<h5 class=" mb-1">Patricia Murrill</h5>
+															<p class="mb-0">patriciamurrill@example.com</p>
+														</div>
+													</div>
+												</td>
+												<td class="align-middle">Account Manager</td>
+												<td class="align-middle">3 May, 2023</td>
+												<td class="align-middle">
+													<div class="dropdown dropstart">
+														<a class="text-muted text-primary-hover" href="#" role="button"
+															id="dropdownTeamFive" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" viewBox="0 0 24 24" fill="none"
+																stroke="currentColor" stroke-width="2"
+																stroke-linecap="round" stroke-linejoin="round"
+																class="feather feather-more-vertical icon-xxs">
+																<circle cx="12" cy="12" r="1"></circle>
+																<circle cx="12" cy="5" r="1"></circle>
+																<circle cx="12" cy="19" r="1"></circle>
+															</svg>
+														</a>
+
+														<div class="dropdown-menu" aria-labelledby="dropdownTeamFive">
+															<a class="dropdown-item" href="#">Action</a>
+															<a class="dropdown-item" href="#">Another action</a>
+															<a class="dropdown-item" href="#">Something else
+																here</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="align-middle border-bottom-0">
+													<div class="d-flex align-items-center">
+														<div>
+															<img src="./static/picture/avatar-6.jpg" alt=""
+																class="avatar-md avatar rounded-circle">
+														</div>
+														<div class="ms-3 lh-1">
+															<h5 class=" mb-1">Darshini Nair</h5>
+															<p class="mb-0">darshininair@example.com</p>
+														</div>
+													</div>
+												</td>
+												<td class="align-middle border-bottom-0">Front End Developer</td>
+												<td class="align-middle border-bottom-0">3 May, 2023</td>
+												<td class="align-middle border-bottom-0">
+													<div class="dropdown dropstart">
+														<a class="text-muted text-primary-hover" href="#" role="button"
+															id="dropdownTeamSix" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" viewBox="0 0 24 24" fill="none"
+																stroke="currentColor" stroke-width="2"
+																stroke-linecap="round" stroke-linejoin="round"
+																class="feather feather-more-vertical icon-xxs">
+																<circle cx="12" cy="12" r="1"></circle>
+																<circle cx="12" cy="5" r="1"></circle>
+																<circle cx="12" cy="19" r="1"></circle>
+															</svg>
+														</a>
+
+														<div class="dropdown-menu" aria-labelledby="dropdownTeamSix">
+															<a class="dropdown-item" href="#">Action</a>
+															<a class="dropdown-item" href="#">Another action</a>
+															<a class="dropdown-item" href="#">Something else
+																here</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="copy-right">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Scripts -->
+		<!-- Libs JS -->
+		<script src="./static/js/jquery.min.js"></script>
+		<script src="./static/js/bootstrap.bundle.min.js"></script>
+		<script src="./static/js/jquery.slimscroll.min.js"></script>
+		<script src="./static/js/feather.min.js"></script>
+		<script src="./static/js/prism.js"></script>
+		<script src="./static/js/apexcharts.min.js"></script>
+		<script src="./static/js/dropzone.min.js"></script>
+		<script src="./static/js/prism-toolbar.min.js"></script>
+		<script src="./static/js/prism-copy-to-clipboard.min.js"></script>
 
 
 
 
-<!-- Theme JS -->
-<script src="./static/js/theme.min.js"></script>
-    
+		<!-- Theme JS -->
+		<script src="./static/js/theme.min.js"></script>
 
 
-  	
-</body>
 
+
+
+
+		<svg id="SvgjsSvg1026" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1"
+			xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev"
+			style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
+			<defs id="SvgjsDefs1027"></defs>
+			<polyline id="SvgjsPolyline1028" points="0,0"></polyline>
+			<path id="SvgjsPath1029" d="M0 0 "></path>
+		</svg>
+	</body>
 </html>

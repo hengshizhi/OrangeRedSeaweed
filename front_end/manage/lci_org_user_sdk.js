@@ -25,7 +25,6 @@ class Lci_user {
                         data: {},
                         success: function (data) {
                             $.cookie('SessionKey', data);
-                            console.log(data);
                         }
                     });
                 });
@@ -106,5 +105,18 @@ class Lci_user {
         // 获取登录状态
         return this.reqapi('login_status', {}, Call
         )
+    }
+    GetNickname(Call = function (data) {
+        console.log(data)
+    }){
+        // 获取昵称
+        return this.reqapi('GetNickname', {}, Call
+        )
+    }
+    HeadSculpture(Call = function (data) {
+        console.log(data)
+    }){
+        // 获取头像地址
+        return '/api/HeadSculpture'
     }
 }

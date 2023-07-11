@@ -4,7 +4,7 @@ import random
 import string
 import time as time
 
-from sanic.response import json, redirect
+from sanic.response import  redirect
 from sanic.response import text
 
 import db.mysql as db
