@@ -1,4 +1,4 @@
-function sendApiRequest(instructionSet, sessionId, globalParams, ModName = 'free_other', ApiName = 'instruct') {
+function sendInstructsApiRequest(instructionSet, sessionId, globalParams, ModName = 'free_other', ApiName = 'instruct') {
     // Send request to mod with instrumentsAPI
     // globalParams should be a dictionary of global instruction parameters
     // Add global instruction parameters to the instruction_parameters field of each instruction

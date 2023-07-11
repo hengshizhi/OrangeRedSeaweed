@@ -68,6 +68,7 @@ def GetInformation(get_or_post, EnableSession, rep, **para):
 
 def modjs() -> str:
     ret = '''
+
 /**
  * 获取 cookie 对象
  * @returns  cookie 键值对对象
@@ -88,6 +89,46 @@ function getCookieObject() {
 
     return cookieObject // 返回包含 cookie 键值对的对象
 }
+function _sendAPIRequest(url, data, successCallback, errorCallback) {
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: data,
+    contentType: 'application/json',
+    success: function(response) {
+      if (successCallback && typeof successCallback === 'function') {
+        successCallback(response);
+      }
+    },
+    error: function(xhr, status, error) {
+      if (errorCallback && typeof errorCallback === 'function') {
+        errorCallback(xhr, status, error);
+      }
+    }
+  });
+}
+
+// url：API的URL。
+// data：要发送给API的数据。
+// successCallback：成功回调函数，它将在API请求成功时被调用，并将API的响应作为参数传递给它。
+// errorCallback：失败回调函数，它将在API请求失败时被调用，并将XHR对象、错误状态和错误信息作为参数传递给它。
+// function handleSuccess(response) {
+//     console.log('API请求成功！');
+//     console.log('响应数据：', response);
+//   }
+  
+//   // 自定义失败回调函数
+//   function handleError(xhr, status, error) {
+//     console.log('API请求失败！');
+//     console.log('错误状态：', status);
+//     console.log('错误信息：', error);
+//   }
+  
+//   // 调用API请求
+//   var apiUrl = 'https://api.example.com';
+//   var requestData = { name: 'John', age: 30 };
+  
+//   sendAPIRequest(apiUrl, requestData, handleSuccess, handleError);
 '''
     modlsit = modlist()
     for k, v in modlsit.items():
