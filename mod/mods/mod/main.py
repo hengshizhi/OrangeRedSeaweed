@@ -18,8 +18,21 @@ def main(api):
     return {'Modlist': apiModlist,
             'modjs': apiModjs,
             'logo': logo,
-            'GetInformation': GetInformation
+            'GetInformation': GetInformation,
+            'management_interface':management_interface
             }
+
+def management_interface(get_or_post, EnableSession, rep, **para):
+    s = EnableSession()
+    try:
+        OT = other.Main('CoreConfiguration', True, s.data['login_status_id'])
+    except:
+        return rep('You are not logged in')
+    if (OT.AdministratorVerification(s)):  # Administrator verification
+        with open('./mod/mods/{ModName}/management_interface.html'.format(ModName=get_or_post('management_interface_mod_name')),'r',encoding='utf-8') as f:
+            return rep(HTTPResponse(f.read(),content_type='text/html'))
+    else:
+        return rep('You not is administrators')
 
 def apiModlist(get_or_post, EnableSession, rep, **para):
     s = EnableSession()

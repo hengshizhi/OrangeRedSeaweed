@@ -11,7 +11,7 @@ function modlist_refresh(){
             con = ''
             response = JSON.parse(response)
             for(var pl in response){
-                con += htmladd(pl,'#')
+                con += htmladd(pl,'javascript:get_management_interface_html(`'+pl+'`)')
             }
             $("#Plugin-Settings").html(con);
         })
@@ -28,6 +28,29 @@ function modlist_refresh(){
     // 调用API请求
     var apiUrl = '/api/mod?ModName=mod&ApiName=Modlist';
     var requestData = {};
+    
+    _sendAPIRequest(apiUrl, requestData, handleSuccess, handleError);
+}
+function get_management_interface_html(mod_name){
+    // 自定义成功回调函数
+    function handleSuccess(response) {
+        $(function(){
+            $("#Management-Side-Page").html(response);
+        })
+    }
+    
+    // 自定义失败回调函数
+    function handleError(xhr, status, error) {
+        // console.log('API请求失败！');
+        // console.log('错误状态：', status);
+        // console.log('错误信息：', error);
+        modlist_refresh()
+    }
+    
+    // 调用API请求
+    var apiUrl = '/api/mod?ModName=mod&ApiName=management_interface&management_interface_mod_name='+mod_name;
+    var requestData = {
+    };
     
     _sendAPIRequest(apiUrl, requestData, handleSuccess, handleError);
 }
