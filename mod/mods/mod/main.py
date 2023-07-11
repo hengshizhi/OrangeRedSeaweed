@@ -11,16 +11,8 @@ from .ModInformation import logo as Ilogo
 from .ModInformation import modlist
 from .ModJs import modjs as modjsObj
 
-def manage_front_end_copy():
-    robj = route()
-    old = os.path.normpath('.\mod\mods\mod\manage/')
-    new = os.path.normpath('./front_end/manage/')
-    robj.mkdir(new)
-    robj.CopyCatalog(old,new)
 def AtRuntimeForTheFirstTime():
     ''' Functions that will be executed every time the program runs mod '''
-    manage_front_end_copy()
-
 
 def main(api):
     return {'Modlist': apiModlist,
@@ -76,7 +68,6 @@ def GetInformation(get_or_post, EnableSession, rep, **para):
 
 def modjs() -> str:
     ret = '''
-import $ from 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
 /**
  * 获取 cookie 对象
  * @returns  cookie 键值对对象

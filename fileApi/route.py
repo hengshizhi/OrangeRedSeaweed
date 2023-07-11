@@ -1,7 +1,18 @@
 # 路径操作类
 import os
 import shutil
-
+def delete(path):
+    '''Delete删除文件、目录
+    参数：
+    path:删除文件、目录的路径
+    '''
+    if (os.path.isfile(path)):
+        os.remove(path)
+    elif (os.path.isdir(path)):
+        shutil.rmtree(path,ignore_errors=True)
+    else:
+        return False
+    return True
 
 def mkdir(path):  # 创建目录
     folder = os.path.exists(path)
@@ -45,9 +56,7 @@ class main:
         if not os.path.exists(target_path):
             # 如果目标路径不存在原文件夹的话就创建
             os.makedirs(target_path)
-        
         if os.path.exists(source_path):
             # 如果目标路径存在原文件夹的话就先删除
-            shutil.rmtree(target_path)
-        
+            delete(target_path)
         shutil.copytree(source_path, target_path)

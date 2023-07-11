@@ -56,8 +56,8 @@ async def front_end(request, path):
     try:
         return await file(os.path.normpath('./front_end/' + path))
     except:
-        try:return await file(os.path.normpath('./front_end/index.html'))
-        except:return await file(os.path.normpath(f'./front_end/{path}/index.html'))
+        return await file(os.path.normpath(f'./front_end/{path}/index.html'))
+        # except:return await file(os.path.normpath('./front_end/index.html'))
         
 
 app.add_route(front_end, f'/<path:path>', methods=['GET', 'POST'])  # front_end
