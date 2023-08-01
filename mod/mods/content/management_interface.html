@@ -1,1 +1,30 @@
-<h1>暂时没有开发</h1>
+<script>
+    function content_list(){
+        $(function(){
+            let content_obj = new content()
+            content_obj.contentListRequest(
+                function(data){
+                    data = JSON.parse(data)
+                    let html = ''
+                    for (let i in data){
+                        html += `<li class="list-group-item">${data[i]['title']}</li>`;
+                    }
+                    $("#content-list").html(html)
+                },
+            )
+        })
+
+    }
+</script>
+<h1>
+    内容列表
+</h1>
+<button type="button" class="btn btn-primary mb-2" onclick="content_list()">刷新列表</button>
+  <!-- 内容列表 -->
+  <ul class="list-group" id="content-list">
+    <div> <li class="list-group-item"><a>Cras justo odio</a></li></div>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Morbi leo risus</li>
+    <li class="list-group-item">Porta ac consectetur ac</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>

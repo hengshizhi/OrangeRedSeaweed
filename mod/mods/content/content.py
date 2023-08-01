@@ -60,6 +60,10 @@ class content():
         self.OT.data['main'][AliasLookup]['content'] = self.content
         self.OT.data['main'][AliasLookup]['change'].append(time.time())
 
+    def del_content(self):
+        AliasLookup = self.AliasLookup()
+        del self.OT.data['main'][AliasLookup]
+
     def SubmitToDatabase(self):
         self.OT.SubmitToDatabase()  # 提交
 

@@ -142,6 +142,17 @@ function _sendAPIRequest(url, data, successCallback, errorCallback) {
 //   var requestData = { name: 'John', age: 30 };
   
 //   sendAPIRequest(apiUrl, requestData, handleSuccess, handleError);
+
+function get_param_value(paramName) {
+    var reg = new RegExp("(^|&)" + keyword + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
+
+// 示例使用：
+// var name = get_param_value('name'); // 获取名为"name"的参数值
+// var age = get_param_value('age'); // 获取名为"age"的参数值
 '''
     modlsit = modlist()
     for k, v in modlsit.items():

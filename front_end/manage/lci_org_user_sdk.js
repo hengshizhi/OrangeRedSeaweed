@@ -1,4 +1,4 @@
-function get(keyword) {
+function get_param_value(keyword) {
     var reg = new RegExp("(^|&)" + keyword + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]);

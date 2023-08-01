@@ -14,7 +14,11 @@
   },
   "img": {
     "main": "<img decoding=\"<~decoding~>\" src=\"<~ImgUrl~>\" alt=\"<~alt~>\" width=\"<~width~>\" height=\"<~height~>\">",
-    "format": "同上"
+    "format": {
+      "": {
+        "decoding": ""
+      }
+    }
   },
   "GlobalFormat": {
     "attribute": {
