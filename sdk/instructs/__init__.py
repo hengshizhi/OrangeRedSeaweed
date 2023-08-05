@@ -22,19 +22,26 @@ def check_instructions(instructions, instruction_table, dependency_table):
 class instruction_parameters():
     def __init__(self,instruction_parameters_data:dict|None) -> None:
         self.parameters = instruction_parameters_data
-    def get(self,parameter_name:str):
+    def get(self,parameter_name:str) -> str|bool|None:
+        '''
+        If False is return, then parameter not found \n
+        If None is return, then No parameters used, parameters not found \n
+        '''
         try:
             return self.parameters.get(parameter_name)
         except KeyError:
-            raise Exception(f'parameter not found:{parameter_name}')
+            return False
+            raise KeyError(f'parameter not found:{parameter_name}')
         except AttributeError:
-            raise Exception(f"No parameters used, parameters not found:'{parameter_name}'")
+            return None
+            raise AttributeError(f"No parameters used, parameters not found:'{parameter_name}'")
 class Execution:
-    def __init__(self,instruction,instruction_name_list:list,instruction_func_list:list):
+    def __init__(self,instruction,instruction_name_list:list,instruction_func_list:list,global_parameters:dict):
         '''Responsible for parsing each instruction'''
         self.instruction = instruction
         self.instruction_name_list = instruction_name_list
         self.instruction_func_list = instruction_func_list
+        self.global_parameters = global_parameters # global's parameters
     def extract_command(self):
         if isinstance(self.instruction, dict):
             self.instruction_name = self.instruction['instruction_name']
@@ -42,6 +49,8 @@ class Execution:
         else:
             self.instruction_name = self.instruction
             self.instruction_parameters = instruction_parameters(instruction_parameters_data=None)
+        if not self.global_parameters: # add global's parameters
+            self.instruction_parameters.parameters.update(self.global_parameters)
     def execute(self):
         '''Execute the instruction'''
         try:
@@ -70,20 +79,22 @@ class Execution:
 def run(instruction_set: list,
         instruction_name_list:list,
         instruction_func_list:list|object,
-        dependency_table:dict={}) -> list:
+        dependency_table:dict={},
+        global_parameters:dict|None = None) -> list:
     '''This function is a function that utilizes the instruction set to operate on another
     Parameters:
         instruction_set: Instruction set, which is a list of dictionaries:
         >>> instruction_set = [{'instruction_name': "<instruction_name>", <instruct_parameters>...}]
         >>> instruction_name_list = [<instruct1>,<instruct2>,...]
         >>> instruction_func_list = [<instruct_func1>,<instruct_func2>,...]
+        >>> global_parameters = {'other':<other:obj>}
         >>> # instruction_func_list = module_name # Extract functions from modules through strings
         >>> dependency_table = {<instruct1>:[<instruct2>,<instruct3>],...} 
         >>> # Instructions: dependent instructions of instructions (Need to execute an instruction dependent instruction first)
         >>> def instruct_func1(parameters:dict({'parameters':value})|None):
         >>>     return <execution_results>
     Usage method:
-        >>> run(instruction_set,instruction_name_list,instruction_func_list,dependency_table)
+        >>> run(instruction_set,instruction_name_list,instruction_func_list,dependency_table,global_parameters)
     '''
 
     invalid_instructions = check_instructions(instruction_set,instruction_name_list,dependency_table)
