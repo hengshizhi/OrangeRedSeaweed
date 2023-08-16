@@ -41,9 +41,13 @@ class table():  # 表类
 
     class session(table_data.session, Base): pass
 
+    class OTHERDATA(table_data.OTHERDATA, Base): pass
+
+    class other_data_user_key_index(table_data.other_data_user_key_index, Base): pass
+
 
 try:
-    # Base.metadata.create_all(engine) #创建表结构
+    Base.metadata.create_all(engine) #创建表结构
     pass
 except:
     print('数据库连接错误')

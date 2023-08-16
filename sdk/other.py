@@ -1,9 +1,9 @@
 # Other Data SDKs
 import json
 from sanic.response import text
-from operation.user import GET_other_user_data_interior , Change_other_user_data_interior
+from operation.other_data import GET_other_user_data_interior , Change_other_user_data_interior
 class Main():
-    def __init__(self, KEY, UseJson: bool = True, USERID=2, session='None',) -> None:
+    def __init__(self, KEY, UseJson: bool = True, USERID=2, session='None',Pulling=False) -> None:
         '''
         Other can store any common data type supported by Python, except for objects
         Precautions for use:
@@ -16,6 +16,7 @@ class Main():
             UseJson :obsolete（已废弃）
             USERID: User ID (2id is the super administrator ID, and non user data should be placed here)
             session: Session can be used to obtain logged in users_id ()
+            Pulling :Do you want to create an object and perform a pull operation
         '''
         if (session != 'None'):
             try:
@@ -28,7 +29,8 @@ class Main():
         self.key = KEY
         self.data = None
         # return ID
-
+        if (Pulling):
+            self.Pulling()
     def Pulling(self) -> bool:
         '''Pull data from the database to self.data'''
         self.data = GET_other_user_data_interior(user_id=self.id, id=self.key)

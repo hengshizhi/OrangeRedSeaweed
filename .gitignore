@@ -3,3 +3,4 @@ config.py
 operation/db/config.py
 portrait.ico
 *.ico
+.vscode/launch.json

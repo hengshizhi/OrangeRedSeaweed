@@ -10,18 +10,9 @@ from sqlalchemy import (
 
 class BaseMixin:
     """model的基类,所有model都必须继承"""
-    id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, nullable=False)
     updated_at = Column(TIMESTAMP, nullable=False)
     deleted_at = Column(Integer)  # 可以为空, 如果非空, 则为软删
-
-    # 单个对象方法1
-    # def to_dict(self):
-    #     model_dict = dict(self.__dict__)
-    #     del model_dict['_sa_instance_state']
-    #     return model_dict
-    # Base.to_dict = to_dict # 注意:这个跟使用flask_sqlalchemy的有区别
-    # 单个对象方法2
     def single_to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
@@ -38,7 +29,7 @@ class BaseMixin:
 
 class User(BaseMixin):
     __tablename__ = "user"  # 表名
-    id = Column(Integer, primary_key=True, nullable=False)  # 设置主键
+    id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(32), nullable=False)  # 用户名
     Key = Column(String(64), nullable=False)  # 密码
     Registration_time = Column(Integer)  # 注册时间
@@ -55,4 +46,17 @@ class session(BaseMixin):  # 会话
     __tablename__ = "session"  # 表名
     # key = Column(String(64),nullable=False,primary_key=True)
     id = Column(String(64), nullable=False, primary_key=True)
-    data = Column(String(255), comment='{}')  # 会话内容
+    data = Column(String(255), server_default='{}')  # 会话内容
+
+class OTHERDATA(BaseMixin):
+    '''其他数据数据表'''
+    __tablename__ = "otherdata"  # 表名
+    index = Column(Integer, nullable=False, primary_key=True,comment='数据索引')
+    data = Column(String(255), comment='数据本体')  # 会话内容
+
+class other_data_user_key_index(BaseMixin):
+    '''其他数据用户键索引'''
+    __tablename__ = "other_data_user_key_index"  # 表名
+    user_id = Column(Integer,  nullable=False ,comment='用户名')
+    ot_key = Column(Integer, nullable=False ,comment='其他数据的键')
+    index = Column(Integer, nullable=False, primary_key=True , comment='数据索引') # 对应OTHERDATA的index
