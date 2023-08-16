@@ -49,8 +49,6 @@ class Execution:
         else:
             self.instruction_name = self.instruction
             self.instruction_parameters = instruction_parameters(instruction_parameters_data=None)
-        if type(self.global_parameters) == dict: # add global's parameters
-            self.instruction_parameters.parameters.update(self.global_parameters)
     def execute(self):
         '''Execute the instruction'''
         try:
