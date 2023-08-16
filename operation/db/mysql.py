@@ -47,7 +47,7 @@ class table():  # 表类
 
 
 try:
-    Base.metadata.create_all(engine) #创建表结构
+    # Base.metadata.create_all(engine) #创建表结构
     pass
 except:
     print('数据库连接错误')

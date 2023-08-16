@@ -57,6 +57,7 @@ class OTHERDATA(BaseMixin):
 class other_data_user_key_index(BaseMixin):
     '''其他数据用户键索引'''
     __tablename__ = "other_data_user_key_index"  # 表名
+    id = Column(Integer, primary_key=True, nullable=False)
     user_id = Column(Integer,  nullable=False ,comment='用户名')
-    ot_key = Column(Integer, nullable=False ,comment='其他数据的键')
-    index = Column(Integer, nullable=False, primary_key=True , comment='数据索引') # 对应OTHERDATA的index
+    ot_key = Column(String(255), nullable=False ,comment='其他数据的键')
+    index = Column(Integer, nullable=False, comment='数据索引') # 对应OTHERDATA的index
